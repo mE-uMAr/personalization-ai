@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/source-serif-4";
+@import "@fontsource/ibm-plex-sans-arabic/400.css";
+@import "@fontsource/ibm-plex-sans-arabic/500.css";
+@import "@fontsource/ibm-plex-sans-arabic/600.css";
+@import "@fontsource/ibm-plex-sans-arabic/700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Brand: sampled from the client's own brief (navy #002399, lavender #E5E7FC,
+   orange #FA5C00, violet #7601FF, periwinkle #757FFA). */
+@theme inline {
+  --font-sans: 'Inter Variable', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Source Serif 4 Variable', Georgia, 'IBM Plex Sans Arabic', serif;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Inter Variable', sans-serif;
+
+  --color-brand-50: #f3f4fe;
+  --color-brand-100: #e5e7fc;
+  --color-brand-200: #c9cef8;
+  --color-brand-300: #a2abf2;
+  --color-brand-400: #757ffa;
+  --color-brand-500: #3f52e0;
+  --color-brand-600: #1534c4;
+  --color-brand-700: #002399;
+  --color-brand-800: #001b78;
+  --color-brand-900: #00125a;
+  --color-ember-500: #fa5c00;
+  --color-ember-600: #db4f00;
+  --color-ember-50: #fff3eb;
+  --color-violet-brand: #7601ff;
+
+  --color-level-l1: #0b3bc8;
+  --color-level-l2: #6d3be8;
+  --color-level-l3: #009e8f;
+  --color-level-editor: #52514e;
+  --color-level-exploration: #db4f00;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #fbfbfd;
+  --foreground: #0d1330;
+  --card: #ffffff;
+  --card-foreground: #0d1330;
+  --popover: #ffffff;
+  --popover-foreground: #0d1330;
+  --primary: #002399;
+  --primary-foreground: #ffffff;
+  --secondary: #eef0fc;
+  --secondary-foreground: #002399;
+  --muted: #f2f3f8;
+  --muted-foreground: #5b6280;
+  --accent: #eef0fc;
+  --accent-foreground: #002399;
+  --destructive: #c62828;
+  --border: #e3e6f0;
+  --input: #d9dcea;
+  --ring: #757ffa;
+  --chart-1: #0b3bc8;
+  --chart-2: #e4570e;
+  --chart-3: #009e8f;
+  --chart-4: #6d3be8;
+  --chart-5: #c2337a;
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0d1330;
+  --sidebar-primary: #002399;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef0fc;
+  --sidebar-accent-foreground: #002399;
+  --sidebar-border: #e3e6f0;
+  --sidebar-ring: #757ffa;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  [dir="rtl"] body, [dir="rtl"] {
+    font-family: var(--font-arabic);
+  }
+  [dir="rtl"] .font-heading {
+    font-family: var(--font-arabic);
+    font-weight: 600;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    background: #c9cef8;
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.16em];
+  }
+  [dir="rtl"] .eyebrow {
+    @apply tracking-normal normal-case text-xs;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .hex {
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+  }
+  .hex-v {
+    clip-path: polygon(50% 0%, 96% 25%, 96% 75%, 50% 100%, 4% 75%, 4% 25%);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+}
+
+@keyframes flash-in {
+  0% { background-color: #fff3eb; }
+  100% { background-color: transparent; }
+}
+.flash-in {
+  animation: flash-in 1.6s ease-out;
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(250, 92, 0, 0.45); }
+  100% { box-shadow: 0 0 0 10px rgba(250, 92, 0, 0); }
+}
+.pulse-ring {
+  animation: pulse-ring 1.4s ease-out 2;
+}

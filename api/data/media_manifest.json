@@ -1,0 +1,3977 @@
+{
+ "OPH-001": {
+  "type": "article",
+  "poster": "/media/posters/OPH-001.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 48017,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-002": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 48017,
+   "clip_name": "Green eye pupil dilating",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/48017/"
+  },
+  "poster": "/media/posters/OPH-002.jpg",
+  "sha256": "177efbc3a530573357263cd40ec66694c7dfd06ed0ba81adc827e71f08dfaf9b",
+  "versions": {
+   "en": {
+    "file": "/media/videos/OPH-002.en.mp4",
+    "captions": "/media/captions/OPH-002.en.vtt",
+    "duration_seconds": 40.41,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.01,
+      "title": "Assessment"
+     },
+     {
+      "start": 20.14,
+      "title": "Treatment principles"
+     },
+     {
+      "start": 29.29,
+      "title": "Adherence"
+     }
+    ],
+    "bytes": 1522640,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/OPH-002.ar.mp4",
+    "captions": "/media/captions/OPH-002.ar.vtt",
+    "duration_seconds": 69.25,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.29,
+      "title": "التقييم"
+     },
+     {
+      "start": 35.27,
+      "title": "مبادئ العلاج"
+     },
+     {
+      "start": 50.3,
+      "title": "الالتزام بالعلاج"
+     }
+    ],
+    "bytes": 2706631,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Measuring intraocular pressure in clinic. Applanation technique, common sources of error and how corneal thickness changes the reading. A full assessment combines pressure measurement, gonioscopy, optic disc examination and visual field testing. Optical coherence tomography helps document the nerve fibre layer over time. Lowering pressure is the only proven way to slow progression. A target pressure is set for each patient and reviewed if the disease continues to progress. Up to half of patients do not use drops as prescribed. Simple regimens, instillation training and regular review of technique improve outcomes.",
+   "ar": "قياس ضغط العين في العيادة. تقنية قياس الضغط بالتسطيح، ومصادر الخطأ الشائعة، وتأثير سماكة القرنية على القراءة. يجمع التقييم الكامل بين قياس الضغط وفحص زاوية العين وفحص القرص البصري واختبار المجال البصري. ويساعد التصوير المقطعي البصري على توثيق طبقة الألياف العصبية مع مرور الوقت. خفض الضغط هو الطريقة الوحيدة المثبتة لإبطاء تطور المرض. ويُحدَّد ضغط مستهدف لكل مريض ويُراجَع إذا استمر المرض في التقدم. لا يستخدم ما يصل إلى نصف المرضى القطرات كما وُصفت لهم. وتحسّن الأنظمة البسيطة والتدريب على وضع القطرات والمراجعة المنتظمة للطريقة من النتائج."
+  },
+  "duration_seconds": 40.41,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1244 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "OPH-003": {
+  "type": "article",
+  "poster": "/media/posters/OPH-003.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 46741,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-004": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 46741,
+   "clip_name": "Close up of a blue eye",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/46741/"
+  },
+  "poster": "/media/posters/OPH-004.jpg",
+  "sha256": "c81ad4ae6c7b3b5f6e01a31b7352aeb5c6da742af44b83579ca076882d58e69d",
+  "versions": {
+   "en": {
+    "file": "/media/videos/OPH-004.en.mp4",
+    "captions": "/media/captions/OPH-004.en.vtt",
+    "duration_seconds": 40.98,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.67,
+      "title": "Adherence"
+     },
+     {
+      "start": 17.82,
+      "title": "Follow-up"
+     },
+     {
+      "start": 25.91,
+      "title": "Who is at risk"
+     }
+    ],
+    "bytes": 1029614,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/OPH-004.ar.mp4",
+    "captions": "/media/captions/OPH-004.ar.vtt",
+    "duration_seconds": 72.08,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.53,
+      "title": "الالتزام بالعلاج"
+     },
+     {
+      "start": 31.75,
+      "title": "المتابعة"
+     },
+     {
+      "start": 45.31,
+      "title": "من هم الأكثر عرضة"
+     }
+    ],
+    "bytes": 1842569,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Selective laser trabeculoplasty explained. Who benefits from first-line laser, what to expect after treatment and how long the effect lasts. Up to half of patients do not use drops as prescribed. Simple regimens, instillation training and regular review of technique improve outcomes. Review frequency depends on stage and stability. Progression on fields or imaging should prompt a change in the target or the treatment. Age, family history, high myopia and raised intraocular pressure are the strongest risk factors. Many patients have no symptoms until visual field loss is advanced, which is why opportunistic checks matter.",
+   "ar": "شرح رأب التربيق الانتقائي بالليزر. من يستفيد من الليزر كخط علاج أول، وما المتوقع بعد العلاج، وكم يدوم تأثيره. لا يستخدم ما يصل إلى نصف المرضى القطرات كما وُصفت لهم. وتحسّن الأنظمة البسيطة والتدريب على وضع القطرات والمراجعة المنتظمة للطريقة من النتائج. يعتمد تكرار المراجعة على مرحلة المرض واستقراره. ويستدعي التطور في المجال البصري أو التصوير تغيير الهدف أو العلاج. يعد التقدم في العمر والتاريخ العائلي وقصر النظر الشديد وارتفاع ضغط العين أقوى عوامل الخطر. لا تظهر الأعراض لدى كثير من المرضى حتى يتقدم فقدان المجال البصري، ولذلك يكتسب الفحص العرضي أهمية كبيرة."
+  },
+  "duration_seconds": 40.98,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (768 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "OPH-005": {
+  "type": "article",
+  "poster": "/media/posters/OPH-005.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 20843,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-006": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 6127,
+   "clip_name": "Doctor showing scan results on a tablet",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/6127/"
+  },
+  "poster": "/media/posters/OPH-006.jpg",
+  "sha256": "095539d48adcc3409f337702323958afeb2500279fc71b8b1449b2656474308b",
+  "versions": {
+   "en": {
+    "file": "/media/videos/OPH-006.en.mp4",
+    "captions": "/media/captions/OPH-006.en.vtt",
+    "duration_seconds": 36.14,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 9.4,
+      "title": "Imaging"
+     },
+     {
+      "start": 17.83,
+      "title": "Treatment"
+     },
+     {
+      "start": 28.0,
+      "title": "Living with low vision"
+     }
+    ],
+    "bytes": 1453169,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/OPH-006.ar.mp4",
+    "captions": "/media/captions/OPH-006.ar.vtt",
+    "duration_seconds": 69.94,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 17.86,
+      "title": "التصوير"
+     },
+     {
+      "start": 33.54,
+      "title": "العلاج"
+     },
+     {
+      "start": 55.26,
+      "title": "التعايش مع ضعف البصر"
+     }
+    ],
+    "bytes": 2867562,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Reading OCT scans in macular disease. A systematic way to read retinal layers and spot fluid, atrophy and the signs that change management. OCT is the key test for both diagnosis and monitoring. It shows fluid in or under the retina and guides decisions at each visit. Intravitreal anti-VEGF therapy is the standard of care for neovascular disease. Regimens aim to control activity while keeping the number of visits manageable. Low-vision aids, good lighting and early referral to support services help patients stay independent.",
+   "ar": "قراءة صور التصوير المقطعي البصري في أمراض البقعة. طريقة منهجية لقراءة طبقات الشبكية واكتشاف السوائل والضمور والعلامات التي تغير خطة العلاج. يعد التصوير المقطعي البصري الفحص الأساسي للتشخيص والمتابعة، إذ يُظهر السوائل داخل الشبكية أو تحتها ويوجّه القرارات في كل زيارة. يعد العلاج بمضادات عامل النمو البطاني داخل الجسم الزجاجي المعيار الأساسي للنوع الرطب. وتهدف أنظمة العلاج إلى السيطرة على نشاط المرض مع إبقاء عدد الزيارات في حدود معقولة. تساعد وسائل ضعف البصر والإضاءة الجيدة والإحالة المبكرة إلى خدمات الدعم المرضى على الحفاظ على استقلاليتهم."
+  },
+  "duration_seconds": 36.14,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1804 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "OPH-007": {
+  "type": "article",
+  "poster": "/media/posters/OPH-007.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 4257,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-008": {
+  "type": "article",
+  "poster": "/media/posters/OPH-008.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 6127,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-009": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 20843,
+   "clip_name": "Closeup of a dark grey eye",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/20843/"
+  },
+  "poster": "/media/posters/OPH-009.jpg",
+  "sha256": "590081605dacf26843d3b87cd97392580228bc6597c6058bf7cd53dff64d2609",
+  "versions": {
+   "en": {
+    "file": "/media/videos/OPH-009.en.mp4",
+    "captions": "/media/captions/OPH-009.en.vtt",
+    "duration_seconds": 41.17,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 9.02,
+      "title": "Screening"
+     },
+     {
+      "start": 18.34,
+      "title": "Systemic control"
+     },
+     {
+      "start": 29.51,
+      "title": "Macular oedema"
+     }
+    ],
+    "bytes": 1118805,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/OPH-009.ar.mp4",
+    "captions": "/media/captions/OPH-009.ar.vtt",
+    "duration_seconds": 68.73,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 17.36,
+      "title": "الفحص الدوري"
+     },
+     {
+      "start": 32.72,
+      "title": "ضبط العوامل الجهازية"
+     },
+     {
+      "start": 50.37,
+      "title": "الوذمة البقعية"
+     }
+    ],
+    "bytes": 1903831,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Diabetic retinopathy screening in primary care. Setting up retinal screening, grading results and agreeing referral thresholds with eye services. Regular retinal photography detects sight-threatening disease before symptoms appear. Screening intervals depend on previous results and glycaemic control. Better control of glucose, blood pressure and lipids reduces the risk of progression. Rapid falls in HbA1c can transiently worsen retinopathy and need closer review. Central-involving oedema with reduced vision is usually treated with intravitreal therapy. Laser and steroids remain options in selected patients.",
+   "ar": "فحص اعتلال الشبكية السكري في الرعاية الأولية. إعداد برنامج فحص الشبكية وتصنيف النتائج والاتفاق على حدود الإحالة مع خدمات طب العيون. يكشف التصوير المنتظم للشبكية المرض المهدد للبصر قبل ظهور الأعراض. وتعتمد الفترات بين الفحوص على النتائج السابقة ومستوى ضبط السكر. يقلل ضبط السكر وضغط الدم والدهون من خطر تطور المرض. وقد يؤدي الانخفاض السريع في الهيموغلوبين السكري إلى تفاقم مؤقت يستدعي متابعة أدق. تُعالج الوذمة التي تصيب مركز البقعة مع انخفاض الإبصار عادةً بالحقن داخل الجسم الزجاجي. ويبقى الليزر والستيرويدات خيارات لمرضى مختارين."
+  },
+  "duration_seconds": 41.17,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (532 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 24.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "OPH-010": {
+  "type": "article",
+  "poster": "/media/posters/OPH-010.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 47783,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-011": {
+  "type": "article",
+  "poster": "/media/posters/OPH-011.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 48017,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-012": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 47504,
+   "clip_name": "Filling an injection with a saline solution",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/47504/"
+  },
+  "poster": "/media/posters/OPH-012.jpg",
+  "sha256": "845d8814a68a8e404420c7823925fa3637a2917b8fba400c963dabd29a8f4808",
+  "versions": {
+   "en": {
+    "file": "/media/videos/OPH-012.en.mp4",
+    "captions": "/media/captions/OPH-012.en.vtt",
+    "duration_seconds": 32.96,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.89,
+      "title": "Referral"
+     },
+     {
+      "start": 14.48,
+      "title": "Proliferative disease"
+     },
+     {
+      "start": 21.53,
+      "title": "Screening"
+     }
+    ],
+    "bytes": 776177,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/OPH-012.ar.mp4",
+    "captions": "/media/captions/OPH-012.ar.vtt",
+    "duration_seconds": 60.92,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 18.48,
+      "title": "الإحالة"
+     },
+     {
+      "start": 31.41,
+      "title": "المرض التكاثري"
+     },
+     {
+      "start": 43.33,
+      "title": "الفحص الدوري"
+     }
+    ],
+    "bytes": 1475994,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Product briefing: intravitreal therapy in DME. Briefing on intravitreal options for diabetic macular oedema and patient selection. Clear referral criteria shared between primary care and eye services shorten the time to treatment. New vessels on the disc or elsewhere need urgent treatment with laser or intravitreal therapy to prevent haemorrhage. Regular retinal photography detects sight-threatening disease before symptoms appear. Screening intervals depend on previous results and glycaemic control.",
+   "ar": "موجز عن المنتج: العلاج داخل الجسم الزجاجي في الوذمة البقعية السكرية. موجز حول خيارات العلاج داخل الجسم الزجاجي للوذمة البقعية السكرية واختيار المرضى. تختصر معايير الإحالة الواضحة والمشتركة بين الرعاية الأولية وخدمات طب العيون الوقت اللازم لبدء العلاج. تتطلب الأوعية الجديدة على القرص البصري أو في مواضع أخرى علاجاً عاجلاً بالليزر أو بالحقن لمنع النزف. يكشف التصوير المنتظم للشبكية المرض المهدد للبصر قبل ظهور الأعراض. وتعتمد الفترات بين الفحوص على النتائج السابقة ومستوى ضبط السكر."
+  },
+  "duration_seconds": 32.96,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1002 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "OPH-013": {
+  "type": "article",
+  "poster": "/media/posters/OPH-013.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 46741,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-014": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 4257,
+   "clip_name": "Green eye blinking",
+   "license": "Free",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/4257/"
+  },
+  "poster": "/media/posters/OPH-014.jpg",
+  "sha256": "7cde9bf5068281494a13cacee6d1dcbd6d84a5ab299232c572b4a1cd30a45363",
+  "versions": {
+   "en": {
+    "file": "/media/videos/OPH-014.en.mp4",
+    "captions": "/media/captions/OPH-014.en.vtt",
+    "duration_seconds": 31.44,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.19,
+      "title": "Two main mechanisms"
+     },
+     {
+      "start": 15.48,
+      "title": "Stepwise management"
+     },
+     {
+      "start": 22.84,
+      "title": "Screens and blinking"
+     }
+    ],
+    "bytes": 1328803,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/OPH-014.ar.mp4",
+    "captions": "/media/captions/OPH-014.ar.vtt",
+    "duration_seconds": 58.49,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.58,
+      "title": "آليتان رئيسيتان"
+     },
+     {
+      "start": 28.75,
+      "title": "العلاج المتدرج"
+     },
+     {
+      "start": 42.28,
+      "title": "الشاشات والرمش"
+     }
+    ],
+    "bytes": 2544448,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Tear film assessment in five minutes. A quick, repeatable clinic routine for tear break-up time, staining and symptom scoring. Most patients have evaporative disease linked to meibomian gland dysfunction, aqueous deficiency or a mix of both. Treatment moves from environmental advice and lubricants to lid care, anti-inflammatory drops and in-office procedures. Prolonged screen use reduces blink rate and completeness. Regular breaks and screen position help.",
+   "ar": "تقييم الغشاء الدمعي في خمس دقائق. روتين سريع وقابل للتكرار في العيادة لقياس زمن تفكك الدمع والتلوين وتقييم الأعراض. يعاني معظم المرضى من الجفاف التبخري المرتبط بخلل الغدد الميبومية، أو من نقص إفراز الدمع، أو من مزيج من الاثنين. يتدرج العلاج من النصائح البيئية والمرطبات إلى العناية بالجفون وقطرات مضادة للالتهاب والإجراءات في العيادة. يقلل الاستخدام المطول للشاشات من معدل الرمش واكتماله. وتساعد الاستراحات المنتظمة وضبط موضع الشاشة على التخفيف."
+  },
+  "duration_seconds": 31.44,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (453 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 24.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "OPH-015": {
+  "type": "article",
+  "poster": "/media/posters/OPH-015.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 20843,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "OPH-016": {
+  "type": "article",
+  "poster": "/media/posters/OPH-016.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 4257,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-001": {
+  "type": "article",
+  "poster": "/media/posters/CMD-001.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 46365,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-002": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 46368,
+   "clip_name": "Close up of vital signs of a patient",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/46368/"
+  },
+  "poster": "/media/posters/CMD-002.jpg",
+  "sha256": "1b107a9ac0ca9825670f545dd531ff0a1d1e17224cde3eca2539e0f437bccd60",
+  "versions": {
+   "en": {
+    "file": "/media/videos/CMD-002.en.mp4",
+    "captions": "/media/captions/CMD-002.en.vtt",
+    "duration_seconds": 29.46,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.22,
+      "title": "Targets"
+     },
+     {
+      "start": 15.22,
+      "title": "Treatment strategy"
+     },
+     {
+      "start": 21.38,
+      "title": "Lifestyle"
+     }
+    ],
+    "bytes": 445818,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/CMD-002.ar.mp4",
+    "captions": "/media/captions/CMD-002.ar.vtt",
+    "duration_seconds": 58.72,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.97,
+      "title": "الأهداف"
+     },
+     {
+      "start": 31.73,
+      "title": "استراتيجية العلاج"
+     },
+     {
+      "start": 44.93,
+      "title": "نمط الحياة"
+     }
+    ],
+    "bytes": 951606,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Single-pill combinations for blood pressure. Why starting with two agents in one pill improves control and adherence. Most adults benefit from a lower target if treatment is tolerated. Targets are individualised for frailty and postural symptoms. Combination therapy, ideally in a single pill, reaches target faster than sequential monotherapy. Salt reduction, weight loss, activity and limiting alcohol add meaningfully to drug therapy.",
+   "ar": "الحبة المركبة الواحدة لعلاج ضغط الدم. لماذا يحسن البدء بدواءين في حبة واحدة من السيطرة على الضغط والالتزام بالعلاج. يستفيد معظم البالغين من هدف أقل إذا كان العلاج محتملاً، مع تكييف الأهداف لدى كبار السن الضعفاء ومن يعانون أعراض انخفاض الضغط الوضعي. يصل العلاج المركب، ويفضل أن يكون في حبة واحدة، إلى الهدف أسرع من التبديل المتتابع بين الأدوية المفردة. يضيف تقليل الملح وخفض الوزن والنشاط البدني والحد من الكحول فائدة ملموسة إلى العلاج الدوائي."
+  },
+  "duration_seconds": 29.46,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1832 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 30.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "CMD-003": {
+  "type": "article",
+  "poster": "/media/posters/CMD-003.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 49226,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-004": {
+  "type": "article",
+  "poster": "/media/posters/CMD-004.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 46368,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-005": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 46365,
+   "clip_name": "Close up of a heart rate monitor",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/46365/"
+  },
+  "poster": "/media/posters/CMD-005.jpg",
+  "sha256": "c164960718efe2dfefe6f6675f3e0ff729d52ae0d806d4b51d817a83839b2477",
+  "versions": {
+   "en": {
+    "file": "/media/videos/CMD-005.en.mp4",
+    "captions": "/media/captions/CMD-005.en.vtt",
+    "duration_seconds": 30.17,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.32,
+      "title": "Guideline-directed therapy"
+     },
+     {
+      "start": 17.33,
+      "title": "Monitoring"
+     },
+     {
+      "start": 23.58,
+      "title": "After discharge"
+     }
+    ],
+    "bytes": 519802,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/CMD-005.ar.mp4",
+    "captions": "/media/captions/CMD-005.ar.vtt",
+    "duration_seconds": 51.93,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.27,
+      "title": "العلاج الموجه بالإرشادات"
+     },
+     {
+      "start": 29.33,
+      "title": "المراقبة"
+     },
+     {
+      "start": 41.41,
+      "title": "بعد الخروج من المستشفى"
+     }
+    ],
+    "bytes": 949574,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Titrating heart failure medicines safely. Monitoring potassium, kidney function and blood pressure while reaching target doses. For reduced ejection fraction, four drug classes reduce mortality and admissions. Starting them early matters more than perfect sequencing. Check symptoms, weight, blood pressure, kidney function and potassium at each step of titration. An early review within two weeks of discharge reduces readmission.",
+   "ar": "معايرة جرعات أدوية قصور القلب بأمان. مراقبة البوتاسيوم ووظائف الكلى وضغط الدم أثناء الوصول إلى الجرعات المستهدفة. في حالة انخفاض الكسر القذفي، تقلل أربع فئات دوائية من الوفيات ودخول المستشفى. والبدء المبكر بها أهم من الترتيب المثالي. تتم مراقبة الأعراض والوزن وضغط الدم ووظائف الكلى والبوتاسيوم في كل خطوة من خطوات تعديل الجرعة. تقلل المراجعة المبكرة خلال أسبوعين من الخروج من خطر العودة إلى المستشفى."
+  },
+  "duration_seconds": 30.17,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1122 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 30.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "CMD-006": {
+  "type": "article",
+  "poster": "/media/posters/CMD-006.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 2856,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-007": {
+  "type": "article",
+  "poster": "/media/posters/CMD-007.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 17540,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-008": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 34235,
+   "clip_name": "Lot of pills and capsules turning",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/34235/"
+  },
+  "poster": "/media/posters/CMD-008.jpg",
+  "sha256": "cb17f35b3391feb8d1c4f2a5df5abb5897806472b39d9195ce7c49b8135607a2",
+  "versions": {
+   "en": {
+    "file": "/media/videos/CMD-008.en.mp4",
+    "captions": "/media/captions/CMD-008.en.vtt",
+    "duration_seconds": 31.0,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.77,
+      "title": "Statins"
+     },
+     {
+      "start": 16.02,
+      "title": "Beyond statins"
+     },
+     {
+      "start": 22.37,
+      "title": "Familial hypercholesterolaemia"
+     }
+    ],
+    "bytes": 1615392,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/CMD-008.ar.mp4",
+    "captions": "/media/captions/CMD-008.ar.vtt",
+    "duration_seconds": 54.03,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 15.08,
+      "title": "الستاتينات"
+     },
+     {
+      "start": 28.69,
+      "title": "ما بعد الستاتينات"
+     },
+     {
+      "start": 39.88,
+      "title": "فرط كوليسترول الدم العائلي"
+     }
+    ],
+    "bytes": 2879242,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Statin intolerance: practical options. Separating true intolerance from nocebo effects, and the alternatives when statins fail. High-intensity statins remain first line. Adherence falls quickly, so early follow-up and lipid checks help. Ezetimibe, PCSK9-targeted therapy and other agents help patients who remain above target. Very high LDL or early family history should prompt assessment for an inherited cause and cascade testing.",
+   "ar": "عدم تحمل الستاتين: خيارات عملية. التمييز بين عدم التحمل الحقيقي وتأثير التوقع السلبي، والبدائل عند فشل الستاتينات. تبقى الستاتينات عالية الشدة الخط الأول. وينخفض الالتزام بها سريعاً، لذا تساعد المتابعة المبكرة وفحص الدهون. يساعد الإيزيتيمايب والعلاجات المستهدفة لـ PCSK9 وأدوية أخرى المرضى الذين لم يبلغوا الهدف. يستدعي الارتفاع الشديد في الكوليسترول الضار أو التاريخ العائلي المبكر تقييم السبب الوراثي وفحص الأقارب."
+  },
+  "duration_seconds": 31.0,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (871 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "CMD-009": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 48888,
+   "clip_name": "Doctor preparing a needle injection",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/48888/"
+  },
+  "poster": "/media/posters/CMD-009.jpg",
+  "sha256": "fc2be03f132bb6293551dbcbba48c0618e188eaae480033bbd69e4a40612d61f",
+  "versions": {
+   "en": {
+    "file": "/media/videos/CMD-009.en.mp4",
+    "captions": "/media/captions/CMD-009.en.vtt",
+    "duration_seconds": 31.05,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 9.41,
+      "title": "Beyond statins"
+     },
+     {
+      "start": 15.43,
+      "title": "Familial hypercholesterolaemia"
+     },
+     {
+      "start": 21.99,
+      "title": "Risk first"
+     }
+    ],
+    "bytes": 730503,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/CMD-009.ar.mp4",
+    "captions": "/media/captions/CMD-009.ar.vtt",
+    "duration_seconds": 51.37,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 15.59,
+      "title": "ما بعد الستاتينات"
+     },
+     {
+      "start": 26.73,
+      "title": "فرط كوليسترول الدم العائلي"
+     },
+     {
+      "start": 39.0,
+      "title": "الخطر أولاً"
+     }
+    ],
+    "bytes": 1290683,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Product briefing: PCSK9 therapy in high-risk patients. Briefing on PCSK9-targeted therapy for patients who remain above target. Ezetimibe, PCSK9-targeted therapy and other agents help patients who remain above target. Very high LDL or early family history should prompt assessment for an inherited cause and cascade testing. Lipid targets follow cardiovascular risk category. Patients with established disease have the lowest targets.",
+   "ar": "موجز عن المنتج: علاج PCSK9 لدى المرضى مرتفعي الخطورة. موجز حول العلاج المستهدف لـ PCSK9 للمرضى الذين لم يبلغوا الهدف. يساعد الإيزيتيمايب والعلاجات المستهدفة لـ PCSK9 وأدوية أخرى المرضى الذين لم يبلغوا الهدف. يستدعي الارتفاع الشديد في الكوليسترول الضار أو التاريخ العائلي المبكر تقييم السبب الوراثي وفحص الأقارب. تتبع أهداف الدهون فئة خطر أمراض القلب، ويكون الهدف الأدنى للمرضى المصابين بمرض قائم."
+  },
+  "duration_seconds": 31.05,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (869 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "CMD-010": {
+  "type": "article",
+  "poster": "/media/posters/CMD-010.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 46747,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-011": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 32071,
+   "clip_name": "Female doctor is preparing an injection syringe",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/32071/"
+  },
+  "poster": "/media/posters/CMD-011.jpg",
+  "sha256": "22e0b1463267b7b278da8f2b00c3200043bf3a75a0113e24838aa040b7ab1343",
+  "versions": {
+   "en": {
+    "file": "/media/videos/CMD-011.en.mp4",
+    "captions": "/media/captions/CMD-011.en.vtt",
+    "duration_seconds": 28.22,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.14,
+      "title": "Organ protection"
+     },
+     {
+      "start": 15.78,
+      "title": "Weight"
+     },
+     {
+      "start": 20.25,
+      "title": "Annual review"
+     }
+    ],
+    "bytes": 715125,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/CMD-011.ar.mp4",
+    "captions": "/media/captions/CMD-011.ar.vtt",
+    "duration_seconds": 49.03,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.05,
+      "title": "حماية الأعضاء"
+     },
+     {
+      "start": 26.79,
+      "title": "الوزن"
+     },
+     {
+      "start": 36.96,
+      "title": "المراجعة السنوية"
+     }
+    ],
+    "bytes": 1297462,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Starting injectable therapy in type 2 diabetes. When to start, how to explain it to patients and how to follow up in the first weeks. Some glucose-lowering classes reduce cardiovascular events and slow kidney disease, independent of their effect on glucose. Weight management is central to treatment and can lead to remission in some patients. Eyes, feet, kidneys and cardiovascular risk should be reviewed at least once a year.",
+   "ar": "بدء العلاج بالحقن في السكري من النوع الثاني. متى نبدأ، وكيف نشرح ذلك للمرضى، وكيف نتابعهم في الأسابيع الأولى. تقلل بعض فئات أدوية السكر من أحداث القلب والأوعية وتبطئ أمراض الكلى بشكل مستقل عن تأثيرها على السكر. يعد التحكم في الوزن محوراً أساسياً في العلاج وقد يؤدي إلى هدأة المرض لدى بعض المرضى. يجب مراجعة العينين والقدمين والكلى وخطر أمراض القلب مرة واحدة على الأقل سنوياً."
+  },
+  "duration_seconds": 28.22,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (677 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "CMD-012": {
+  "type": "article",
+  "poster": "/media/posters/CMD-012.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 46365,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-013": {
+  "type": "article",
+  "poster": "/media/posters/CMD-013.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 49226,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-014": {
+  "type": "article",
+  "poster": "/media/posters/CMD-014.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 46368,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "CMD-015": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 49226,
+   "clip_name": "Heartbeat on a monitor",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/49226/"
+  },
+  "poster": "/media/posters/CMD-015.jpg",
+  "sha256": "572b506090d1809fceab89af360f9a36745eff60d98a1843869a356ddf72829d",
+  "versions": {
+   "en": {
+    "file": "/media/videos/CMD-015.en.mp4",
+    "captions": "/media/captions/CMD-015.en.vtt",
+    "duration_seconds": 28.12,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.25,
+      "title": "After discharge"
+     },
+     {
+      "start": 11.45,
+      "title": "Classification"
+     },
+     {
+      "start": 16.89,
+      "title": "Guideline-directed therapy"
+     }
+    ],
+    "bytes": 469763,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/CMD-015.ar.mp4",
+    "captions": "/media/captions/CMD-015.ar.vtt",
+    "duration_seconds": 49.25,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 15.18,
+      "title": "بعد الخروج من المستشفى"
+     },
+     {
+      "start": 23.63,
+      "title": "التصنيف"
+     },
+     {
+      "start": 31.89,
+      "title": "العلاج الموجه بالإرشادات"
+     }
+    ],
+    "bytes": 867907,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Echo basics for the non-cardiologist. Reading the key numbers on an echo report and what they mean for daily practice. An early review within two weeks of discharge reduces readmission. Ejection fraction defines the phenotype and determines which therapies have proven benefit. For reduced ejection fraction, four drug classes reduce mortality and admissions. Starting them early matters more than perfect sequencing.",
+   "ar": "أساسيات تخطيط صدى القلب لغير أطباء القلب. قراءة الأرقام الرئيسية في تقرير تخطيط صدى القلب وما تعنيه في الممارسة اليومية. تقلل المراجعة المبكرة خلال أسبوعين من الخروج من خطر العودة إلى المستشفى. يحدد الكسر القذفي النمط الظاهري للمرض والعلاجات التي ثبتت فائدتها. في حالة انخفاض الكسر القذفي، تقلل أربع فئات دوائية من الوفيات ودخول المستشفى. والبدء المبكر بها أهم من الترتيب المثالي."
+  },
+  "duration_seconds": 28.12,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (962 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 30.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "CMD-016": {
+  "type": "article",
+  "poster": "/media/posters/CMD-016.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 2856,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-001": {
+  "type": "article",
+  "poster": "/media/posters/RES-001.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 33771,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-002": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 5959,
+   "clip_name": "Doctor talking with a sick man",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/5959/"
+  },
+  "poster": "/media/posters/RES-002.jpg",
+  "sha256": "9b2b94a1cf894ce07416f1a6bdd4ae058d978edc9fabacf71ec3897742301613",
+  "versions": {
+   "en": {
+    "file": "/media/videos/RES-002.en.mp4",
+    "captions": "/media/captions/RES-002.en.vtt",
+    "duration_seconds": 26.22,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 6.83,
+      "title": "Inhaled corticosteroids"
+     },
+     {
+      "start": 15.81,
+      "title": "Technique"
+     },
+     {
+      "start": 19.34,
+      "title": "Action plans"
+     }
+    ],
+    "bytes": 641991,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/RES-002.ar.mp4",
+    "captions": "/media/captions/RES-002.ar.vtt",
+    "duration_seconds": 47.56,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 13.52,
+      "title": "الستيرويدات المستنشقة"
+     },
+     {
+      "start": 28.77,
+      "title": "طريقة الاستخدام"
+     },
+     {
+      "start": 36.25,
+      "title": "خطط العمل"
+     }
+    ],
+    "bytes": 1214909,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Inhaler technique: common mistakes. The errors we see most often with each device type and how to correct them. Every patient with asthma should receive inhaled corticosteroid-containing treatment. Reliever-only therapy increases the risk of severe attacks. Check technique at every visit before stepping up treatment. A written action plan helps patients recognise and respond to worsening control.",
+   "ar": "طريقة استخدام البخاخ: أخطاء شائعة. الأخطاء الأكثر شيوعاً مع كل نوع من أجهزة الاستنشاق وكيفية تصحيحها. يجب أن يتلقى كل مريض بالربو علاجاً يحتوي على الستيرويدات المستنشقة، إذ يزيد الاعتماد على المسعف وحده من خطر النوبات الشديدة. تحقق من طريقة استخدام البخاخ في كل زيارة قبل تصعيد العلاج. تساعد خطة العمل المكتوبة المرضى على التعرف على تراجع السيطرة والتصرف حياله."
+  },
+  "duration_seconds": 26.22,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1189 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "RES-003": {
+  "type": "article",
+  "poster": "/media/posters/RES-003.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5959,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-004": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 5697,
+   "clip_name": "Different medications",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/5697/"
+  },
+  "poster": "/media/posters/RES-004.jpg",
+  "sha256": "812b2eb04d8d36327ee34cbb4a76eeda7f6bb1848f1fa1b5e8b3c5d55c783265",
+  "versions": {
+   "en": {
+    "file": "/media/videos/RES-004.en.mp4",
+    "captions": "/media/captions/RES-004.en.vtt",
+    "duration_seconds": 28.08,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.27,
+      "title": "Action plans"
+     },
+     {
+      "start": 12.09,
+      "title": "Referral"
+     },
+     {
+      "start": 17.45,
+      "title": "Assessing control"
+     }
+    ],
+    "bytes": 918887,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/RES-004.ar.mp4",
+    "captions": "/media/captions/RES-004.ar.vtt",
+    "duration_seconds": 49.07,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 12.35,
+      "title": "خطط العمل"
+     },
+     {
+      "start": 22.11,
+      "title": "الإحالة"
+     },
+     {
+      "start": 31.57,
+      "title": "تقييم السيطرة"
+     }
+    ],
+    "bytes": 1653270,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Product briefing: maintenance and reliever therapy. Briefing on single-inhaler maintenance and reliever regimens. A written action plan helps patients recognise and respond to worsening control. Refer patients with frequent exacerbations despite good adherence for specialist assessment. Ask about daytime symptoms, night waking, reliever use and activity limitation. Poor control is common and often under-reported.",
+   "ar": "موجز عن المنتج: العلاج الوقائي والمسعف معاً. موجز حول نظام البخاخ الواحد للعلاج الوقائي والمسعف. تساعد خطة العمل المكتوبة المرضى على التعرف على تراجع السيطرة والتصرف حياله. يُحال المرضى الذين يعانون نوبات متكررة رغم الالتزام الجيد إلى تقييم متخصص. اسأل عن الأعراض النهارية والاستيقاظ الليلي واستخدام البخاخ المسعف والحد من النشاط. ويشيع ضعف السيطرة وكثيراً ما لا يُبلَّغ عنه."
+  },
+  "duration_seconds": 28.08,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (2035 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "RES-005": {
+  "type": "article",
+  "poster": "/media/posters/RES-005.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 47784,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-006": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 5820,
+   "clip_name": "Nurse sitting with a patient",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/5820/"
+  },
+  "poster": "/media/posters/RES-006.jpg",
+  "sha256": "9d2dc9c8215d00f80b81bec00d3b7d531e39845f2deb1c0349024aacf739054d",
+  "versions": {
+   "en": {
+    "file": "/media/videos/RES-006.en.mp4",
+    "captions": "/media/captions/RES-006.en.vtt",
+    "duration_seconds": 30.04,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.23,
+      "title": "Non-drug measures"
+     },
+     {
+      "start": 13.38,
+      "title": "Inhaled therapy"
+     },
+     {
+      "start": 21.56,
+      "title": "Exacerbations"
+     }
+    ],
+    "bytes": 1305551,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/RES-006.ar.mp4",
+    "captions": "/media/captions/RES-006.ar.vtt",
+    "duration_seconds": 47.85,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 11.52,
+      "title": "التدابير غير الدوائية"
+     },
+     {
+      "start": 20.37,
+      "title": "العلاج بالاستنشاق"
+     },
+     {
+      "start": 34.75,
+      "title": "النوبات الحادة"
+     }
+    ],
+    "bytes": 2100459,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Pulmonary rehabilitation in practice. What a programme includes, who should be referred and the outcomes to expect. Stopping smoking, vaccination and pulmonary rehabilitation have the largest impact on outcomes. Long-acting bronchodilators are the foundation; inhaled steroids are added for selected patients with exacerbations and raised eosinophils. Each exacerbation accelerates decline. Early recognition and a rescue plan reduce admissions.",
+   "ar": "إعادة التأهيل الرئوي في الممارسة. ما يتضمنه البرنامج، ومن يجب إحالته، والنتائج المتوقعة. للإقلاع عن التدخين والتطعيم وإعادة التأهيل الرئوي التأثير الأكبر على النتائج. تشكل موسعات القصبات طويلة المفعول الأساس، وتضاف الستيرويدات المستنشقة لمرضى مختارين لديهم نوبات وارتفاع في الحمضات. تسرّع كل نوبة من تراجع وظائف الرئة، ويقلل التعرف المبكر وخطة الإسعاف من دخول المستشفى."
+  },
+  "duration_seconds": 30.04,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (867 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 23.976 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "RES-007": {
+  "type": "article",
+  "poster": "/media/posters/RES-007.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 3955,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-008": {
+  "type": "article",
+  "poster": "/media/posters/RES-008.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 32072,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-009": {
+  "type": "article",
+  "poster": "/media/posters/RES-009.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5820,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-010": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 32072,
+   "clip_name": "Preparing a vaccine syringe",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/32072/"
+  },
+  "poster": "/media/posters/RES-010.jpg",
+  "sha256": "581a2cbfe40ff9135d96367ff614ee44689d3680a2146ff870fc6cef00653148",
+  "versions": {
+   "en": {
+    "file": "/media/videos/RES-010.en.mp4",
+    "captions": "/media/captions/RES-010.en.vtt",
+    "duration_seconds": 29.21,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.09,
+      "title": "Vaccines"
+     },
+     {
+      "start": 15.05,
+      "title": "Who to prioritise"
+     },
+     {
+      "start": 21.77,
+      "title": "Co-administration"
+     }
+    ],
+    "bytes": 517925,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/RES-010.ar.mp4",
+    "captions": "/media/captions/RES-010.ar.vtt",
+    "duration_seconds": 51.93,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.53,
+      "title": "اللقاحات"
+     },
+     {
+      "start": 26.43,
+      "title": "الفئات ذات الأولوية"
+     },
+     {
+      "start": 38.06,
+      "title": "الإعطاء المتزامن"
+     }
+    ],
+    "bytes": 963387,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Adult RSV vaccination: evidence review. What the trials show on efficacy, duration of protection and safety. Adult RSV vaccines reduce lower respiratory tract disease in the first seasons after vaccination. Recommendations focus on older adults and those with chronic conditions; local guidance sets the age threshold. RSV vaccine can be planned alongside other seasonal vaccines in line with local guidance.",
+   "ar": "تطعيم البالغين ضد الفيروس المخلوي التنفسي: مراجعة الأدلة. ما تظهره التجارب حول الفعالية ومدة الحماية والسلامة. تقلل لقاحات الفيروس المخلوي للبالغين من التهابات الجهاز التنفسي السفلي في المواسم الأولى بعد التطعيم. تركز التوصيات على كبار السن والمصابين بأمراض مزمنة، وتحدد الإرشادات المحلية الحد العمري. يمكن التخطيط لإعطاء لقاح الفيروس المخلوي مع اللقاحات الموسمية الأخرى وفق الإرشادات المحلية."
+  },
+  "duration_seconds": 29.21,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (730 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "RES-011": {
+  "type": "article",
+  "poster": "/media/posters/RES-011.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 33771,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-012": {
+  "type": "article",
+  "poster": "/media/posters/RES-012.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5959,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-013": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 33771,
+   "clip_name": "Female doctor looking at an x-ray of lungs",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/33771/"
+  },
+  "poster": "/media/posters/RES-013.jpg",
+  "sha256": "74a1b603d06939e1e5f2041fe6f8c7e556e83e46baaa115103dfd168371cea6c",
+  "versions": {
+   "en": {
+    "file": "/media/videos/RES-013.en.mp4",
+    "captions": "/media/captions/RES-013.en.vtt",
+    "duration_seconds": 30.92,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.83,
+      "title": "Diagnosis"
+     },
+     {
+      "start": 14.11,
+      "title": "Non-drug measures"
+     },
+     {
+      "start": 20.48,
+      "title": "Inhaled therapy"
+     }
+    ],
+    "bytes": 725720,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/RES-013.ar.mp4",
+    "captions": "/media/captions/RES-013.ar.vtt",
+    "duration_seconds": 48.94,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 12.07,
+      "title": "التشخيص"
+     },
+     {
+      "start": 23.43,
+      "title": "التدابير غير الدوائية"
+     },
+     {
+      "start": 32.38,
+      "title": "العلاج بالاستنشاق"
+     }
+    ],
+    "bytes": 1177298,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Spirometry interpretation made simple. A stepwise read of the flow-volume loop, ratios and reversibility testing. Spirometry confirms airflow limitation. Symptom burden and exacerbation history guide treatment. Stopping smoking, vaccination and pulmonary rehabilitation have the largest impact on outcomes. Long-acting bronchodilators are the foundation; inhaled steroids are added for selected patients with exacerbations and raised eosinophils.",
+   "ar": "تفسير قياس التنفس ببساطة. قراءة متدرجة لمنحنى التدفق والحجم والنسب واختبار قابلية الانعكاس. يؤكد قياس التنفس وجود انسداد مجرى الهواء، ويوجّه عبء الأعراض وتاريخ النوبات اختيار العلاج. للإقلاع عن التدخين والتطعيم وإعادة التأهيل الرئوي التأثير الأكبر على النتائج. تشكل موسعات القصبات طويلة المفعول الأساس، وتضاف الستيرويدات المستنشقة لمرضى مختارين لديهم نوبات وارتفاع في الحمضات."
+  },
+  "duration_seconds": 30.92,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (687 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "RES-014": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 47784,
+   "clip_name": "Virologist making a test of the new vaccine",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/47784/"
+  },
+  "poster": "/media/posters/RES-014.jpg",
+  "sha256": "789f8a2ce385037364da8de82edd09ae6fbbed1c94c45a6929325f59eda15dd9",
+  "versions": {
+   "en": {
+    "file": "/media/videos/RES-014.en.mp4",
+    "captions": "/media/captions/RES-014.en.vtt",
+    "duration_seconds": 28.22,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 6.88,
+      "title": "Co-administration"
+     },
+     {
+      "start": 12.38,
+      "title": "Burden in adults"
+     },
+     {
+      "start": 19.34,
+      "title": "Vaccines"
+     }
+    ],
+    "bytes": 659185,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/RES-014.ar.mp4",
+    "captions": "/media/captions/RES-014.ar.vtt",
+    "duration_seconds": 49.05,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 11.48,
+      "title": "الإعطاء المتزامن"
+     },
+     {
+      "start": 22.85,
+      "title": "العبء لدى البالغين"
+     },
+     {
+      "start": 35.17,
+      "title": "اللقاحات"
+     }
+    ],
+    "bytes": 1219688,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Talking to patients about vaccines. Short, evidence-based conversations that address common concerns. RSV vaccine can be planned alongside other seasonal vaccines in line with local guidance. RSV causes significant illness in older adults and people with heart or lung disease, but is rarely tested for. Adult RSV vaccines reduce lower respiratory tract disease in the first seasons after vaccination.",
+   "ar": "التحدث مع المرضى عن اللقاحات. محادثات قصيرة مبنية على الأدلة تعالج المخاوف الشائعة. يمكن التخطيط لإعطاء لقاح الفيروس المخلوي مع اللقاحات الموسمية الأخرى وفق الإرشادات المحلية. يسبب الفيروس المخلوي التنفسي مرضاً ملحوظاً لدى كبار السن ومرضى القلب والرئة، لكنه نادراً ما يُفحص. تقلل لقاحات الفيروس المخلوي للبالغين من التهابات الجهاز التنفسي السفلي في المواسم الأولى بعد التطعيم."
+  },
+  "duration_seconds": 28.22,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (2009 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 50.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "RES-015": {
+  "type": "article",
+  "poster": "/media/posters/RES-015.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 47784,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "RES-016": {
+  "type": "article",
+  "poster": "/media/posters/RES-016.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 3955,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-001": {
+  "type": "article",
+  "poster": "/media/posters/NEU-001.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5665,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-002": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 5665,
+   "clip_name": "Scientist looks at 3D brain model on computer screen",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/5665/"
+  },
+  "poster": "/media/posters/NEU-002.jpg",
+  "sha256": "1b5ee41f3e72aa56594af276b1534a5100e98b5365cb9bcbb00ee0e15bd8dd06",
+  "versions": {
+   "en": {
+    "file": "/media/videos/NEU-002.en.mp4",
+    "captions": "/media/captions/NEU-002.en.vtt",
+    "duration_seconds": 28.43,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.03,
+      "title": "Acute treatment"
+     },
+     {
+      "start": 13.02,
+      "title": "Prevention"
+     },
+     {
+      "start": 20.77,
+      "title": "Triggers"
+     }
+    ],
+    "bytes": 893496,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/NEU-002.ar.mp4",
+    "captions": "/media/captions/NEU-002.ar.vtt",
+    "duration_seconds": 50.56,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 13.64,
+      "title": "العلاج الحاد"
+     },
+     {
+      "start": 23.42,
+      "title": "الوقاية"
+     },
+     {
+      "start": 38.12,
+      "title": "المحفزات"
+     }
+    ],
+    "bytes": 1656495,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "CGRP pathway therapies explained. How CGRP-targeted treatments work and where they fit in the pathway. Treat early in the attack with an effective dose; combination with an antiemetic helps some patients. Consider prevention when attacks are frequent or disabling. Several drug classes and CGRP-targeted options are available. Irregular sleep, missed meals and dehydration are common triggers that patients can manage.",
+   "ar": "شرح العلاجات المستهدفة لمسار CGRP. كيف تعمل العلاجات المستهدفة لمسار CGRP وأين موقعها في خطة العلاج. يُعالج في بداية النوبة بجرعة فعالة، ويستفيد بعض المرضى من إضافة مضاد للقيء. تُدرس الوقاية عندما تكون النوبات متكررة أو معيقة، وتتوفر عدة فئات دوائية وخيارات مستهدفة لمسار CGRP. يعد اضطراب النوم وتفويت الوجبات والجفاف من المحفزات الشائعة التي يمكن للمرضى التحكم بها."
+  },
+  "duration_seconds": 28.43,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (827 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 23.976 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "NEU-003": {
+  "type": "article",
+  "poster": "/media/posters/NEU-003.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5642,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-004": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 35377,
+   "clip_name": "Conceptual video of medical pills",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/35377/"
+  },
+  "poster": "/media/posters/NEU-004.jpg",
+  "sha256": "f4dde50503399e1e8534381e84660ac84b227fb235b49c131703480e79ea012f",
+  "versions": {
+   "en": {
+    "file": "/media/videos/NEU-004.en.mp4",
+    "captions": "/media/captions/NEU-004.en.vtt",
+    "duration_seconds": 26.19,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.74,
+      "title": "Triggers"
+     },
+     {
+      "start": 13.09,
+      "title": "Overuse"
+     },
+     {
+      "start": 17.15,
+      "title": "Diagnosis"
+     }
+    ],
+    "bytes": 783435,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/NEU-004.ar.mp4",
+    "captions": "/media/captions/NEU-004.ar.vtt",
+    "duration_seconds": 45.47,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 13.87,
+      "title": "المحفزات"
+     },
+     {
+      "start": 24.43,
+      "title": "الإفراط في الاستخدام"
+     },
+     {
+      "start": 33.41,
+      "title": "التشخيص"
+     }
+    ],
+    "bytes": 1424443,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Product briefing: monthly migraine prevention. Briefing on monthly preventive treatment for episodic and chronic migraine. Irregular sleep, missed meals and dehydration are common triggers that patients can manage. Frequent use of acute medicines can itself cause daily headache. Migraine is a clinical diagnosis. Red flags should be excluded before attributing headache to migraine.",
+   "ar": "موجز عن المنتج: الوقاية الشهرية من الصداع النصفي. موجز حول العلاج الوقائي الشهري للصداع النصفي العرضي والمزمن. يعد اضطراب النوم وتفويت الوجبات والجفاف من المحفزات الشائعة التي يمكن للمرضى التحكم بها. قد يؤدي الاستخدام المتكرر لأدوية النوبة الحادة بحد ذاته إلى صداع يومي. الصداع النصفي تشخيص سريري، ويجب استبعاد العلامات التحذيرية قبل نسب الصداع إليه."
+  },
+  "duration_seconds": 26.19,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (758 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "NEU-005": {
+  "type": "article",
+  "poster": "/media/posters/NEU-005.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 9339,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-006": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 17540,
+   "clip_name": "Doctor writing prescription",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/17540/"
+  },
+  "poster": "/media/posters/NEU-006.jpg",
+  "sha256": "05b2237dbfe42ee8c5b3c9493935678e0f89e858dd36dde5a76d1ae8adcb41f6",
+  "versions": {
+   "en": {
+    "file": "/media/videos/NEU-006.en.mp4",
+    "captions": "/media/captions/NEU-006.en.vtt",
+    "duration_seconds": 25.23,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 6.81,
+      "title": "First medicine"
+     },
+     {
+      "start": 12.27,
+      "title": "Safety"
+     },
+     {
+      "start": 18.38,
+      "title": "Drug-resistant epilepsy"
+     }
+    ],
+    "bytes": 527985,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/NEU-006.ar.mp4",
+    "captions": "/media/captions/NEU-006.ar.vtt",
+    "duration_seconds": 39.57,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 12.49,
+      "title": "الدواء الأول"
+     },
+     {
+      "start": 21.42,
+      "title": "السلامة"
+     },
+     {
+      "start": 30.65,
+      "title": "الصرع المقاوم للأدوية"
+     }
+    ],
+    "bytes": 855083,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Choosing antiseizure medication. Matching the first medicine to seizure type, comorbidities and life stage. Choose by seizure type, side-effect profile, interactions and plans for pregnancy. Discuss driving, bathing, heights and sudden unexpected death in epilepsy in a supportive way. Failure of two appropriate medicines should prompt referral to a specialist centre.",
+   "ar": "اختيار الأدوية المضادة للصرع. مواءمة الدواء الأول مع نوع النوبة والأمراض المصاحبة ومرحلة الحياة. يُختار حسب نوع النوبة والآثار الجانبية والتداخلات الدوائية وخطط الحمل. تُناقش القيادة والاستحمام والمرتفعات وخطر الوفاة المفاجئة في الصرع بأسلوب داعم. يستدعي فشل دواءين مناسبين الإحالة إلى مركز متخصص."
+  },
+  "duration_seconds": 25.23,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1411 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "NEU-007": {
+  "type": "article",
+  "poster": "/media/posters/NEU-007.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5580,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-008": {
+  "type": "article",
+  "poster": "/media/posters/NEU-008.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 23618,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-009": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 5642,
+   "clip_name": "Doctor shows patient brain scan on large screen",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/5642/"
+  },
+  "poster": "/media/posters/NEU-009.jpg",
+  "sha256": "cd8dccc53cf3afe22c62440bf6cc3121d0fb72a46b54580b286ece344d19afb0",
+  "versions": {
+   "en": {
+    "file": "/media/videos/NEU-009.en.mp4",
+    "captions": "/media/captions/NEU-009.en.vtt",
+    "duration_seconds": 27.4,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.15,
+      "title": "Disease-modifying therapy"
+     },
+     {
+      "start": 13.98,
+      "title": "Monitoring"
+     },
+     {
+      "start": 19.48,
+      "title": "Symptom management"
+     }
+    ],
+    "bytes": 1133414,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/NEU-009.ar.mp4",
+    "captions": "/media/captions/NEU-009.ar.vtt",
+    "duration_seconds": 49.98,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 15.03,
+      "title": "العلاج المعدل لمسار المرض"
+     },
+     {
+      "start": 27.12,
+      "title": "المتابعة"
+     },
+     {
+      "start": 38.06,
+      "title": "علاج الأعراض"
+     }
+    ],
+    "bytes": 2132860,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "MRI monitoring in multiple sclerosis. When to repeat MRI and which findings signal disease activity. Early treatment reduces relapses and new lesions. Options range from moderate to high efficacy. Regular clinical review and MRI identify breakthrough activity and the need to escalate. Fatigue, bladder symptoms, spasticity and mood need attention alongside disease control.",
+   "ar": "المتابعة بالرنين المغناطيسي في التصلب المتعدد. متى نعيد التصوير بالرنين المغناطيسي وأي النتائج تدل على نشاط المرض. يقلل العلاج المبكر من الانتكاسات والآفات الجديدة، وتتراوح الخيارات بين متوسطة وعالية الفعالية. تكشف المراجعة السريرية المنتظمة والتصوير النشاط المستمر للمرض والحاجة إلى تصعيد العلاج. يحتاج الإرهاق وأعراض المثانة والتشنج والمزاج إلى اهتمام إلى جانب السيطرة على المرض."
+  },
+  "duration_seconds": 27.4,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (644 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 23.976 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "NEU-010": {
+  "type": "article",
+  "poster": "/media/posters/NEU-010.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 35377,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-011": {
+  "type": "article",
+  "poster": "/media/posters/NEU-011.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5665,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-012": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 46366,
+   "clip_name": "Close up of an IV drip",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/46366/"
+  },
+  "poster": "/media/posters/NEU-012.jpg",
+  "sha256": "c401adfe771e2e039c0d636bf9e559e60d6773381f85e8d298e619f80001b0e3",
+  "versions": {
+   "en": {
+    "file": "/media/videos/NEU-012.en.mp4",
+    "captions": "/media/captions/NEU-012.en.vtt",
+    "duration_seconds": 25.65,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.58,
+      "title": "Drug-resistant epilepsy"
+     },
+     {
+      "start": 12.5,
+      "title": "Classification"
+     },
+     {
+      "start": 18.16,
+      "title": "First medicine"
+     }
+    ],
+    "bytes": 458034,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/NEU-012.ar.mp4",
+    "captions": "/media/captions/NEU-012.ar.vtt",
+    "duration_seconds": 39.03,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 11.37,
+      "title": "الصرع المقاوم للأدوية"
+     },
+     {
+      "start": 18.38,
+      "title": "التصنيف"
+     },
+     {
+      "start": 27.97,
+      "title": "الدواء الأول"
+     }
+    ],
+    "bytes": 725179,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Status epilepticus: the first 30 minutes. A time-based protocol for the emergency management of prolonged seizures. Failure of two appropriate medicines should prompt referral to a specialist centre. Describe onset, awareness and motor features; this guides investigation and treatment. Choose by seizure type, side-effect profile, interactions and plans for pregnancy.",
+   "ar": "الحالة الصرعية: أول 30 دقيقة. بروتوكول زمني للتعامل الإسعافي مع النوبات المطولة. يستدعي فشل دواءين مناسبين الإحالة إلى مركز متخصص. يُوصف بدء النوبة ومستوى الوعي والمظاهر الحركية، وهذا يوجّه الفحوص والعلاج. يُختار حسب نوع النوبة والآثار الجانبية والتداخلات الدوائية وخطط الحمل."
+  },
+  "duration_seconds": 25.65,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (2118 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "NEU-013": {
+  "type": "article",
+  "poster": "/media/posters/NEU-013.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5642,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-014": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 9339,
+   "clip_name": "Artist drawing a human brain",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/9339/"
+  },
+  "poster": "/media/posters/NEU-014.jpg",
+  "sha256": "29d89450dbe57278e90f9e32da0150c8b99991e51a67422f5018de77db91c952",
+  "versions": {
+   "en": {
+    "file": "/media/videos/NEU-014.en.mp4",
+    "captions": "/media/captions/NEU-014.en.vtt",
+    "duration_seconds": 28.43,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 5.66,
+      "title": "Diagnosis"
+     },
+     {
+      "start": 12.81,
+      "title": "Acute treatment"
+     },
+     {
+      "start": 18.65,
+      "title": "Prevention"
+     }
+    ],
+    "bytes": 733384,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/NEU-014.ar.mp4",
+    "captions": "/media/captions/NEU-014.ar.vtt",
+    "duration_seconds": 46.71,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 10.11,
+      "title": "التشخيص"
+     },
+     {
+      "start": 20.17,
+      "title": "العلاج الحاد"
+     },
+     {
+      "start": 29.87,
+      "title": "الوقاية"
+     }
+    ],
+    "bytes": 1231100,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Headache red flags. The features that call for urgent investigation of a new headache. Migraine is a clinical diagnosis. Red flags should be excluded before attributing headache to migraine. Treat early in the attack with an effective dose; combination with an antiemetic helps some patients. Consider prevention when attacks are frequent or disabling. Several drug classes and CGRP-targeted options are available.",
+   "ar": "علامات الخطر في الصداع. العلامات التي تستدعي فحصاً عاجلاً عند ظهور صداع جديد. الصداع النصفي تشخيص سريري، ويجب استبعاد العلامات التحذيرية قبل نسب الصداع إليه. يُعالج في بداية النوبة بجرعة فعالة، ويستفيد بعض المرضى من إضافة مضاد للقيء. تُدرس الوقاية عندما تكون النوبات متكررة أو معيقة، وتتوفر عدة فئات دوائية وخيارات مستهدفة لمسار CGRP."
+  },
+  "duration_seconds": 28.43,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (3295 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 29.97 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "NEU-015": {
+  "type": "article",
+  "poster": "/media/posters/NEU-015.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 9339,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "NEU-016": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 5492,
+   "clip_name": "Sick man chats with nurse giving him medication",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/5492/"
+  },
+  "poster": "/media/posters/NEU-016.jpg",
+  "sha256": "b95bf458260e1d9213b91d9858961244d673f8abff46eec8ea4dd0073859eec6",
+  "versions": {
+   "en": {
+    "file": "/media/videos/NEU-016.en.mp4",
+    "captions": "/media/captions/NEU-016.en.vtt",
+    "duration_seconds": 28.8,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.02,
+      "title": "Diagnosis"
+     },
+     {
+      "start": 14.53,
+      "title": "Disease-modifying therapy"
+     },
+     {
+      "start": 21.08,
+      "title": "Monitoring"
+     }
+    ],
+    "bytes": 1290824,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/NEU-016.ar.mp4",
+    "captions": "/media/captions/NEU-016.ar.vtt",
+    "duration_seconds": 53.53,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 15.98,
+      "title": "التشخيص"
+     },
+     {
+      "start": 28.75,
+      "title": "العلاج المعدل لمسار المرض"
+     },
+     {
+      "start": 40.94,
+      "title": "المتابعة"
+     }
+    ],
+    "bytes": 2443133,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Living with MS: patient perspectives. Patients describe diagnosis, treatment decisions and daily life with MS. Diagnosis rests on clinical findings and MRI showing lesions disseminated in space and time. Early treatment reduces relapses and new lesions. Options range from moderate to high efficacy. Regular clinical review and MRI identify breakthrough activity and the need to escalate.",
+   "ar": "التعايش مع التصلب المتعدد: وجهات نظر المرضى. يتحدث المرضى عن التشخيص وقرارات العلاج والحياة اليومية مع التصلب المتعدد. يعتمد التشخيص على المعطيات السريرية والتصوير بالرنين المغناطيسي الذي يُظهر آفات منتشرة في المكان والزمان. يقلل العلاج المبكر من الانتكاسات والآفات الجديدة، وتتراوح الخيارات بين متوسطة وعالية الفعالية. تكشف المراجعة السريرية المنتظمة والتصوير النشاط المستمر للمرض والحاجة إلى تصعيد العلاج."
+  },
+  "duration_seconds": 28.8,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1040 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 23.976 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "WMH-001": {
+  "type": "article",
+  "poster": "/media/posters/WMH-001.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5568,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-002": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 5568,
+   "clip_name": "Nurse talks with woman laying in hospital bed",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/5568/"
+  },
+  "poster": "/media/posters/WMH-002.jpg",
+  "sha256": "a25349b6c8dbba920aef94a2bf742714d2d0cba5f25d2c73f865e0040cf89155",
+  "versions": {
+   "en": {
+    "file": "/media/videos/WMH-002.en.mp4",
+    "captions": "/media/captions/WMH-002.en.vtt",
+    "duration_seconds": 28.65,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.07,
+      "title": "Symptoms"
+     },
+     {
+      "start": 14.93,
+      "title": "Hormone therapy"
+     },
+     {
+      "start": 21.87,
+      "title": "Long-term health"
+     }
+    ],
+    "bytes": 903168,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/WMH-002.ar.mp4",
+    "captions": "/media/captions/WMH-002.ar.vtt",
+    "duration_seconds": 50.18,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 14.73,
+      "title": "الأعراض"
+     },
+     {
+      "start": 25.89,
+      "title": "العلاج الهرموني"
+     },
+     {
+      "start": 39.45,
+      "title": "الصحة على المدى الطويل"
+     }
+    ],
+    "bytes": 1624977,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Hormone therapy: balancing benefit and risk. Discussing benefits and risks of hormone therapy by age, timing and route. Vasomotor symptoms, sleep disturbance, mood change and genitourinary symptoms affect quality of life. For most symptomatic women under 60, benefits outweigh risks. Route and regimen are individualised. Midlife is an opportunity to review bone health and cardiovascular risk.",
+   "ar": "العلاج الهرموني: الموازنة بين الفائدة والخطر. مناقشة فوائد ومخاطر العلاج الهرموني حسب العمر والتوقيت وطريقة الإعطاء. تؤثر الهبات الساخنة واضطراب النوم وتقلب المزاج والأعراض البولية التناسلية على جودة الحياة. تفوق الفوائد المخاطر لدى معظم النساء المصابات بالأعراض دون سن الستين، ويُكيَّف طريق الإعطاء والنظام لكل امرأة. تمثل مرحلة منتصف العمر فرصة لمراجعة صحة العظام وخطر أمراض القلب."
+  },
+  "duration_seconds": 28.65,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1071 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 23.976 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "WMH-003": {
+  "type": "article",
+  "poster": "/media/posters/WMH-003.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 17469,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-004": {
+  "type": "article",
+  "poster": "/media/posters/WMH-004.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 16075,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-005": {
+  "type": "article",
+  "poster": "/media/posters/WMH-005.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 48385,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-006": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 17469,
+   "clip_name": "Doctor writing on a medical record",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/17469/"
+  },
+  "poster": "/media/posters/WMH-006.jpg",
+  "sha256": "d2a03a7bbfd690ade4d142fb41f27843a8be924e1d2f44e632305a02f316edb8",
+  "versions": {
+   "en": {
+    "file": "/media/videos/WMH-006.en.mp4",
+    "captions": "/media/captions/WMH-006.en.vtt",
+    "duration_seconds": 25.6,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.65,
+      "title": "Medical eligibility"
+     },
+     {
+      "start": 14.21,
+      "title": "Counselling"
+     },
+     {
+      "start": 20.1,
+      "title": "Follow-up"
+     }
+    ],
+    "bytes": 768466,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/WMH-006.ar.mp4",
+    "captions": "/media/captions/WMH-006.ar.vtt",
+    "duration_seconds": 46.09,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 13.43,
+      "title": "الأهلية الطبية"
+     },
+     {
+      "start": 27.12,
+      "title": "المشورة"
+     },
+     {
+      "start": 37.38,
+      "title": "المتابعة"
+     }
+    ],
+    "bytes": 1413349,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Long-acting reversible contraception. Implants and intrauterine methods: suitability, insertion and follow-up. Eligibility criteria guide safe choices for women with conditions such as hypertension or migraine with aura. Discuss preferences, side effects, return to fertility and non-contraceptive benefits. Plan follow-up for blood pressure checks and method review.",
+   "ar": "وسائل منع الحمل طويلة المفعول القابلة للعكس. الغرسات والوسائل داخل الرحم: الملاءمة والتركيب والمتابعة. توجّه معايير الأهلية الاختيارات الآمنة للنساء المصابات بحالات مثل ارتفاع الضغط أو الصداع النصفي المصحوب بأورة. تُناقش التفضيلات والآثار الجانبية وعودة الخصوبة والفوائد غير المرتبطة بمنع الحمل. يُخطط للمتابعة لقياس ضغط الدم ومراجعة الوسيلة."
+  },
+  "duration_seconds": 25.6,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1550 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "WMH-007": {
+  "type": "article",
+  "poster": "/media/posters/WMH-007.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 4719,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-008": {
+  "type": "article",
+  "poster": "/media/posters/WMH-008.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 22999,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-009": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 48385,
+   "clip_name": "Doctor writes patient records",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/48385/"
+  },
+  "poster": "/media/posters/WMH-009.jpg",
+  "sha256": "c806baab9c3c4b9cf807670232adb089fa572ba8420849ea4cfedddf3bd64291",
+  "versions": {
+   "en": {
+    "file": "/media/videos/WMH-009.en.mp4",
+    "captions": "/media/captions/WMH-009.en.vtt",
+    "duration_seconds": 25.57,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 8.12,
+      "title": "Treatment"
+     },
+     {
+      "start": 14.19,
+      "title": "Falls prevention"
+     },
+     {
+      "start": 19.31,
+      "title": "Monitoring"
+     }
+    ],
+    "bytes": 548203,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/WMH-009.ar.mp4",
+    "captions": "/media/captions/WMH-009.ar.vtt",
+    "duration_seconds": 44.65,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 13.69,
+      "title": "العلاج"
+     },
+     {
+      "start": 24.94,
+      "title": "الوقاية من السقوط"
+     },
+     {
+      "start": 33.31,
+      "title": "المتابعة"
+     }
+    ],
+    "bytes": 1003083,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Bone density scans: reading the report. T-scores, Z-scores and the sites that matter when interpreting a DXA report. Bisphosphonates are first line for most patients; anabolic agents are used for very high risk. Strength and balance training, medication review and home safety reduce fractures. Review adherence and reassess risk after three to five years of treatment.",
+   "ar": "فحص كثافة العظام: قراءة التقرير. قراءة مؤشري T وZ والمواقع المهمة عند تفسير تقرير فحص كثافة العظام. تعد البيسفوسفونات الخط الأول لمعظم المرضى، وتُستخدم العلاجات البنائية للخطر المرتفع جداً. يقلل تدريب القوة والتوازن ومراجعة الأدوية وسلامة المنزل من الكسور. تُراجع درجة الالتزام ويعاد تقييم الخطر بعد ثلاث إلى خمس سنوات من العلاج."
+  },
+  "duration_seconds": 25.57,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1469 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "WMH-010": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 33734,
+   "clip_name": "Doctor filling a syringe with anesthesia",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/33734/"
+  },
+  "poster": "/media/posters/WMH-010.jpg",
+  "sha256": "894fbf727a1dfb6804c7deadf501941a05e0a74ff41de5837447f59e42967dad",
+  "versions": {
+   "en": {
+    "file": "/media/videos/WMH-010.en.mp4",
+    "captions": "/media/captions/WMH-010.en.vtt",
+    "duration_seconds": 24.4,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.39,
+      "title": "Falls prevention"
+     },
+     {
+      "start": 12.52,
+      "title": "Monitoring"
+     },
+     {
+      "start": 17.0,
+      "title": "Nutrition"
+     }
+    ],
+    "bytes": 596601,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/WMH-010.ar.mp4",
+    "captions": "/media/captions/WMH-010.ar.vtt",
+    "duration_seconds": 43.84,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 12.46,
+      "title": "الوقاية من السقوط"
+     },
+     {
+      "start": 20.92,
+      "title": "المتابعة"
+     },
+     {
+      "start": 30.06,
+      "title": "التغذية"
+     }
+    ],
+    "bytes": 1108050,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Product briefing: anabolic bone therapy. Briefing on anabolic treatment for patients at very high fracture risk. Strength and balance training, medication review and home safety reduce fractures. Review adherence and reassess risk after three to five years of treatment. Adequate calcium and vitamin D support treatment, particularly in those with low intake.",
+   "ar": "موجز عن المنتج: العلاج البنائي للعظام. موجز حول العلاج البنائي للمرضى ذوي الخطر المرتفع جداً للكسور. يقلل تدريب القوة والتوازن ومراجعة الأدوية وسلامة المنزل من الكسور. تُراجع درجة الالتزام ويعاد تقييم الخطر بعد ثلاث إلى خمس سنوات من العلاج. يدعم تناول كميات كافية من الكالسيوم وفيتامين د العلاج، خاصة لدى من يقل لديهم الاستهلاك."
+  },
+  "duration_seconds": 24.4,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (416 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "WMH-011": {
+  "type": "article",
+  "poster": "/media/posters/WMH-011.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 5568,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-012": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 22999,
+   "clip_name": "Four scientists talking about research",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/22999/"
+  },
+  "poster": "/media/posters/WMH-012.jpg",
+  "sha256": "932ae929d1a723eff83f58d1c886f7e63fef4fcbe738d850b15c1165aa617b98",
+  "versions": {
+   "en": {
+    "file": "/media/videos/WMH-012.en.mp4",
+    "captions": "/media/captions/WMH-012.en.vtt",
+    "duration_seconds": 28.45,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.52,
+      "title": "Alternatives"
+     },
+     {
+      "start": 13.16,
+      "title": "Diagnosis"
+     },
+     {
+      "start": 19.62,
+      "title": "Symptoms"
+     }
+    ],
+    "bytes": 1404318,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/WMH-012.ar.mp4",
+    "captions": "/media/captions/WMH-012.ar.vtt",
+    "duration_seconds": 51.47,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 13.83,
+      "title": "البدائل"
+     },
+     {
+      "start": 24.22,
+      "title": "التشخيص"
+     },
+     {
+      "start": 38.39,
+      "title": "الأعراض"
+     }
+    ],
+    "bytes": 2608729,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Menopause and cardiovascular risk. How cardiovascular risk changes after menopause and what to review at midlife. Non-hormonal medicines and cognitive behavioural therapy help when hormones are not suitable. In women over 45 with typical symptoms, menopause is a clinical diagnosis without hormone tests. Vasomotor symptoms, sleep disturbance, mood change and genitourinary symptoms affect quality of life.",
+   "ar": "انقطاع الطمث وخطر أمراض القلب. كيف يتغير خطر أمراض القلب بعد انقطاع الطمث وما يجب مراجعته في منتصف العمر. تساعد الأدوية غير الهرمونية والعلاج المعرفي السلوكي عندما لا تكون الهرمونات مناسبة. لدى النساء فوق 45 عاماً مع أعراض نموذجية، يُشخّص انقطاع الطمث سريرياً دون الحاجة إلى تحاليل هرمونية. تؤثر الهبات الساخنة واضطراب النوم وتقلب المزاج والأعراض البولية التناسلية على جودة الحياة."
+  },
+  "duration_seconds": 28.45,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (1255 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 25.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "WMH-013": {
+  "type": "video",
+  "source": {
+   "provider": "Mixkit",
+   "clip_id": 16075,
+   "clip_name": "Woman hands taking a pill",
+   "license": "Mixkit Restricted License",
+   "license_url": "https://mixkit.co/license/#videoFree",
+   "url": "https://mixkit.co/free-stock-video/16075/"
+  },
+  "poster": "/media/posters/WMH-013.jpg",
+  "sha256": "de219d2ac308e5942ef670d98269008cb3824ffb0d12608605ddbae327be6ed0",
+  "versions": {
+   "en": {
+    "file": "/media/videos/WMH-013.en.mp4",
+    "captions": "/media/captions/WMH-013.en.vtt",
+    "duration_seconds": 24.46,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "Introduction"
+     },
+     {
+      "start": 7.37,
+      "title": "Follow-up"
+     },
+     {
+      "start": 10.95,
+      "title": "Effectiveness"
+     },
+     {
+      "start": 16.01,
+      "title": "Medical eligibility"
+     }
+    ],
+    "bytes": 796314,
+    "width": 640,
+    "height": 360
+   },
+   "ar": {
+    "file": "/media/videos/WMH-013.ar.mp4",
+    "captions": "/media/captions/WMH-013.ar.vtt",
+    "duration_seconds": 42.61,
+    "chapters": [
+     {
+      "start": 0.0,
+      "title": "مقدمة"
+     },
+     {
+      "start": 10.73,
+      "title": "المتابعة"
+     },
+     {
+      "start": 17.33,
+      "title": "الفعالية"
+     },
+     {
+      "start": 26.73,
+      "title": "الأهلية الطبية"
+     }
+    ],
+    "bytes": 1442363,
+    "width": 640,
+    "height": 360
+   }
+  },
+  "transcript": {
+   "en": "Emergency contraception: a quick guide. Options, timing and follow-up after unprotected intercourse. Plan follow-up for blood pressure checks and method review. Long-acting methods are the most effective because they do not depend on daily use. Eligibility criteria guide safe choices for women with conditions such as hypertension or migraine with aura.",
+   "ar": "منع الحمل الطارئ: دليل سريع. الخيارات والتوقيت والمتابعة بعد العلاقة غير المحمية. يُخطط للمتابعة لقياس ضغط الدم ومراجعة الوسيلة. تعد الوسائل طويلة المفعول الأكثر فعالية لأنها لا تعتمد على الاستخدام اليومي. توجّه معايير الأهلية الاختيارات الآمنة للنساء المصابات بحالات مثل ارتفاع الضغط أو الصداع النصفي المصحوب بأورة."
+  },
+  "duration_seconds": 24.46,
+  "pipeline": [
+   {
+    "step": "ingest",
+    "mode": "real",
+    "detail": "Source clip downloaded and checksummed (392 KB)"
+   },
+   {
+    "step": "probe",
+    "mode": "real",
+    "detail": "640×360 · 24.0 fps"
+   },
+   {
+    "step": "keyframes",
+    "mode": "real",
+    "detail": "Poster extracted at 35%"
+   },
+   {
+    "step": "transcript",
+    "mode": "simulated",
+    "detail": "From editorial copy; production runs self-hosted ASR on the real audio"
+   },
+   {
+    "step": "narration",
+    "mode": "real",
+    "detail": "Offline neural TTS (Piper) in Arabic and English"
+   },
+   {
+    "step": "captions",
+    "mode": "real",
+    "detail": "WebVTT from real sentence timings, AR + EN"
+   },
+   {
+    "step": "transcode",
+    "mode": "real",
+    "detail": "H.264/AAC 640p, faststart, one file per language"
+   },
+   {
+    "step": "embedding",
+    "mode": "real",
+    "detail": "bge-m3 on title + summary + transcript (AR & EN)"
+   }
+  ]
+ },
+ "WMH-014": {
+  "type": "article",
+  "poster": "/media/posters/WMH-014.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 17469,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-015": {
+  "type": "article",
+  "poster": "/media/posters/WMH-015.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 16075,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ },
+ "WMH-016": {
+  "type": "article",
+  "poster": "/media/posters/WMH-016.jpg",
+  "poster_source": {
+   "provider": "Mixkit",
+   "clip_id": 48385,
+   "license_url": "https://mixkit.co/license/#videoFree"
+  }
+ }
+}

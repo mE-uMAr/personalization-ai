@@ -1,0 +1,251 @@
+{
+ "therapy_areas": [
+  {
+   "id": "ophthalmology",
+   "en": "Ophthalmology",
+   "ar": "طب العيون",
+   "placeholder": false,
+   "color": "#0B3BC8"
+  },
+  {
+   "id": "cardiometabolic",
+   "en": "Cardiometabolic",
+   "ar": "أمراض القلب والتمثيل الغذائي",
+   "placeholder": true,
+   "color": "#E4570E"
+  },
+  {
+   "id": "respiratory",
+   "en": "Respiratory",
+   "ar": "أمراض الجهاز التنفسي",
+   "placeholder": true,
+   "color": "#009E8F"
+  },
+  {
+   "id": "neuroscience",
+   "en": "Neuroscience",
+   "ar": "علم الأعصاب",
+   "placeholder": true,
+   "color": "#6D3BE8"
+  },
+  {
+   "id": "womens_health",
+   "en": "Women's Health",
+   "ar": "صحة المرأة",
+   "placeholder": true,
+   "color": "#C2337A"
+  }
+ ],
+ "topics": {
+  "glaucoma": {
+   "en": "Glaucoma",
+   "ar": "الزرق (الجلوكوما)",
+   "ta": "ophthalmology"
+  },
+  "amd": {
+   "en": "Macular degeneration",
+   "ar": "التنكس البقعي",
+   "ta": "ophthalmology"
+  },
+  "diabetic_retinopathy": {
+   "en": "Diabetic retinopathy",
+   "ar": "اعتلال الشبكية السكري",
+   "ta": "ophthalmology"
+  },
+  "dry_eye": {
+   "en": "Dry eye disease",
+   "ar": "مرض جفاف العين",
+   "ta": "ophthalmology"
+  },
+  "hypertension": {
+   "en": "Hypertension",
+   "ar": "ارتفاع ضغط الدم",
+   "ta": "cardiometabolic"
+  },
+  "heart_failure": {
+   "en": "Heart failure",
+   "ar": "قصور القلب",
+   "ta": "cardiometabolic"
+  },
+  "lipids": {
+   "en": "Lipid management",
+   "ar": "علاج اضطراب الدهون",
+   "ta": "cardiometabolic"
+  },
+  "type2_diabetes": {
+   "en": "Type 2 diabetes",
+   "ar": "السكري من النوع الثاني",
+   "ta": "cardiometabolic"
+  },
+  "asthma": {
+   "en": "Asthma",
+   "ar": "الربو",
+   "ta": "respiratory"
+  },
+  "copd": {
+   "en": "COPD",
+   "ar": "مرض الانسداد الرئوي المزمن",
+   "ta": "respiratory"
+  },
+  "rsv_vaccination": {
+   "en": "RSV and vaccination",
+   "ar": "الفيروس المخلوي التنفسي واللقاحات",
+   "ta": "respiratory"
+  },
+  "migraine": {
+   "en": "Migraine",
+   "ar": "الصداع النصفي",
+   "ta": "neuroscience"
+  },
+  "epilepsy": {
+   "en": "Epilepsy",
+   "ar": "الصرع",
+   "ta": "neuroscience"
+  },
+  "multiple_sclerosis": {
+   "en": "Multiple sclerosis",
+   "ar": "التصلب المتعدد",
+   "ta": "neuroscience"
+  },
+  "menopause": {
+   "en": "Menopause",
+   "ar": "سن انقطاع الطمث",
+   "ta": "womens_health"
+  },
+  "contraception": {
+   "en": "Contraception",
+   "ar": "وسائل منع الحمل",
+   "ta": "womens_health"
+  },
+  "osteoporosis": {
+   "en": "Osteoporosis",
+   "ar": "هشاشة العظام",
+   "ta": "womens_health"
+  }
+ },
+ "specialties": {
+  "ophthalmologist": {
+   "en": "Ophthalmologist",
+   "ar": "طبيب عيون",
+   "en_plural": "ophthalmologists",
+   "ar_plural": "أطباء العيون",
+   "ta": "ophthalmology"
+  },
+  "cardiologist": {
+   "en": "Cardiologist",
+   "ar": "طبيب قلب",
+   "en_plural": "cardiologists",
+   "ar_plural": "أطباء القلب",
+   "ta": "cardiometabolic"
+  },
+  "endocrinologist": {
+   "en": "Endocrinologist",
+   "ar": "طبيب غدد صماء",
+   "en_plural": "endocrinologists",
+   "ar_plural": "أطباء الغدد الصماء",
+   "ta": "cardiometabolic"
+  },
+  "internist": {
+   "en": "Internal medicine",
+   "ar": "طبيب باطنية",
+   "en_plural": "internal medicine physicians",
+   "ar_plural": "أطباء الباطنية",
+   "ta": "cardiometabolic"
+  },
+  "general_practitioner": {
+   "en": "General practitioner",
+   "ar": "طبيب عام",
+   "en_plural": "general practitioners",
+   "ar_plural": "الأطباء العامين",
+   "ta": "cardiometabolic"
+  },
+  "pulmonologist": {
+   "en": "Pulmonologist",
+   "ar": "طبيب أمراض صدرية",
+   "en_plural": "pulmonologists",
+   "ar_plural": "أطباء الأمراض الصدرية",
+   "ta": "respiratory"
+  },
+  "neurologist": {
+   "en": "Neurologist",
+   "ar": "طبيب أعصاب",
+   "en_plural": "neurologists",
+   "ar_plural": "أطباء الأعصاب",
+   "ta": "neuroscience"
+  },
+  "obgyn": {
+   "en": "Obstetrics & gynaecology",
+   "ar": "طبيب نساء وتوليد",
+   "en_plural": "obstetricians and gynaecologists",
+   "ar_plural": "أطباء النساء والتوليد",
+   "ta": "womens_health"
+  },
+  "pharmacist": {
+   "en": "Pharmacist",
+   "ar": "صيدلي",
+   "en_plural": "pharmacists",
+   "ar_plural": "الصيادلة",
+   "ta": "cardiometabolic"
+  }
+ },
+ "countries": {
+  "MA": {
+   "en": "Market A",
+   "ar": "السوق أ"
+  },
+  "MB": {
+   "en": "Market B",
+   "ar": "السوق ب"
+  },
+  "MC": {
+   "en": "Market C",
+   "ar": "السوق ج"
+  },
+  "MD": {
+   "en": "Market D",
+   "ar": "السوق د"
+  },
+  "ME": {
+   "en": "Market E",
+   "ar": "السوق هـ"
+  },
+  "MF": {
+   "en": "Market F",
+   "ar": "السوق و"
+  },
+  "MG": {
+   "en": "Market G",
+   "ar": "السوق ز"
+  },
+  "MH": {
+   "en": "Market H",
+   "ar": "السوق ح"
+  }
+ },
+ "country_rules": {
+  "MA": {
+   "promotional_allowed": true
+  },
+  "MB": {
+   "promotional_allowed": true
+  },
+  "MC": {
+   "promotional_allowed": true
+  },
+  "MD": {
+   "promotional_allowed": true
+  },
+  "ME": {
+   "promotional_allowed": true
+  },
+  "MF": {
+   "promotional_allowed": true
+  },
+  "MG": {
+   "promotional_allowed": false
+  },
+  "MH": {
+   "promotional_allowed": true
+  }
+ }
+}

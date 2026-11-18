@@ -1,0 +1,11 @@
+.local/
+api/.venv/
+api/media/src/
+**/__pycache__/
+.pytest_cache/
+web/node_modules/
+web/dist/
+*.log
+# client source material stays out of the repository
+*.pdf
+*.zip
