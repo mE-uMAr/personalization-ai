@@ -27,6 +27,7 @@ from app import profile as P
 from app.behaviour import behaviour_matrix
 from app.adapters import MockOceAdapter, PostgresEventSink, PostgresProfileStore
 from app.config import (CLUSTER_ASSIGN_ACTIONS, EXPLORATION_PROBABILITY, MAX_PER_TA_IN_ROW, PEER_MIN_LIFT,
+                        PEER_MIN_ROW, PEER_MIN_SCORE,
                         RELATED_MIN_COSINE, DIVERSITY_MAX_PER_TOPIC, EXPLORATION_POSITION,
                         LATENCY_BUDGET_MS, MIN_CLUSTER_SIZE, MODEL_VERSION, ROW_SIZE)
 from app.db import db, j
@@ -197,22 +198,41 @@ def _apply_pins(ctx: Ctx, scored: list[Scored], slot: str, ta: str | None) -> li
 
 
 def _diversify(scored: list[Scored], n: int, max_per_ta: int | None = None) -> list[Scored]:
-    """Greedy: no more than 3 items from one topic in each slot of 6 (§7 rule 5); optionally cap per TA."""
-    out, deferred = [], []
-    counts: dict[str, int] = defaultdict(int)
+    """Greedy: no more than 3 items from one topic in each slot of 6 (§7 rule 5); optionally cap per TA.
+
+    The topic cap is a hard rule: when the pool runs short the row is shorter, never padded with a 4th
+    item of the same topic (QA D-02). The per-TA breadth cap is softer and may be relaxed to fill the row.
+    """
+    out, ta_deferred = [], []
+    topics: dict[str, int] = defaultdict(int)
+    tas: dict[str, int] = defaultdict(int)
     for s in scored:
         it = store.items[s.item_id]
-        window = len(out) // ROW_SIZE
-        key, tkey = f"{window}:{it['topics'][0]}", f"{window}:ta:{it['therapy_area']}"
-        if counts[key] < DIVERSITY_MAX_PER_TOPIC and (max_per_ta is None or counts[tkey] < max_per_ta):
-            out.append(s)
-            counts[key] += 1
-            counts[tkey] += 1
-        else:
-            deferred.append(s)
+        if topics[it["topics"][0]] >= DIVERSITY_MAX_PER_TOPIC:
+            continue
+        if max_per_ta is not None and tas[it["therapy_area"]] >= max_per_ta:
+            ta_deferred.append(s)
+            continue
+        out.append(s)
+        topics[it["topics"][0]] += 1
+        tas[it["therapy_area"]] += 1
         if len(out) >= n:
-            break
-    return (out + deferred)[:n]
+            return out
+    for s in ta_deferred:  # top up with the best remaining items that still respect the topic cap
+        t = store.items[s.item_id]["topics"][0]
+        if topics[t] < DIVERSITY_MAX_PER_TOPIC:
+            out.append(s)
+            topics[t] += 1
+            if len(out) >= n:
+                break
+    return out
+
+
+def topic_cap_ok(row: list[Scored]) -> bool:
+    c: dict[str, int] = defaultdict(int)
+    for s in row:
+        c[store.items[s.item_id]["topics"][0]] += 1
+    return max(c.values(), default=0) <= DIVERSITY_MAX_PER_TOPIC
 
 
 def _explore(ctx: Ctx, row: list[Scored], pool: list[dict], slot: str, n: int) -> list[Scored]:
@@ -226,7 +246,12 @@ def _explore(ctx: Ctx, row: list[Scored], pool: list[dict], slot: str, n: int) -
     taken = {s.item_id for s in row}
     st = ctx.profile["items"]
     near = set(ctx.ta_order[:2])
+    kept = row[: n - 1] if len(row) >= n else row
+    per_topic: dict[str, int] = defaultdict(int)
+    for s in kept:
+        per_topic[store.items[s.item_id]["topics"][0]] += 1
     cands = [i for i in pool if i["item_id"] not in taken and not i["promotional"]
+             and per_topic[i["topics"][0]] < DIVERSITY_MAX_PER_TOPIC  # the topic cap holds after exploration too
              and (i["therapy_area"] in near or (ctx.specialty and ctx.specialty in i.get("audience_specialties", [])))
              and not st.get(i["item_id"], {}).get("completed") and not st.get(i["item_id"], {}).get("dismissed")
              and not st.get(i["item_id"], {}).get("opened")]
@@ -245,6 +270,7 @@ def _explore(ctx: Ctx, row: list[Scored], pool: list[dict], slot: str, n: int) -
 def recommend(ctx: Ctx, slot: str, n: int = ROW_SIZE, ta: str | None = None, context_item: str | None = None,
               exclude: set[str] | None = None, log: bool = True) -> dict:
     t0 = time.perf_counter()
+    c0 = time.thread_time()
     exclude = exclude or set()
     fallback = None
     if switches.engine_down:
@@ -258,8 +284,10 @@ def recommend(ctx: Ctx, slot: str, n: int = ROW_SIZE, ta: str | None = None, con
     else:
         rows = _rank(ctx, slot, n, ta, context_item, exclude)
         model_version = ranker.version
-        elapsed = (time.perf_counter() - t0) * 1000
-        if elapsed > LATENCY_BUDGET_MS:
+        # Budget on the time this request actually spent ranking. Wall-clock time also counts waiting
+        # for other requests (event writes, cluster updates) under the GIL, which made the guard fire
+        # on a 5 ms ranking and swap a personalised list for the editors' one (QA D-01).
+        if (time.thread_time() - c0) * 1000 > LATENCY_BUDGET_MS:
             fallback = "latency_budget"
             rows = editor_curated(ctx, slot, n, ta, exclude)
             model_version = "editor-curated"
@@ -299,7 +327,7 @@ def recommend(ctx: Ctx, slot: str, n: int = ROW_SIZE, ta: str | None = None, con
         "experiment_variant": None, "fallback": fallback, "rank_ms": rank_ms, "items": out_items,
         "eligible_count": len(ctx.eligible), "removed_count": len(ctx.removed), "tracking": tracking,
     }
-    if ctx.hcp["hcp_id"] != "anonymous":
+    if log and ctx.hcp["hcp_id"] != "anonymous":
         last_requests.setdefault(ctx.hcp["hcp_id"], {})[slot] = {
             "request_id": req_id, "slot": slot, "ts": ts, "rank_ms": rank_ms, "fallback": fallback,
             "model_version": model_version, "alpha": ctx.alpha,
@@ -357,9 +385,12 @@ def _rank(ctx: Ctx, slot: str, n: int, ta: str | None, context_item: str | None,
             raw[i["item_id"]] = (c / c_tot) * np.log1p(lift)  # popular in the cluster AND distinctive to it
         top = max(raw.values(), default=0.0) or 1.0
         scored = sorted(raw.items(), key=lambda x: (-x[1], x[0]))
+        # "Popular with peers" must be true: drop weak signals, and hide a row too thin to mean anything (QA D-22)
         rows = [Scored(item_id=iid, score=round(v / top, 4), components={"peer_pop": round(v / top, 4)}, level="L3",
-                       reason_template="peers", reason_params={"cluster_id": ctx.cluster_id}) for iid, v in scored]
-        return _diversify(_drop_done(ctx, rows), n)
+                       reason_template="peers", reason_params={"cluster_id": ctx.cluster_id})
+                for iid, v in scored if v / top >= PEER_MIN_SCORE]
+        row = _diversify(_drop_done(ctx, rows), n)
+        return row if len(row) >= PEER_MIN_ROW else []
 
     if slot == "ta_page" and ta:
         pool = [i for i in pool if i["therapy_area"] == ta]
@@ -368,15 +399,22 @@ def _rank(ctx: Ctx, slot: str, n: int, ta: str | None, context_item: str | None,
     scored = _drop_done(ctx, scored)                                 # step 3
 
     if slot == "next" and context_item:  # end of article / video: similar and next-step items
+        # Same therapy area first, by similarity to the item just finished; other areas only fill the gap.
+        # Affinity alone must never fill "Up next" with another area (QA D-06).
+        ctx_ta = store.items[context_item]["therapy_area"]
         base = {s.item_id: s for s in scored if s.item_id != context_item}
         mx = max((s.score for s in base.values()), default=0) or 1
         rel = []
         for iid, s in base.items():
             sim = store.similarity(context_item, iid)
-            sc = 0.7 * sim + 0.3 * (s.score / mx)
-            if sim >= RELATED_MIN_COSINE:  # genuinely similar: say so
+            same = store.items[iid]["therapy_area"] == ctx_ta
+            sc = 0.7 * sim + 0.3 * (s.score / mx) + (1.0 if same else 0.0)
+            if same and sim >= RELATED_MIN_COSINE:  # genuinely similar: say so
                 rel.append(Scored(item_id=iid, score=round(sc, 5), components={**s.components, "related": round(0.7 * sim, 5)},
                                   level="L2", reason_template="related", reason_params={"item_id": context_item}))
+            elif same:
+                rel.append(Scored(item_id=iid, score=round(sc, 5), components=s.components, level=s.level,
+                                  reason_template="more_in_ta", reason_params={"ta": ctx_ta}))
             else:  # otherwise keep the ranker's own reason
                 rel.append(Scored(item_id=iid, score=round(sc, 5), components=s.components, level=s.level,
                                   reason_template=s.reason_template, reason_params=s.reason_params))
@@ -390,10 +428,13 @@ def _rank(ctx: Ctx, slot: str, n: int, ta: str | None, context_item: str | None,
 
 
 def editor_curated(ctx: Ctx, slot: str, n: int, ta: str | None, exclude: set[str]) -> list[Scored]:
-    """The control / fallback list: editor picks by specialty TA, then newest. No behaviour used."""
-    land = ta or (store.specialty_ta(ctx.specialty) if ctx.specialty else ctx.ta_order[0])
+    """The fallback list: editor picks for the HCP's current landing TA, then newest. No ranking model;
+    it still respects the landing TA and skips what the HCP has finished or dismissed (QA D-09)."""
+    land = ta or ctx.ta_order[0]
     order = [land] + [t for t in store.ta_ids if t != land]
-    pool = [i for i in ctx.eligible if i["item_id"] not in exclude and (slot != "ta_page" or i["therapy_area"] == land)]
+    st = ctx.profile["items"]
+    pool = [i for i in ctx.eligible if i["item_id"] not in exclude and (slot != "ta_page" or i["therapy_area"] == land)
+            and not st.get(i["item_id"], {}).get("completed") and not st.get(i["item_id"], {}).get("dismissed")]
     if slot == "continue_watching":
         return []
     pool.sort(key=lambda i: (order.index(i["therapy_area"]), 0 if i.get("editor_pick") else 1,
@@ -415,12 +456,12 @@ def card(it: dict, lang: str, ctx: Ctx | None = None) -> dict:
 
 
 # ── home page composition ───────────────────────────────────────────────────────
-def home(ctx: Ctx) -> dict:
+def home(ctx: Ctx, log: bool = True) -> dict:
     taken: set[str] = set()
     rows = []
 
     def add(slot, **kw):
-        r = recommend(ctx, slot, exclude=set(taken), **kw)
+        r = recommend(ctx, slot, exclude=set(taken), log=log, **kw)
         taken.update(i["item_id"] for i in r["items"])
         if r["items"]:
             rows.append(r)
@@ -435,7 +476,7 @@ def home(ctx: Ctx) -> dict:
     picks = {i["item_id"] for i in ctx.eligible if i["therapy_area"] == land and i.get("editor_pick")}
 
     def claim(slot):
-        r = recommend(ctx, slot, exclude=taken | picks)
+        r = recommend(ctx, slot, exclude=taken | picks, log=log)
         taken.update(i["item_id"] for i in r["items"])
         if r["items"]:
             rows.append(r)
@@ -538,20 +579,57 @@ def push_profile_to_crm(hcp: dict, p: dict) -> None:
         "cluster_label": c["label_en"] if c else None, "cluster_source": src}, demo_run=switches.demo_run)
 
 
-def push_recs_to_crm(ctx: Ctx, resp: dict) -> None:
+def push_recs_to_crm(ctx: Ctx, resp: dict) -> bool:
     """Top recommendations go to the CRM when they change (daily + on major change)."""
     if not ctx.hcp.get("crm_consent"):
-        return
+        return False
     items = [i for i in resp["items"] if i["level"] != "exploration"][:5]  # reps get the ranked list, not probes
     top = [i["item_id"] for i in items]
     if crm_last_top.get(ctx.hcp["hcp_id"]) == top:
-        return
+        return False
     crm_last_top[ctx.hcp["hcp_id"]] = top
     crm.enqueue(ctx.hcp["hcp_id"], "recommendations", {
         "hcp_id": ctx.hcp["hcp_id"], "model_version": resp["model_version"], "request_id": resp["request_id"],
         "items": [{"item_id": i["item_id"], "title": store.items[i["item_id"]]["title"]["en"], "score": i["score"],
                    "level": i["level"], "reason": render(i["reason"]["template"], i["reason"]["params"], "en", store)}
                   for i in items]}, demo_run=switches.demo_run)
+    return True
+
+
+def _last_crm_top(hcp_id: str) -> list[str] | None:
+    if hcp_id in crm_last_top:
+        return crm_last_top[hcp_id]
+    with db() as c:
+        p = c.scalar("SELECT payload FROM crm_outbox WHERE hcp_id = :h AND kind = 'recommendations' "
+                     "ORDER BY id DESC LIMIT 1", h=hcp_id)
+    return [i["item_id"] for i in p["items"]] if p else None
+
+
+def refresh_crm_recommendations() -> int:
+    """Content or override changed: recompute the CRM list for every HCP whose list the CRM holds and send
+    the ones that changed (§4/§10: expiry, withdrawal and overrides reach the CRM within 15 min, whether or
+    not the HCP visits). Nothing is logged as an impression: the HCP did not see a page."""
+    with db() as c:
+        ids = [r[0] for r in c.run("SELECT DISTINCT o.hcp_id FROM crm_outbox o JOIN hcps h USING (hcp_id) "
+                                   "WHERE o.kind = 'recommendations' AND h.crm_consent")]
+    sent = 0
+    for hid in ids:
+        hcp = get_hcp(hid)
+        if hcp is None:
+            continue
+        prev = _last_crm_top(hid)
+        if prev is not None:
+            crm_last_top[hid] = prev
+        ctx = build_ctx(hcp)
+        rec = next((r for r in home(ctx, log=False)["rows"] if r["slot"] == "home_recommended"), None)
+        if rec and not rec["fallback"]:
+            sent += push_recs_to_crm(ctx, rec)
+    return sent
+
+
+def refresh_crm_async() -> None:
+    import threading
+    threading.Thread(target=refresh_crm_recommendations, daemon=True).start()
 
 
 # ── live cluster assignment ─────────────────────────────────────────────────────

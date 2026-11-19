@@ -97,6 +97,8 @@ def config():
 def register(body: RegisterIn):
     try:
         return demo.register(body)
+    except demo.AccountExists as e:
+        raise HTTPException(409, {"code": "account_exists", "hcp_id": e.hcp_id, "name": e.name}) from e
     except ValueError as e:
         raise HTTPException(422, str(e)) from e
 
@@ -234,13 +236,13 @@ def clusters(lang: Lang = "en"):
 
 
 @app.get("/api/v1/oce/accounts")
-def oce_accounts(q: str | None = None):
-    return {"accounts": oce.accounts(q), "adapter": E.crm.name, "sync_seconds": CRM_SYNC_SECONDS}
+def oce_accounts(q: str | None = None, lang: Lang = "en"):
+    return {"accounts": oce.accounts(q, lang=lang), "adapter": E.crm.name, "sync_seconds": CRM_SYNC_SECONDS}
 
 
 @app.get("/api/v1/oce/accounts/{hcp_id}")
-def oce_account(hcp_id: str):
-    a = oce.account(hcp_id)
+def oce_account(hcp_id: str, lang: Lang = "en"):
+    a = oce.account(hcp_id, lang)
     if a is None:
         raise HTTPException(404, "Not shared with the CRM (no CRM-sharing consent) or unknown account")
     return a
@@ -248,7 +250,7 @@ def oce_account(hcp_id: str):
 
 # ── admin: content & rules, inspector ─────────────────────────────────────────
 @app.get("/api/v1/admin/content")
-def admin_content(country: str = "MA", state: str = Query("verified", pattern="^(anonymous|registered|verified)$"),
+def admin_content(country: str = "SA", state: str = Query("verified", pattern="^(anonymous|registered|verified)$"),
                   lang: Lang = "en"):
     v = Viewer(state, country)
     ctx = store.rule_ctx()
@@ -276,6 +278,7 @@ def expire_now(item_id: str):
         c.run("UPDATE items SET expiry_date = CAST(:d AS date), updated_at = now() WHERE item_id = :i",
               d=date.today().isoformat(), i=item_id)
     store.reload_items()
+    E.refresh_crm_async()  # the CRM list drops it too, whether or not the HCP visits (QA D-03)
     return {"item_id": item_id, "expiry_date": date.today().isoformat(), "effective": "next request"}
 
 
@@ -289,6 +292,7 @@ def restore(item_id: str):
         c.run("UPDATE items SET expiry_date = CAST(:d AS date), status = :s, updated_at = now() WHERE item_id = :i",
               d=orig["expiry_date"], s=orig["status"], i=item_id)
     store.reload_items()
+    E.refresh_crm_async()
     return {"item_id": item_id, "restored": True}
 
 
@@ -300,6 +304,7 @@ def add_override(o: OverrideIn):
         c.run("INSERT INTO overrides (action, country, ta, item_id, demo_run) VALUES (:a, :c, :t, :i, :r)",
               a=o.action, c=o.country, t=o.therapy_area, i=o.item_id, r=E.switches.demo_run)
     store.reload_overrides()
+    E.refresh_crm_async()
     return {"ok": True}
 
 
@@ -311,6 +316,7 @@ def clear_overrides(item_id: str | None = None):
         else:
             c.run("DELETE FROM overrides")
     store.reload_overrides()
+    E.refresh_crm_async()
     return {"ok": True}
 
 

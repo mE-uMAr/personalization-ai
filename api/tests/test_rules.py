@@ -27,12 +27,12 @@ def ctx(**kw):
 
 def item(**kw):
     base = dict(item_id="T-1", status="published", published_date="2026-01-01", approval_date="2025-12-01",
-                expiry_date="2027-12-31", allowed_countries=["MA", "MB", "MG"], promotional=False, gated=True)
+                expiry_date="2027-12-31", allowed_countries=["SA", "AE", "IQ"], promotional=False, gated=True)
     base.update(kw)
     return base
 
 
-V = Viewer("verified", "MA")
+V = Viewer("verified", "SA")
 
 
 def test_eligible_baseline():
@@ -61,16 +61,16 @@ def test_missing_expiry_is_not_eligible():
 
 
 def test_country_blocked():
-    assert check(item(), Viewer("verified", "MH"), ctx()) == "country_blocked"
+    assert check(item(), Viewer("verified", "EG"), ctx()) == "country_blocked"
 
 
 @pytest.mark.parametrize("state", ["anonymous", "registered"])
 def test_promo_requires_verified(state):
-    assert check(item(promotional=True, gated=False), Viewer(state, "MA"), ctx()) == "promo_not_verified"
+    assert check(item(promotional=True, gated=False), Viewer(state, "SA"), ctx()) == "promo_not_verified"
 
 
 def test_promo_country_rule():
-    assert check(item(promotional=True), Viewer("verified", "MG"), ctx()) == "promo_country"
+    assert check(item(promotional=True), Viewer("verified", "IQ"), ctx()) == "promo_country"
 
 
 def test_promo_unknown_country_denied():
@@ -79,18 +79,18 @@ def test_promo_unknown_country_denied():
 
 
 def test_gated_anonymous():
-    assert check(item(), Viewer("anonymous", "MA"), ctx()) == "gated_anonymous"
-    assert check(item(gated=False), Viewer("anonymous", "MA"), ctx()) is None
+    assert check(item(), Viewer("anonymous", "SA"), ctx()) == "gated_anonymous"
+    assert check(item(gated=False), Viewer("anonymous", "SA"), ctx()) is None
 
 
 def test_registered_sees_gated_non_promo():
-    assert check(item(), Viewer("registered", "MA"), ctx()) is None
+    assert check(item(), Viewer("registered", "SA"), ctx()) is None
 
 
 def test_admin_block_country_and_global():
-    assert check(item(), V, ctx(blocks={("MA", "T-1")})) == "admin_block"
+    assert check(item(), V, ctx(blocks={("SA", "T-1")})) == "admin_block"
     assert check(item(), V, ctx(blocks={("*", "T-1")})) == "admin_block"
-    assert check(item(), V, ctx(blocks={("MB", "T-1")})) is None
+    assert check(item(), V, ctx(blocks={("AE", "T-1")})) is None
 
 
 def test_date_objects_accepted():

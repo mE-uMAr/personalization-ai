@@ -50,14 +50,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -106,14 +106,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -287,14 +287,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -343,14 +343,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -524,14 +524,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -580,14 +580,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -761,14 +761,14 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -843,14 +843,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -899,14 +899,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1080,14 +1080,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1162,14 +1162,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1218,12 +1218,12 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1397,14 +1397,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1453,14 +1453,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1634,14 +1634,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1716,14 +1716,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -1798,14 +1798,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -1856,14 +1856,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2039,14 +2039,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2123,14 +2123,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2181,14 +2181,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2364,14 +2364,14 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2448,14 +2448,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2506,14 +2506,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2663,14 +2663,14 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2846,14 +2846,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -2904,14 +2904,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -3087,14 +3087,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -3171,14 +3171,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -3255,14 +3255,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -3313,14 +3313,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -3496,14 +3496,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "cardiologist",
@@ -3580,14 +3580,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -3636,14 +3636,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -3817,14 +3817,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -3873,14 +3873,14 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4054,14 +4054,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4110,14 +4110,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4291,14 +4291,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4373,10 +4373,10 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MD",
-    "MC"
+    "SA",
+    "AE",
+    "QA",
+    "KW"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4451,14 +4451,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4507,14 +4507,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4688,14 +4688,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4770,14 +4770,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4826,14 +4826,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -4981,14 +4981,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5162,14 +5162,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5244,14 +5244,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5326,14 +5326,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5382,14 +5382,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5563,14 +5563,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5619,14 +5619,14 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5800,14 +5800,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -5856,14 +5856,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6037,14 +6037,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6119,14 +6119,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6175,14 +6175,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6356,14 +6356,14 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6438,14 +6438,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6494,14 +6494,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6675,14 +6675,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6731,14 +6731,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6912,14 +6912,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -6968,14 +6968,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7149,14 +7149,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7205,14 +7205,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7386,14 +7386,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7468,14 +7468,14 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7550,14 +7550,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7606,14 +7606,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7787,14 +7787,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7869,14 +7869,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -7925,14 +7925,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -8080,10 +8080,10 @@
    "product": "Product X",
    "promotional": true,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -8257,14 +8257,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -8313,14 +8313,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -8468,14 +8468,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -8649,14 +8649,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -8731,14 +8731,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",
@@ -8813,14 +8813,14 @@
    "product": null,
    "promotional": false,
    "allowed_countries": [
-    "MA",
-    "MB",
-    "MC",
-    "MD",
-    "ME",
-    "MF",
-    "MG",
-    "MH"
+    "SA",
+    "AE",
+    "KW",
+    "QA",
+    "BH",
+    "OM",
+    "IQ",
+    "EG"
    ],
    "audience_specialties": [
     "general_practitioner",

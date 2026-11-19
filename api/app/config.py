@@ -51,7 +51,9 @@ PEER_MIN_LIFT = 1.2
 BECAUSE_MIN_COSINE = 0.68         # "Because you read X" only when X is genuinely similar
 RELATED_MIN_COSINE = 0.66         # "Related to X" on end-of-item rows
 EXPLORATION_PROBABILITY = 0.6     # a row of 6 gets an exploration slot 60% of the time ≈ 10% of items
-MAX_PER_TA_IN_ROW = 4             # home rows keep some breadth across therapy areas              # peers row: items the cluster engages with more than everyone else
+MAX_PER_TA_IN_ROW = 4             # home rows keep some breadth across therapy areas
+PEER_MIN_SCORE = 0.2              # peers row: drop items with a weak peer signal (relative to the row's best)
+PEER_MIN_ROW = 3                  # peers row: hidden when fewer items than this qualify
 LATENCY_BUDGET_MS = 150          # over budget → serve editor-curated lists
 
 CRM_SYNC_SECONDS = float(os.environ.get("CRM_SYNC_SECONDS", "5"))  # production: 15-minute batches

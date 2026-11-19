@@ -2,13 +2,13 @@ import { useState } from "react"
 import { useNavigate } from "react-router"
 import { useMutation } from "@tanstack/react-query"
 import { Loader2, Lock } from "lucide-react"
-import { BrandMark } from "@/components/brand"
+import { SiteMark } from "@/components/brand"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import { api, type Lang } from "@/lib/api"
+import { api, ApiError, type Lang } from "@/lib/api"
 import { useConfig } from "@/lib/hooks"
 import { useT } from "@/lib/i18n"
 import { session } from "@/lib/session"
@@ -19,7 +19,7 @@ export default function Register() {
   const cfg = useConfig()
   const nav = useNavigate()
   const [f, setF] = useState({
-    full_name: "Dr. Elena Rossi", email: "elena.rossi@example.org", specialty: "ophthalmologist", country: "MA",
+    full_name: "Dr. Mariam Al-Sayed", email: "mariam.alsayed@example.org", specialty: "ophthalmologist", country: "SA",
     language: lang as Lang, licence_no: "LIC-482130", tracking_consent: false, crm_consent: false,
   })
   const set = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) => setF((s) => ({ ...s, [k]: v }))
@@ -34,16 +34,16 @@ export default function Register() {
 
   return (
     <div className="mx-auto grid max-w-5xl gap-10 px-6 py-12 lg:grid-cols-[1fr_1.1fr]">
-      <div className="hidden flex-col justify-between rounded-2xl bg-brand-700 p-8 text-white lg:flex">
+      <div className="hidden flex-col justify-between rounded-3xl bg-gradient-to-br from-brand-700 to-[#0d1b6b] p-9 text-white shadow-xl shadow-brand-700/20 lg:flex">
         <div>
-          <BrandMark inverted className="size-11" />
-          <h1 className="mt-8 font-heading text-[32px] leading-tight">{t("reg_title")}</h1>
+          <SiteMark inverted className="size-11" />
+          <h1 className="mt-8 font-heading text-[34px] font-semibold leading-tight tracking-tight">{t("reg_title")}</h1>
           <p className="mt-3 text-white/75">{t("reg_sub")}</p>
         </div>
         <ul className="space-y-3 text-sm text-white/80">
           {cfg?.therapy_areas.map((ta) => (
             <li key={ta.id} className="flex items-center gap-2.5">
-              <span className="size-2 rounded-full bg-white/70" />
+              <span className="size-2 rounded-full" style={{ background: ta.color }} />
               {ta[lang]}
             </li>
           ))}
@@ -94,13 +94,34 @@ export default function Register() {
         </div>
 
         <p className="text-xs text-muted-foreground">{t("verified_help")}</p>
-        <div className="divide-y rounded-xl border bg-white">
+        <div className="divide-y rounded-2xl border border-black/[0.08] bg-white">
           <Toggle label={t("consent_tracking")} help={t("consent_tracking_help")} checked={f.tracking_consent} onChange={(v) => set("tracking_consent", v)} />
           <Toggle label={t("consent_crm")} help={t("consent_crm_help")} checked={f.crm_consent} onChange={(v) => set("crm_consent", v)} />
         </div>
 
-        {m.isError && <p className="text-sm text-destructive">{String(m.error)}</p>}
-        <Button type="submit" size="lg" className="w-full bg-brand-700 hover:bg-brand-800" disabled={m.isPending}>
+        {m.isError && (() => {
+          const d = m.error instanceof ApiError && m.error.status === 409 ? (m.error.detail as { hcp_id: string; name: string }) : null
+          return d ? (
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+              <span>{t("account_exists")}</span>
+              <Button
+                type="button"
+                variant="outline"
+                className="rounded-full"
+                onClick={() => {
+                  session.setHcp(d.hcp_id, f.language)
+                  queryClient.invalidateQueries()
+                  nav("/site")
+                }}
+              >
+                {t("continue_as")} {d.name}
+              </Button>
+            </div>
+          ) : (
+            <p className="text-sm text-destructive">{String(m.error)}</p>
+          )
+        })()}
+        <Button type="submit" size="lg" className="h-12 w-full rounded-full bg-brand-700 text-[15px] hover:bg-brand-800" disabled={m.isPending}>
           {m.isPending && <Loader2 className="size-4 animate-spin" />}
           {t("create_account")}
         </Button>

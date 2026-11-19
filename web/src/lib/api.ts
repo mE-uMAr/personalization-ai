@@ -215,8 +215,8 @@ export const api = {
   analytics: () => req<Analytics>("/analytics"),
   ab: () => req<AbResult>("/ab/example"),
   clusters: (lang: Lang) => req<ClustersData>(`/clusters${qs({ lang })}`),
-  oceAccounts: (q?: string) => req<{ accounts: OceAccountRow[]; adapter: string; sync_seconds: number }>(`/oce/accounts${qs({ q })}`),
-  oceAccount: (id: string) => req<OceAccount>(`/oce/accounts/${id}`),
+  oceAccounts: (q?: string, lang: Lang = "en") => req<{ accounts: OceAccountRow[]; adapter: string; sync_seconds: number }>(`/oce/accounts${qs({ q, lang })}`),
+  oceAccount: (id: string, lang: Lang = "en") => req<OceAccount>(`/oce/accounts/${id}${qs({ lang })}`),
   content: (country: string, state: string, lang: Lang) =>
     req<ContentData>(`/admin/content${qs({ country, state, lang })}`),
   expire: (id: string) => req(`/admin/items/${id}/expire`, { method: "POST" }),
@@ -296,6 +296,7 @@ export interface OceAccount {
   ta_affinity: { ta: string; name: string; share: number; color: string }[]
   landing_ta: string
   engagement: { item_id: string; title: string; type: string; event_type: string; value: string | null; therapy_area: string; timestamp: string; delivered_at: string | null }[]
+  engagement_total: number
   recommendations: { item_id: string; title: string; score: number; level: string; reason: string }[]
   recommendations_meta: { source: string; delivered_at: string | null }
   sync: { delivered: number; queued: number; last: string | null; adapter: string }

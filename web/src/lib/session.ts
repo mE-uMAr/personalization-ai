@@ -12,14 +12,17 @@ interface SessionState {
 const KEY = "hcp-demo-session-v2"
 const listeners = new Set<() => void>()
 
+// Placeholder market codes used before the switch to ISO 3166 (saved in browsers from earlier sessions)
+const OLD_CODES: Record<string, string> = { MA: "SA", MB: "AE", MC: "KW", MD: "QA", ME: "BH", MF: "OM", MG: "IQ", MH: "EG" }
+
 function load(): SessionState {
   try {
     const v = JSON.parse(localStorage.getItem(KEY) ?? "null")
-    if (v && typeof v === "object") return { hcpId: v.hcpId ?? null, lang: v.lang === "ar" ? "ar" : "en", anonCountry: v.anonCountry ?? "MB" }
+    if (v && typeof v === "object") return { hcpId: v.hcpId ?? null, lang: v.lang === "ar" ? "ar" : "en", anonCountry: OLD_CODES[v.anonCountry] ?? v.anonCountry ?? "AE" }
   } catch {
     /* ignore */
   }
-  return { hcpId: null, lang: "en", anonCountry: "MB" }
+  return { hcpId: null, lang: "en", anonCountry: "AE" }
 }
 
 let state = load()

@@ -57,7 +57,7 @@ export function VideoPlayer({ itemId, video, initialProgress }: { itemId: string
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-black shadow-xl ring-1 ring-black/5">
+    <div className="@container overflow-hidden rounded-2xl bg-black shadow-xl ring-1 ring-black/5">
       <video
         ref={ref}
         key={video.file}
@@ -97,7 +97,7 @@ export function VideoPlayer({ itemId, video, initialProgress }: { itemId: string
       {video.chapters.length > 0 && (
         <div className="bg-[#0b1233] px-4 pb-4 pt-3">
           <div className="mb-2 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-white/45"><ListVideo className="size-3.5" />{t("chapters")}</div>
-          <div className="grid gap-1.5 sm:grid-cols-3">
+          <div className="grid gap-1.5 @lg:grid-cols-2 @3xl:grid-cols-3">
             {video.chapters.map((c, i) => {
               const next = video.chapters[i + 1]?.start ?? video.duration_seconds
               const active = cur >= c.start && cur < next
@@ -109,7 +109,7 @@ export function VideoPlayer({ itemId, video, initialProgress }: { itemId: string
                   }}
                   className={cn("flex items-center justify-between gap-2 rounded-md px-3 py-2 text-start text-xs transition", active ? "bg-white/15 text-white" : "bg-white/[0.05] text-white/70 hover:bg-white/10")}
                 >
-                  <span className="truncate">{c.title}</span>
+                  <span className="line-clamp-2">{c.title}</span>
                   <span className="num text-white/45">{fmtDuration(c.start, lang) || "0:00"}</span>
                 </button>
               )

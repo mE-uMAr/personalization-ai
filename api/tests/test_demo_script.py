@@ -59,7 +59,7 @@ def all_items(h):
 
 @pytest.fixture(scope="module")
 def story(api):
-    r = api.post("/api/v1/hcps", json={"full_name": "Dr. Live Demo", "specialty": "ophthalmologist", "country": "MA",
+    r = api.post("/api/v1/hcps", json={"full_name": "Dr. Live Demo", "specialty": "ophthalmologist", "country": "SA",
                                        "language": "en", "licence_no": "LIC-100200", "tracking_consent": True, "crm_consent": True})
     assert r.status_code == 201
     return {"hcp": r.json()["hcp_id"], "first": r.json()}
@@ -115,7 +115,7 @@ def test_2c_reasons_become_personal_after_step_2(api, story):
 def test_2d_concurrent_events_are_not_lost(api):
     """Article pages send several events at once; none may overwrite another."""
     from concurrent.futures import ThreadPoolExecutor
-    r = api.post("/api/v1/hcps", json={"full_name": "Dr. Race Test", "specialty": "neurologist", "country": "MB",
+    r = api.post("/api/v1/hcps", json={"full_name": "Dr. Race Test", "specialty": "neurologist", "country": "AE",
                                        "tracking_consent": True})
     hid = r.json()["hcp_id"]
     items = ["NEU-001", "NEU-003", "NEU-005", "NEU-007", "NEU-008", "NEU-013", "NEU-015", "NEU-011"]
@@ -198,8 +198,8 @@ def test_promotional_never_reaches_unverified(api):
     assert api.get("/api/v1/items/OPH-007", params={"hcp_id": hid}).status_code == 403  # direct access too
 
 
-def test_market_rules_block_promo_in_market_g(api):
-    r = api.post("/api/v1/hcps", json={"full_name": "Dr. Market G Test", "specialty": "cardiologist", "country": "MG",
+def test_market_rules_block_promo_in_iraq(api):
+    r = api.post("/api/v1/hcps", json={"full_name": "Dr. Iraq Rules Test", "specialty": "cardiologist", "country": "IQ",
                                        "licence_no": "LIC-300400"})
     hid = r.json()["hcp_id"]
     p = api.get("/api/v1/ta/cardiometabolic", params={"hcp_id": hid}).json()
@@ -207,7 +207,7 @@ def test_market_rules_block_promo_in_market_g(api):
 
 
 def test_anonymous_sees_public_non_promotional_only(api):
-    h = api.get("/api/v1/home", params={"country": "MB"}).json()
+    h = api.get("/api/v1/home", params={"country": "AE"}).json()
     items = all_items(h)
     assert items and all(not i["item"]["gated"] and not i["item"]["promotional"] for i in items)
 

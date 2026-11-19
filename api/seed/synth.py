@@ -24,54 +24,52 @@ DAYS = 90
 # Each persona: who they are and how they behave. topic weights are relative.
 PERSONAS = [
     dict(id="glaucoma_video", n=78, specialties={"ophthalmologist": 1.0},
-         countries={"MA": 0.45, "MB": 0.3, "MC": 0.15, "MD": 0.1}, ar_share=0.45,
+         countries={"SA": 0.45, "AE": 0.3, "KW": 0.15, "QA": 0.1}, ar_share=0.45,
          topics={"glaucoma": 6, "dry_eye": 2, "amd": 1}, video=0.75, depth=0.75, sessions=(6, 14)),
     dict(id="retina_readers", n=72, specialties={"ophthalmologist": 1.0},
-         countries={"MA": 0.35, "MH": 0.35, "MC": 0.15, "ME": 0.15}, ar_share=0.6,
+         countries={"SA": 0.35, "EG": 0.35, "KW": 0.15, "BH": 0.15}, ar_share=0.6,
          topics={"amd": 5, "diabetic_retinopathy": 5, "glaucoma": 1}, video=0.25, depth=0.8, sessions=(5, 12)),
     dict(id="hf_cardiologists", n=74, specialties={"cardiologist": 1.0},
-         countries={"MA": 0.4, "MB": 0.25, "MH": 0.25, "MD": 0.1}, ar_share=0.4,
+         countries={"SA": 0.4, "AE": 0.25, "EG": 0.25, "QA": 0.1}, ar_share=0.4,
          topics={"heart_failure": 6, "lipids": 4, "hypertension": 2}, video=0.35, depth=0.7, sessions=(6, 13)),
     dict(id="diabetes_primary_care", n=80,
          specialties={"general_practitioner": 0.5, "endocrinologist": 0.3, "internist": 0.2},
-         countries={"MA": 0.3, "MH": 0.3, "MG": 0.2, "MC": 0.2}, ar_share=0.65,
+         countries={"SA": 0.3, "EG": 0.3, "IQ": 0.2, "KW": 0.2}, ar_share=0.65,
          topics={"type2_diabetes": 6, "diabetic_retinopathy": 2, "hypertension": 2, "lipids": 1}, video=0.45,
          depth=0.6, sessions=(4, 11)),
     dict(id="airways_video", n=62, specialties={"pulmonologist": 0.8, "general_practitioner": 0.2},
-         countries={"MA": 0.35, "MB": 0.35, "MD": 0.15, "MF": 0.15}, ar_share=0.35,
+         countries={"SA": 0.35, "AE": 0.35, "QA": 0.15, "OM": 0.15}, ar_share=0.35,
          topics={"asthma": 5, "copd": 5, "rsv_vaccination": 1}, video=0.7, depth=0.65, sessions=(5, 12)),
     dict(id="vaccine_minded_gps", n=58, specialties={"general_practitioner": 0.7, "internist": 0.3},
-         countries={"MB": 0.3, "MA": 0.3, "MF": 0.2, "ME": 0.2}, ar_share=0.5,
+         countries={"AE": 0.3, "SA": 0.3, "OM": 0.2, "BH": 0.2}, ar_share=0.5,
          topics={"rsv_vaccination": 6, "hypertension": 2, "asthma": 1}, video=0.4, depth=0.55, sessions=(3, 9)),
     dict(id="migraine_neuro", n=60, specialties={"neurologist": 1.0},
-         countries={"MB": 0.35, "MA": 0.35, "MH": 0.3}, ar_share=0.45,
+         countries={"AE": 0.35, "SA": 0.35, "EG": 0.3}, ar_share=0.45,
          topics={"migraine": 6, "epilepsy": 2, "multiple_sclerosis": 1}, video=0.5, depth=0.7, sessions=(5, 12)),
     dict(id="menopause_bone", n=68, specialties={"obgyn": 0.85, "general_practitioner": 0.15},
-         countries={"MA": 0.3, "MB": 0.3, "ME": 0.2, "MF": 0.2}, ar_share=0.55,
+         countries={"SA": 0.3, "AE": 0.3, "BH": 0.2, "OM": 0.2}, ar_share=0.55,
          topics={"menopause": 6, "osteoporosis": 4, "contraception": 1}, video=0.4, depth=0.7, sessions=(5, 12)),
     dict(id="light_browsers", n=45,
          specialties={"general_practitioner": 0.4, "pharmacist": 0.3, "internist": 0.3},
-         countries={"MA": 0.2, "MB": 0.2, "MH": 0.2, "MG": 0.2, "MC": 0.2}, ar_share=0.5,
+         countries={"SA": 0.2, "AE": 0.2, "EG": 0.2, "IQ": 0.2, "KW": 0.2}, ar_share=0.5,
          topics=None, video=0.5, depth=0.35, sessions=(1, 3)),
 ]
 
 # Prepared personas for the live demo launcher (fixed IDs, generated like everyone else).
 PREPARED = [
-    dict(hcp_id="hcp_demo_cardio", persona="hf_cardiologists", specialty="cardiologist", country="MA",
+    dict(hcp_id="hcp_demo_cardio", persona="hf_cardiologists", specialty="cardiologist", country="SA",
          language="en", verified=True, tracking=True, crm=True, sessions=16,
-         name="Dr. Daniel Weber", label="Long history, cardiology"),
-    dict(hcp_id="hcp_demo_unverified", persona="glaucoma_video", specialty="ophthalmologist", country="MB",
+         name="Dr. Khalid Al-Mansouri", label="Long history, cardiology"),
+    dict(hcp_id="hcp_demo_unverified", persona="glaucoma_video", specialty="ophthalmologist", country="AE",
          language="en", verified=False, tracking=True, crm=True, sessions=2,
          name="Dr. Sara Haddad", label="Registered, not verified"),
-    dict(hcp_id="hcp_demo_nocrm", persona="migraine_neuro", specialty="neurologist", country="MC",
+    dict(hcp_id="hcp_demo_nocrm", persona="migraine_neuro", specialty="neurologist", country="KW",
          language="ar", verified=True, tracking=True, crm=False, sessions=8,
          name="Dr. Lina Nasser", label="No CRM consent"),
 ]
 
-FIRST = ["Elena", "Omar", "Priya", "James", "Lina", "Marco", "Amira", "Thomas", "Sofia", "Daniel", "Yasmin",
-         "Kenji", "Hannah", "Rami", "Clara", "Mateo", "Nadia", "Lukas", "Aisha", "David", "Mei", "Samir"]
-LAST = ["Rossi", "Haddad", "Raman", "Whitfield", "Nasser", "Silva", "Khalil", "Berg", "Lindqvist", "Okafor",
-        "Farouk", "Mori", "Novak", "Costa", "Weber", "Hassan", "Moreau", "Ibrahim", "Chen", "Kowalski"]
+FIRST = ["Ahmed", "Mohammed", "Fatima", "Omar", "Mariam", "Khalid", "Noura", "Yousef", "Layla", "Hassan", "Aisha", "Abdullah", "Reem", "Tariq", "Huda", "Faisal", "Salma", "Karim", "Dana", "Hamad", "Rania", "Ziad", "Noor", "Sami", "Priya", "Arjun", "Sarah", "James", "Elena", "Rahul"]
+LAST = ["Al-Mansouri", "Al-Harbi", "Al-Qahtani", "Al-Shamsi", "Al-Mutairi", "Al-Kuwari", "Al-Balushi", "Al-Saadi", "Haddad", "Nasser", "Khalil", "Farouk", "Hassan", "Ibrahim", "El-Sayed", "Mostafa", "Al-Jaber", "Al-Zahrani", "Al-Ansari", "Saleh", "Al-Hashimi", "Al-Obaidi", "Mahmoud", "Darwish", "Nair", "Menon", "Thomas", "Fernandes"]
 
 # Level mix of items shown vs items clicked, per slot. Clicked items lean to personalised
 # levels, so per-level CTR in analytics is consistent with the example A/B result.

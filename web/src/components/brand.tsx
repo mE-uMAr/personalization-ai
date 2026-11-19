@@ -1,12 +1,33 @@
 import { cn } from "@/lib/utils"
 import type { Level } from "@/lib/api"
 
+// Product mark: a focal point with two widening arcs (one HCP, the signals around them).
+// Drawn for this project; not derived from any third-party logo.
 export function BrandMark({ className, inverted = false }: { className?: string; inverted?: boolean }) {
+  const fg = inverted ? "#0d1b6b" : "#ffffff"
   return (
     <svg viewBox="0 0 40 40" className={cn("size-9 shrink-0", className)} aria-hidden>
-      <path d="M20 2 36 11v18L20 38 4 29V11Z" fill={inverted ? "#ffffff" : "#002399"} />
-      <path d="M13.5 27 20 12l6.5 15" fill="none" stroke={inverted ? "#002399" : "#ffffff"} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="27.5" cy="13" r="3" fill="#fa5c00" />
+      <defs>
+        <linearGradient id="pe-mark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#1534c4" />
+          <stop offset="1" stopColor="#0d1b6b" />
+        </linearGradient>
+      </defs>
+      <rect width="40" height="40" rx="11" fill={inverted ? "#ffffff" : "url(#pe-mark)"} />
+      <circle cx="13" cy="27" r="3.6" fill="#fa5c00" />
+      <path d="M13 17.5a9.5 9.5 0 0 1 9.5 9.5" fill="none" stroke={fg} strokeWidth="3.2" strokeLinecap="round" />
+      <path d="M13 9.5A17.5 17.5 0 0 1 30.5 27" fill="none" stroke={fg} strokeWidth="3.2" strokeLinecap="round" opacity="0.55" />
+    </svg>
+  )
+}
+
+// HCP portal mark ("Clinical Hub"): a rounded plus inside a soft square.
+export function SiteMark({ className, inverted = false }: { className?: string; inverted?: boolean }) {
+  return (
+    <svg viewBox="0 0 40 40" className={cn("size-9 shrink-0", className)} aria-hidden>
+      <rect width="40" height="40" rx="12" fill={inverted ? "#ffffff" : "#002399"} />
+      <path d="M20 11v18M11 20h18" stroke={inverted ? "#002399" : "#ffffff"} strokeWidth="5" strokeLinecap="round" />
+      <circle cx="29" cy="11" r="3.2" fill="#fa5c00" />
     </svg>
   )
 }

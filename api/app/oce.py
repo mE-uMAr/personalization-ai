@@ -11,11 +11,11 @@ from app.db import db
 from app.store import store
 
 
-def accounts(q: str | None = None, limit: int = 60) -> list[dict]:
+def accounts(q: str | None = None, limit: int = 60, lang: str = "en") -> list[dict]:
     with db() as c:
         rows = c.all("""
             SELECT h.hcp_id, i.full_name, i.oce_id, h.specialty, h.country, h.cluster_id, h.demo_run IS NOT NULL live,
-                   max(o.delivered_at) last_sync, count(*) FILTER (WHERE o.kind = 'engagement') engagements
+                   max(o.delivered_at) last_sync, count(DISTINCT o.payload->>'item_id') FILTER (WHERE o.kind = 'engagement') engagements
             FROM crm_outbox o JOIN hcps h USING (hcp_id) JOIN identities i USING (hcp_id)
             WHERE o.status = 'delivered' AND h.crm_consent
               AND (CAST(:q AS text) IS NULL OR i.full_name ILIKE '%' || CAST(:q AS text) || '%' OR i.oce_id ILIKE '%' || CAST(:q AS text) || '%')
@@ -25,12 +25,13 @@ def accounts(q: str | None = None, limit: int = 60) -> list[dict]:
     for r in rows:
         r["last_sync"] = r["last_sync"].isoformat() if r["last_sync"] else None
         c_ = store.clusters.get(r["cluster_id"])
-        r["segment"] = c_["label_en"] if c_ else None
-        r["specialty_label"] = store.cfg["specialties"][r["specialty"]]["en"]
+        r["segment"] = c_[f"label_{lang}"] if c_ else None
+        r["specialty_label"] = store.cfg["specialties"][r["specialty"]][lang]
     return rows
 
 
-def account(hcp_id: str) -> dict | None:
+def account(hcp_id: str, lang: str = "en") -> dict | None:
+    """`lang` localises what the rep reads; `raw` stays exactly as delivered to the CRM."""
     hcp = E.get_hcp(hcp_id)
     if hcp is None or not hcp["crm_consent"]:
         return None
@@ -47,7 +48,7 @@ def account(hcp_id: str) -> dict | None:
     recs = next((m for m in delivered if m["kind"] == "recommendations"), None)
     prof = next((m for m in delivered if m["kind"] == "profile"), None)
 
-    ctx = E.build_ctx(hcp, "en")
+    ctx = E.build_ctx(hcp, lang)
     if recs is None:  # sample accounts: compute the current list without logging an impression
         r = E.recommend(ctx, "home_recommended", log=False)
         rec_items = [{"item_id": i["item_id"], "title": i["item"]["title"], "score": i["score"], "level": i["level"],
@@ -56,7 +57,7 @@ def account(hcp_id: str) -> dict | None:
     else:
         rec_items = recs["payload"]["items"]
         rec_meta = {"source": "on change", "delivered_at": recs["delivered_at"]}
-    cl = E.cluster_brief(ctx.cluster_id, ctx.cluster_source, "en")
+    cl = E.cluster_brief(ctx.cluster_id, ctx.cluster_source, lang)
     aff = P.ta_scores(ctx.profile)
     tot = sum(max(v, 0) for v in aff.values()) or 1
     # one row per content item: furthest engagement reached, latest time
@@ -74,6 +75,8 @@ def account(hcp_id: str) -> dict | None:
         elif score > cur["_s"]:
             cur.update(event_type=pl["event_type"], value=pl.get("value"), _s=score)
     engagement = [{k: v for k, v in e.items() if k != "_s"} for e in list(by_item.values())[:20]]
+    shown_eng = [{**e, "title": _title(e["item_id"], lang, e["title"])} for e in engagement]
+    shown_recs = [{**r, "title": _title(r["item_id"], lang, r["title"])} for r in rec_items]
     raw = {
         "Account": {"OCE__ExternalId__c": ident["oce_id"], "Name": ident["full_name"],
                     "OCE__Specialty__c": store.cfg["specialties"][hcp["specialty"]]["en"], "OCE__Country__c": hcp["country"],
@@ -83,20 +86,28 @@ def account(hcp_id: str) -> dict | None:
                               "PE_Value__c": e["value"], "PE_Timestamp__c": e["timestamp"]} for e in engagement[:10]],
         "PE_Recommendation__c": [{"PE_Content_Id__c": r["item_id"], "PE_Rank__c": i + 1, "PE_Score__c": r["score"],
                                   "PE_Reason__c": r["reason"], "PE_Level__c": r["level"]} for i, r in enumerate(rec_items)],
-        "PE_Profile__c": {"PE_Segment__c": cl["label_en"] if cl else None,
+        "PE_Profile__c": {"PE_Segment__c": cl.get("label_en") if cl else None,
                           "PE_TA_Affinity__c": {k: round(v / tot, 3) for k, v in aff.items()},
                           "PE_Landing_TA__c": ctx.ta_order[0]},
     }
     return {
         "hcp_id": hcp_id, "name": ident["full_name"], "oce_id": ident["oce_id"], "specialty": hcp["specialty"],
-        "specialty_label": store.cfg["specialties"][hcp["specialty"]]["en"], "country": hcp["country"],
+        "specialty_label": store.cfg["specialties"][hcp["specialty"]][lang], "country": hcp["country"],
         "live": hcp["demo_run"] is not None, "segment": cl,
-        "ta_affinity": [{"ta": t, "name": store.ta(t)["en"], "share": round(max(aff.get(t, 0), 0) / tot, 3),
+        "ta_affinity": [{"ta": t, "name": store.ta(t)[lang], "share": round(max(aff.get(t, 0), 0) / tot, 3),
                          "color": store.ta(t)["color"]} for t in ctx.ta_order],
         "landing_ta": ctx.ta_order[0],
-        "engagement": engagement, "recommendations": rec_items, "recommendations_meta": rec_meta,
+        "engagement": shown_eng, "engagement_total": len(by_item), "recommendations": shown_recs, "recommendations_meta": rec_meta,
         "sync": {"delivered": len(delivered), "queued": len(queued), "last": delivered[0]["delivered_at"] if delivered else None,
                  "adapter": E.crm.name},
         "profile_update": prof["payload"] if prof else None,
         "raw": raw,
     }
+
+
+def _title(item_id: str, lang: str, fallback):
+    it = store.items.get(item_id)
+    t = it["title"] if it else None
+    if isinstance(t, dict):
+        return t.get(lang) or t.get("en") or fallback
+    return fallback

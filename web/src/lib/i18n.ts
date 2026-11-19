@@ -43,6 +43,9 @@ const S = {
   watched: { en: "watched", ar: "تمت المشاهدة" },
   read_progress: { en: "Read", ar: "تمت قراءة" },
   not_available: { en: "This content isn't available for your account.", ar: "هذا المحتوى غير متاح لحسابك." },
+  no_longer_available: { en: "This content is no longer available.", ar: "لم يعد هذا المحتوى متاحاً." },
+  dismissed_note: { en: "Hidden. You'll see less like this.", ar: "تم الإخفاء. سترى محتوى أقل من هذا النوع." },
+  undo: { en: "Undo", ar: "تراجع" },
   fallback_note: { en: "Editor's selection", ar: "اختيار المحررين" },
   reg_title: { en: "Create your HCP account", ar: "أنشئ حساب متخصص الرعاية الصحية" },
   reg_sub: { en: "Access approved medical content tailored to your specialty.", ar: "احصل على محتوى طبي معتمد مخصص لتخصصك." },
@@ -53,14 +56,16 @@ const S = {
   language: { en: "Preferred language", ar: "اللغة المفضلة" },
   licence: { en: "Licence number", ar: "رقم الترخيص" },
   verified_label: { en: "Licence verified", ar: "تم التحقق من الترخيص" },
-  verified_help: { en: "We check your licence number against the professional register. Until it is confirmed, only non-promotional content is shown.", ar: "نتحقق من رقم ترخيصك في سجل المهنيين، وحتى يتم التأكيد يُعرض المحتوى غير الترويجي فقط." },
+  verified_help: { en: "Your licence number is checked against the professional register; in this demo the check is instant. Without a confirmed licence, only non-promotional content is shown.", ar: "يُتحقق من رقم ترخيصك في سجل المهنيين، والتحقق فوري في هذا العرض التوضيحي. دون ترخيص مؤكد يُعرض المحتوى غير الترويجي فقط." },
+  account_exists: { en: "An account with this email or licence number already exists.", ar: "يوجد حساب بهذا البريد الإلكتروني أو رقم الترخيص." },
+  continue_as: { en: "Continue as", ar: "المتابعة باسم" },
   consent_tracking: { en: "Personalise my experience", ar: "خصص تجربتي" },
   consent_tracking_help: { en: "Use what I read and watch on this site to recommend content.", ar: "استخدم ما أقرأه وأشاهده على هذا الموقع لاقتراح المحتوى." },
   consent_crm: { en: "Share my engagement with my company representative", ar: "شارك تفاعلي مع ممثل الشركة" },
   consent_crm_help: { en: "Your activity and recommendations are shared with the CRM so your representative can support you.", ar: "تتم مشاركة نشاطك والتوصيات مع نظام إدارة العملاء ليتمكن ممثلك من دعمك." },
   create_account: { en: "Create account", ar: "إنشاء الحساب" },
   privacy_note: { en: "Your identity is stored separately from your activity. Analytics use a pseudonymous ID only.", ar: "تُحفظ هويتك بشكل منفصل عن نشاطك. تستخدم التحليلات معرفاً مستعاراً فقط." },
-  engine_lens: { en: "Engine lens", ar: "عدسة المحرك" },
+  engine_lens: { en: "Live insight", ar: "رؤية مباشرة" },
   nav_about: { en: "About", ar: "من نحن" },
   nav_terms: { en: "Terms of use", ar: "شروط الاستخدام" },
   nav_privacy: { en: "Privacy", ar: "الخصوصية" },
@@ -107,4 +112,14 @@ export function fmtDate(iso: string, lang: Lang) {
 
 export function readMinutes(words: number | null | undefined) {
   return Math.max(1, Math.round((words ?? 0) / 230))
+}
+
+// "5 min read" / Arabic with the correct number form (1, 2, 3–10, 11+)
+export function fmtReadTime(words: number | null | undefined, lang: Lang) {
+  const n = readMinutes(words)
+  if (lang !== "ar") return `${n} min read`
+  if (n === 1) return "دقيقة واحدة للقراءة"
+  if (n === 2) return "دقيقتان للقراءة"
+  if (n <= 10) return `${n} دقائق للقراءة`
+  return `${n} دقيقة للقراءة`
 }

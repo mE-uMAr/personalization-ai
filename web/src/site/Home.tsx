@@ -15,17 +15,17 @@ export default function Home() {
 
   return (
     <div>
-      <section className="border-b bg-brand-700 text-white">
-        <div className="mx-auto max-w-6xl px-6 pb-9 pt-10">
-          <h1 className="font-heading text-[32px] leading-tight sm:text-[38px]">
-            {hcp.data?.name ? `${d && d.alpha > 0 ? t("hello") : t("welcome")}, ${hcp.data.name}` : t("welcome")}
+      <section className="relative overflow-hidden border-b border-black/[0.06] bg-white">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_90%_0%,#e5e7fc_0%,transparent_70%)]" />
+        <div className="relative mx-auto max-w-6xl px-6 pb-9 pt-11">
+          <div className="text-[13px] font-medium text-brand-600">{spec ? `${spec} · ${cfg?.countries[hcp.data!.country]?.[lang]}` : t("footer")}</div>
+          <h1 className="mt-2 font-heading text-[34px] font-semibold leading-tight tracking-tight text-[#0d1330] sm:text-[42px]">
+            {hcp.data?.name ? `${d && d.alpha > 0 ? t("hello") : t("welcome")}${lang === "ar" ? "،" : ","} ${hcp.data.name}` : t("welcome")}
           </h1>
-          <p className="mt-2 text-[15px] text-white/75">
-            {spec ? `${spec} · ${cfg?.countries[hcp.data!.country]?.[lang]}` : t("hero_sub")}
-          </p>
+          <p className="mt-2 max-w-2xl text-[15.5px] text-muted-foreground">{t("hero_sub")}</p>
           <div className="mt-7">
-            <div className="mb-3 text-[13px] font-medium text-white/70">{t("your_tas")}</div>
-            {d ? <TaNav tas={d.therapy_areas} tone="dark" /> : <Skeleton className="h-10 w-full max-w-2xl bg-white/15" />}
+            <div className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">{t("your_tas")}</div>
+            {d ? <TaNav tas={d.therapy_areas} /> : <Skeleton className="h-10 w-full max-w-2xl" />}
           </div>
         </div>
       </section>

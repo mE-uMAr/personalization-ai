@@ -64,10 +64,15 @@ class FormulaRanker(Ranker):
                 lo, hi = float(sims.min()), float(sims.max())
                 for k, s in zip(ids, sims):
                     content[k] = (float(s) - lo) / (hi - lo) if hi > lo else 0.0
-                    # "Because you read X" only when X is genuinely similar (raw cosine, not the scaled score)
-                    src = max(pos, key=lambda e: st.similarity(e, k))
-                    if src != k and st.similarity(src, k) >= BECAUSE_MIN_COSINE:
-                        because[k] = src
+                    # "Because you read X" only when X is in the same therapy area and genuinely similar
+                    # (raw cosine). Embeddings rate most medical text as alike, so cosine alone linked
+                    # hypertension to intraocular pressure (QA D-05); reps see these reasons too.
+                    k_ta = st.items[k]["therapy_area"]
+                    same = [e for e in pos if e != k and e in st.items and st.items[e]["therapy_area"] == k_ta]
+                    if same:
+                        src = max(same, key=lambda e: st.similarity(e, k))
+                        if st.similarity(src, k) >= BECAUSE_MIN_COSINE:
+                            because[k] = src
         aff = _norm(ctx.ta_affinity, st.ta_ids)
         ta_aff = {k: aff.get(st.items[k]["therapy_area"], 0.0) for k in ids}
         peer = _norm(ctx.peer_pop, ids) if ctx.peer_pop else {k: 0.0 for k in ids}

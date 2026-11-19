@@ -32,6 +32,9 @@ async function send(event_type: string, item_id?: string, value?: string | numbe
   const { hcpId, lang } = session.get()
   if (!hcpId) return null // anonymous visitors: no personal tracking (no consent)
   try {
+    // No tracking consent → nothing leaves the browser (the server would drop it anyway, §1)
+    const hcp = await queryClient.fetchQuery({ queryKey: ["hcp", hcpId], queryFn: () => api.hcp(hcpId), staleTime: 60_000 })
+    if (!hcp.tracking_consent) return null
     const result = await api.event({
       hcp_id: hcpId, item_id, event_type, value: value ?? null, session_id: SESSION_ID, device: DEVICE, language: lang,
     })

@@ -49,7 +49,7 @@ Every request: **filter → score → drop completed/dismissed → admin pins �
 
 Open the launcher at `/`. Keep the engine lens open on the site (right panel).
 
-1. **First visit.** Click *First visit*. Register the prefilled ophthalmologist (Market A) and tick both
+1. **First visit.** Click *First visit*. Register the prefilled ophthalmologist (Saudi Arabia) and tick both
    consents live: personalisation and CRM sharing are opt-in. They land on Ophthalmology with *Start here*
    editor picks, then items popular with ophthalmologists in the same market. The lens shows 0% personal and a
    provisional cluster.

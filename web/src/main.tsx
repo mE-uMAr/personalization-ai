@@ -37,8 +37,9 @@ const router = createBrowserRouter([
     path: "/console",
     lazy: lazy(() => import("@/console/ConsoleLayout")),
     children: [
-      { index: true, lazy: lazy(() => import("@/console/LensPage")) },
-      { path: "analytics", lazy: lazy(() => import("@/console/Analytics")) },
+      { index: true, lazy: lazy(() => import("@/console/Analytics")) },
+      { path: "journey", lazy: lazy(() => import("@/console/LensPage")) },
+      { path: "analytics", element: <Navigate to="/console" replace /> },
       { path: "clusters", lazy: lazy(() => import("@/console/Clusters")) },
       { path: "content", lazy: lazy(() => import("@/console/Content")) },
       { path: "inspector", lazy: lazy(() => import("@/console/Inspector")) },

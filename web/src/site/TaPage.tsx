@@ -22,13 +22,14 @@ export default function TaPage() {
 
   return (
     <div>
-      <section className="border-b bg-white">
+      <section className="relative overflow-hidden border-b border-black/[0.06] bg-white">
         <div className="mx-auto max-w-6xl px-6 pb-6 pt-8">
           {d ? (
             <>
-              <div className="flex items-center gap-3">
-                <span className="h-9 w-1.5 rounded-full" style={{ background: d.ta.color }} />
-                <h1 className="font-heading text-[34px] leading-tight">{d.ta.name}</h1>
+              <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.08]" style={{ background: `radial-gradient(45% 90% at 95% 0%, ${d.ta.color}, transparent 70%)` }} />
+              <div className="relative flex items-center gap-3">
+                <span className="h-10 w-1.5 rounded-full" style={{ background: d.ta.color }} />
+                <h1 className="font-heading text-[38px] font-semibold leading-tight tracking-tight text-[#0d1330]">{d.ta.name}</h1>
               </div>
               <p className="mt-2 text-muted-foreground num">{d.browse.length} {t("items")}</p>
               <div className="mt-6"><TaNav tas={d.therapy_areas} active={ta} /></div>
@@ -46,13 +47,13 @@ export default function TaPage() {
         {d && (
           <section>
             <div className="mb-2 flex flex-wrap items-end justify-between gap-4">
-              <h2 className="font-heading text-[23px]">{t("browse_all")}</h2>
+              <h2 className="font-heading text-[24px] font-semibold tracking-tight text-[#0d1330]">{t("browse_all")}</h2>
               <div className="flex flex-wrap gap-2">
                 <Seg value={type} onChange={(v) => setType(v as typeof type)} options={[
                   ["all", lang === "ar" ? "الكل" : "All"], ["article", <span key="a" className="flex items-center gap-1"><FileText className="size-3.5" />{t("article")}</span>],
                   ["video", <span key="v" className="flex items-center gap-1"><PlayCircle className="size-3.5" />{t("video")}</span>],
                 ]} />
-                <select value={topic} onChange={(e) => setTopic(e.target.value)} className="h-8 rounded-md border bg-white px-2 text-sm">
+                <select value={topic} onChange={(e) => setTopic(e.target.value)} className="h-9 rounded-full border border-black/10 bg-white px-3 text-sm">
                   <option value="all">{lang === "ar" ? "كل المواضيع" : "All topics"}</option>
                   {topics.map((tp) => <option key={tp} value={tp}>{cfg?.topics[tp]?.[lang] ?? tp}</option>)}
                 </select>
@@ -71,9 +72,9 @@ export default function TaPage() {
 
 function Seg({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: [string, React.ReactNode][] }) {
   return (
-    <div className="inline-flex h-8 items-center rounded-md border bg-white p-0.5 text-sm">
+    <div className="inline-flex h-9 items-center rounded-full border border-black/10 bg-white p-1 text-sm">
       {options.map(([v, label]) => (
-        <button key={v} type="button" onClick={() => onChange(v)} className={cn("h-full rounded px-2.5 transition", value === v ? "bg-brand-700 text-white" : "text-foreground/70 hover:text-foreground")}>
+        <button key={v} type="button" onClick={() => onChange(v)} className={cn("h-full rounded-full px-3 transition", value === v ? "bg-brand-700 text-white" : "text-foreground/70 hover:text-foreground")}>
           {label}
         </button>
       ))}

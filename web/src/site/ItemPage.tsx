@@ -6,8 +6,8 @@ import { TaDot } from "@/components/brand"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ApiError, type ItemDetail } from "@/lib/api"
-import { useConfig, useItem } from "@/lib/hooks"
-import { fmtDate, fmtDuration, readMinutes, useT } from "@/lib/i18n"
+import { useConfig, useHcp, useItem } from "@/lib/hooks"
+import { fmtDate, fmtDuration, fmtReadTime, useT } from "@/lib/i18n"
 import { useSession } from "@/lib/session"
 import { track } from "@/lib/track"
 import { cn } from "@/lib/utils"
@@ -19,6 +19,8 @@ export default function ItemPage() {
   const { hcpId } = useSession()
   const q = useItem(id)
   const cfg = useConfig()
+  const hcp = useHcp()
+  const tracking = !!hcp.data?.tracking_consent // without consent nothing is stored, so show no saved/read state
   const opened = useRef<string | null>(null)
   const [saved, setSaved] = useState(false)
 
@@ -35,10 +37,11 @@ export default function ItemPage() {
     const e = q.error as ApiError
     const rule = ((e.detail ?? {}) as { rule?: string }).rule
     const gated = !hcpId && rule === "gated_anonymous"
+    const gone = rule === "expired" || rule === "not_published"
     return (
       <div className="mx-auto max-w-xl px-6 py-24 text-center">
         <div className="mx-auto grid size-14 place-items-center rounded-full bg-brand-50"><Lock className="size-6 text-brand-700" /></div>
-        <h1 className="mt-5 font-heading text-2xl">{gated ? t("register_to_read") : t("not_available")}</h1>
+        <h1 className="mt-5 font-heading text-2xl">{gated ? t("register_to_read") : gone ? t("no_longer_available") : t("not_available")}</h1>
         {gated && <p className="mt-2 text-sm text-muted-foreground">{t("register_to_read_sub")}</p>}
         <div className="mt-6 flex justify-center gap-2">
           {gated && <Button asChild className="bg-ember-500 hover:bg-ember-600"><Link to="/site/register">{t("register")}</Link></Button>}
@@ -51,27 +54,27 @@ export default function ItemPage() {
   const ta = cfg?.therapy_areas.find((x) => x.id === it.therapy_area)
 
   return (
-    <div>
+    <div className="@container">
       <div className="mx-auto max-w-6xl px-6 pt-6">
         <Link to={`/site/ta/${it.therapy_area}`} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-brand-700">
           <ArrowLeft className="size-4 rtl:rotate-180" /> {ta?.[lang]}
         </Link>
       </div>
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-6 @4xl:grid-cols-[minmax(0,1fr)_300px]">
         <article className="min-w-0">
           <div className="mb-4 flex flex-wrap items-center gap-2 text-xs">
             {ta && <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 font-medium ring-1 ring-border"><TaDot color={ta.color} />{ta[lang]}</span>}
             <span className="rounded-full bg-white px-2.5 py-1 ring-1 ring-border">{cfg?.topics[it.topic]?.[lang]}</span>
             <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 ring-1 ring-border">
               {it.type === "video" ? <PlayCircle className="size-3.5" /> : <FileText className="size-3.5" />}
-              {it.type === "video" ? `${t("video")} · ${fmtDuration(it.video?.duration_seconds, lang)}` : `${readMinutes(it.word_count)} ${t("min_read")}`}
+              {it.type === "video" ? `${t("video")} · ${fmtDuration(it.video?.duration_seconds, lang)}` : fmtReadTime(it.word_count, lang)}
             </span>
             {it.promotional && <span className="inline-flex items-center gap-1 rounded-full bg-ember-50 px-2.5 py-1 font-medium text-ember-600 ring-1 ring-ember-500/20"><Megaphone className="size-3.5" />{t("promotional")}</span>}
           </div>
           <h1 className="font-heading text-[32px] leading-[1.2] sm:text-[38px]">{it.title}</h1>
           <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground">{it.summary}</p>
           <div className="mt-5 flex items-center gap-2">
-            {hcpId && (
+            {hcpId && tracking && (
               <Button variant="outline" size="sm" onClick={() => { if (!saved) { setSaved(true); track("save", it.item_id) } }}>
                 {saved ? <BookmarkCheck className="size-4 text-brand-700" /> : <Bookmark className="size-4" />}
                 {saved ? t("saved") : t("save")}
@@ -91,12 +94,12 @@ export default function ItemPage() {
                 )}
               </>
             ) : (
-              <ArticleBody item={it} />
+              <ArticleBody item={it} tracking={tracking} />
             )}
           </div>
         </article>
 
-        <aside className="space-y-4 lg:pt-14">
+        <aside className="space-y-4 @4xl:pt-14">
           <div className="rounded-xl border bg-white p-4 text-sm">
             <div className="flex items-center gap-2 font-medium"><BadgeCheck className="size-4 text-brand-600" />{lang === "ar" ? "معلومات الاعتماد" : "Approval information"}</div>
             <dl className="mt-3 space-y-2 text-xs">
@@ -135,7 +138,7 @@ function Row({ k, v }: { k: string; v: React.ReactNode }) {
 
 // Reads scroll depth and active reading time. article_read fires past 60% scroll (with at
 // least 6 s of active reading, so a flick-scroll doesn't count) or after a minimum read time (§6).
-function ArticleBody({ item }: { item: ItemDetail }) {
+function ArticleBody({ item, tracking }: { item: ItemDetail; tracking: boolean }) {
   const { t, lang } = useT()
   const ref = useRef<HTMLDivElement>(null)
   const fired = useRef<Set<number>>(new Set())
@@ -168,7 +171,7 @@ function ArticleBody({ item }: { item: ItemDetail }) {
       if (document.visibilityState === "visible") active.current += 1
       if (!readFired.current && ((depthRef.current >= 60 && active.current >= 6) || active.current >= minRead)) {
         readFired.current = true
-        setRead(true)
+        if (tracking) setRead(true)
         track("article_read", item.item_id, active.current)
       }
     }, 1000)
@@ -177,7 +180,7 @@ function ArticleBody({ item }: { item: ItemDetail }) {
       clearInterval(tick)
       if (active.current > 2) track("time_spent", item.item_id, active.current)
     }
-  }, [item.item_id, minRead, lang])
+  }, [item.item_id, minRead, lang, tracking])
 
   return (
     <div>

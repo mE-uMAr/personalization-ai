@@ -16,11 +16,26 @@ from app.db import db
 from app.store import store
 
 
+class AccountExists(Exception):
+    def __init__(self, hcp_id: str, name: str):
+        super().__init__(hcp_id)
+        self.hcp_id, self.name = hcp_id, name
+
+
 def register(r: RegisterIn) -> dict:
     if r.specialty not in store.cfg["specialties"]:
         raise ValueError("unknown specialty")
     if r.country not in store.cfg["countries"]:
         raise ValueError("unknown country")
+    email = (r.email or "").strip().lower() or None
+    licence = (r.licence_no or "").strip().upper() or None
+    if email or licence:  # one account per person: OCE matching relies on licence + email (§9)
+        with db() as c:
+            ex = c.one("SELECT hcp_id, full_name FROM identities WHERE (CAST(:e AS text) IS NOT NULL AND lower(email) = :e) "
+                       "OR (CAST(:l AS text) IS NOT NULL AND upper(trim(licence_no)) = :l) ORDER BY hcp_id LIMIT 1",
+                       e=email, l=licence)
+        if ex:
+            raise AccountExists(ex["hcp_id"], ex["full_name"])
     hcp_id = "hcp_" + secrets.token_hex(5)  # pseudonymous ID; identity kept in a separate table
     verified = verify_licence(r.licence_no)
     # temporary cluster by specialty and country until there is enough behaviour (§5)

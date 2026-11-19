@@ -117,6 +117,10 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* keep form fields clear of the sticky header when the browser scrolls to an invalid one */
+  input, select, textarea, [role="combobox"] {
+    scroll-margin-top: 7rem;
+  }
   html {
     @apply font-sans antialiased;
     font-feature-settings: "cv11", "ss01";

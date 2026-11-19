@@ -82,8 +82,8 @@ TOPICS = {
     },
 }
 
-ALL = ["MA", "MB", "MC", "MD", "ME", "MF", "MG", "MH"]
-GROUP_1 = ["MA", "MB", "MC", "MD", "ME", "MF"]
+ALL = ["SA", "AE", "KW", "QA", "BH", "OM", "IQ", "EG"]
+GROUP_1 = ["SA", "AE", "KW", "QA", "BH", "OM"]
 
 # Item rows. Fields:
 # (ta, topic, type, en_title, ar_title, flags)
@@ -175,7 +175,7 @@ ITEMS = [
     ("respiratory", "copd", "article", "Triple inhaled therapy: who benefits",
      "العلاج الثلاثي بالاستنشاق: من المستفيد", dict(pub=25, minutes=6)),
     ("respiratory", "copd", "article", "Product focus: once-daily triple inhaler",
-     "نظرة على المنتج: بخاخ ثلاثي مرة واحدة يومياً", dict(promo=True, pub=9, minutes=4, countries=["MA", "MB", "MD", "MC"])),
+     "نظرة على المنتج: بخاخ ثلاثي مرة واحدة يومياً", dict(promo=True, pub=9, minutes=4, countries=["SA", "AE", "QA", "KW"])),
     ("respiratory", "rsv_vaccination", "article", "RSV in older adults: the hidden burden",
      "الفيروس المخلوي التنفسي لدى كبار السن: العبء الخفي", dict(public=True, pub=60, minutes=5)),
     ("respiratory", "rsv_vaccination", "video", "Adult RSV vaccination: evidence review",
@@ -247,7 +247,7 @@ ITEMS = [
     ("womens_health", "osteoporosis", "video", "Bone density scans: reading the report",
      "فحص كثافة العظام: قراءة التقرير", dict(pub=42, seconds=88)),
     ("womens_health", "osteoporosis", "video", "Product briefing: anabolic bone therapy",
-     "موجز عن المنتج: العلاج البنائي للعظام", dict(promo=True, pub=10, seconds=100, countries=["MA", "MB", "MC", "MH"])),
+     "موجز عن المنتج: العلاج البنائي للعظام", dict(promo=True, pub=10, seconds=100, countries=["SA", "AE", "KW", "EG"])),
     ("womens_health", "osteoporosis", "article", "Vitamin D and calcium: what to advise",
      "فيتامين د والكالسيوم: بماذا ننصح", dict(public=True, pub=65, minutes=4)),
     ("womens_health", "menopause", "video", "Menopause and cardiovascular risk",
@@ -276,25 +276,25 @@ SPECIALTIES = {
 }
 
 COUNTRIES = {
-    "MA": {"en": "Market A", "ar": "السوق أ"},
-    "MB": {"en": "Market B", "ar": "السوق ب"},
-    "MC": {"en": "Market C", "ar": "السوق ج"},
-    "MD": {"en": "Market D", "ar": "السوق د"},
-    "ME": {"en": "Market E", "ar": "السوق هـ"},
-    "MF": {"en": "Market F", "ar": "السوق و"},
-    "MG": {"en": "Market G", "ar": "السوق ز"},
-    "MH": {"en": "Market H", "ar": "السوق ح"},
+    "SA": {"en": "Saudi Arabia", "ar": "المملكة العربية السعودية"},
+    "AE": {"en": "United Arab Emirates", "ar": "الإمارات العربية المتحدة"},
+    "KW": {"en": "Kuwait", "ar": "الكويت"},
+    "QA": {"en": "Qatar", "ar": "قطر"},
+    "BH": {"en": "Bahrain", "ar": "البحرين"},
+    "OM": {"en": "Oman", "ar": "عُمان"},
+    "IQ": {"en": "Iraq", "ar": "العراق"},
+    "EG": {"en": "Egypt", "ar": "مصر"},
 }
 
 # Market rule sheet. Placeholder values; the real sheet comes from the client (requirements §12).
 # The eligibility filter reads these from config, never from code.
 COUNTRY_RULES = {
-    "MA": {"promotional_allowed": True},
-    "MB": {"promotional_allowed": True},
-    "MC": {"promotional_allowed": True},
-    "MD": {"promotional_allowed": True},
-    "ME": {"promotional_allowed": True},
-    "MF": {"promotional_allowed": True},
-    "MG": {"promotional_allowed": False},
-    "MH": {"promotional_allowed": True},
+    "SA": {"promotional_allowed": True},
+    "AE": {"promotional_allowed": True},
+    "KW": {"promotional_allowed": True},
+    "QA": {"promotional_allowed": True},
+    "BH": {"promotional_allowed": True},
+    "OM": {"promotional_allowed": True},
+    "IQ": {"promotional_allowed": False},
+    "EG": {"promotional_allowed": True},
 }

@@ -1,20 +1,32 @@
-// Mock CRM rep view (stands in for IQVIA OCE until a sandbox exists). Deliberately styled
-// like a CRM, not like our site, so it reads as data arriving in another system.
+// CRM rep view: what a field rep sees for each HCP once the engine's data reaches IQVIA OCE.
+// A neutral stand-in (no live OCE connection in the demo); bilingual, follows the admin language.
 import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router"
 import { useQuery } from "@tanstack/react-query"
-import { Braces, Building2, CircleDot, Cloud, FileText, PlayCircle, RefreshCw, Search, ShieldOff, Star, UserRound } from "lucide-react"
+import { ArrowLeft, Braces, CircleDot, FileText, Languages, PlayCircle, RefreshCw, Search, ShieldOff, Sparkles, UserRound } from "lucide-react"
+import { BrandMark } from "@/components/brand"
+import { DirectionProvider } from "@/components/ui/direction"
 import { api, ApiError, type OceAccount } from "@/lib/api"
+import { adminLang, useAdmin } from "@/lib/admin-i18n"
+import { useConfig } from "@/lib/hooks"
 import { cn } from "@/lib/utils"
 
-const EV: Record<string, string> = { item_open: "Opened", article_read: "Read article", video_progress: "Watched video", dismiss: "Marked not relevant", save: "Saved" }
+const EV: Record<string, [string, string]> = {
+  item_open: ["Opened", "فتح"],
+  article_read: ["Read article", "قرأ مقالاً"],
+  video_progress: ["Watched video", "شاهد فيديو"],
+  dismiss: ["Marked not relevant", "حدده غير مناسب"],
+  save: ["Saved", "حفظ"],
+}
 
 export default function OceApp() {
+  const { L, lang, dir, time } = useAdmin()
+  const cfg = useConfig()
   const [sp, setSp] = useSearchParams()
   const [q, setQ] = useState("")
   const selected = sp.get("account")
-  const list = useQuery({ queryKey: ["oce", "list", q], queryFn: () => api.oceAccounts(q || undefined), refetchInterval: 4000 })
-  const acc = useQuery({ queryKey: ["oce", "acc", selected], queryFn: () => api.oceAccount(selected!), enabled: !!selected, refetchInterval: 3000, retry: false })
+  const list = useQuery({ queryKey: ["oce", "list", q, lang], queryFn: () => api.oceAccounts(q || undefined, lang), refetchInterval: 4000 })
+  const acc = useQuery({ queryKey: ["oce", "acc", selected, lang], queryFn: () => api.oceAccount(selected!, lang), enabled: !!selected, refetchInterval: 3000, retry: false })
   const [raw, setRaw] = useState(false)
 
   useEffect(() => {
@@ -22,140 +34,153 @@ export default function OceApp() {
   }, [selected, list.data, setSp])
 
   return (
-    <div className="flex min-h-svh flex-col bg-[#f3f2f2] font-sans text-[13px] text-[#181818]" dir="ltr" lang="en">
-      <header className="flex h-12 items-center gap-4 bg-[#16325c] px-4 text-white">
-        <div className="flex items-center gap-2">
-          <Cloud className="size-5 text-[#9ad0ff]" />
-          <span className="font-semibold">OCE</span>
-          <span className="rounded bg-white/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide">Mock sandbox</span>
-        </div>
-        <span className="text-white/60">Rep workspace · Accounts</span>
-        <div className="ms-auto flex items-center gap-3 text-xs text-white/70">
-          <span className="flex items-center gap-1.5"><RefreshCw className="size-3.5" />Inbound via <span className="font-mono">{list.data?.adapter}</span> · every {list.data?.sync_seconds}s (prod: 15 min)</span>
-          <Link to="/" className="rounded px-2 py-1 hover:bg-white/10">Exit</Link>
-        </div>
-      </header>
-      <div className="flex h-10 items-center gap-1 border-b bg-white px-4 text-[13px]">
-        {["Home", "Accounts", "Calls", "Content", "Reports"].map((t) => (
-          <span key={t} className={cn("px-3 py-2.5", t === "Accounts" ? "border-b-[3px] border-[#0176d3] font-semibold" : "text-[#444]")}>{t}</span>
-        ))}
-      </div>
-
-      <div className="grid flex-1 grid-cols-[320px_1fr] gap-3 p-3">
-        <aside className="flex flex-col overflow-hidden rounded border border-[#dddbda] bg-white">
-          <div className="border-b p-3">
-            <div className="mb-2 flex items-center gap-2 font-semibold"><Building2 className="size-4 text-[#0176d3]" />My HCP accounts</div>
-            <div className="flex items-center gap-2 rounded border border-[#c9c9c9] px-2">
-              <Search className="size-3.5 text-[#706e6b]" />
-              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search accounts" className="h-8 flex-1 bg-transparent outline-none" />
-            </div>
-            <p className="mt-2 text-[11px] text-[#706e6b]">Only HCPs with CRM-sharing consent are ever sent.</p>
+    <DirectionProvider dir={dir}>
+      <div className="flex min-h-svh flex-col bg-[#f5f6fa] text-[13.5px] text-[#0d1330]" dir={dir} lang={lang}>
+        <header className="flex h-16 items-center gap-4 border-b border-black/[0.06] bg-white px-6">
+          <Link to="/" className="rounded-full p-2 text-muted-foreground hover:bg-[#f5f6fa]" aria-label={L("Back", "رجوع")}><ArrowLeft className="size-4 rtl:rotate-180" /></Link>
+          <BrandMark className="size-8" />
+          <div className="leading-tight">
+            <div className="font-semibold">{L("Field rep view", "عرض المندوب الميداني")}</div>
+            <div className="text-xs text-muted-foreground">{L("As delivered to IQVIA OCE · simulated in this demo", "كما يصل إلى IQVIA OCE · محاكاة في هذا العرض")}</div>
           </div>
-          <ul className="flex-1 overflow-y-auto">
-            {list.data?.accounts.map((a) => (
-              <li key={a.hcp_id}>
-                <button onClick={() => setSp({ account: a.hcp_id })} className={cn("w-full border-b border-[#eee] px-3 py-2.5 text-start hover:bg-[#f3f9ff]", selected === a.hcp_id && "bg-[#eef4ff] shadow-[inset_3px_0_0_#0176d3]")}>
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-[#0b5cab]">{a.full_name}</span>
-                    {a.live && <span className="rounded bg-[#ffe9d6] px-1 text-[10px] font-semibold text-[#a84a00]">LIVE</span>}
-                  </div>
-                  <div className="text-[11.5px] text-[#706e6b]">{a.specialty_label} · {a.country} · {a.oce_id}</div>
-                  <div className="text-[11px] text-[#706e6b]">{a.engagements} engagement records{a.last_sync ? ` · synced ${new Date(a.last_sync).toLocaleTimeString()}` : ""}</div>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </aside>
+          <div className="ms-auto flex items-center gap-3">
+            <span className="hidden items-center gap-1.5 rounded-full bg-[#f5f6fa] px-3 py-1.5 text-xs text-muted-foreground md:flex">
+              <RefreshCw className="size-3.5" />{L(`Syncs every ${list.data?.sync_seconds ?? "–"}s in the demo (production: 15 min)`, `مزامنة كل ${list.data?.sync_seconds ?? "–"} ث في العرض (الإنتاج: 15 دقيقة)`)}
+            </span>
+            <button onClick={() => adminLang.set(lang === "en" ? "ar" : "en")} className="inline-flex h-9 items-center gap-1.5 rounded-full border border-black/10 bg-white px-3.5 text-sm font-medium hover:border-brand-300">
+              <Languages className="size-4" />{lang === "en" ? "العربية" : "English"}
+            </button>
+          </div>
+        </header>
 
-        <main className="min-w-0 space-y-3">
-          {!selected && <div className="rounded border bg-white p-8 text-center text-[#706e6b]">Select an account.</div>}
-          {acc.isError && (
-            <div className="flex items-start gap-3 rounded border border-[#dddbda] bg-white p-6">
-              <ShieldOff className="size-6 text-[#ba0517]" />
-              <div>
-                <div className="font-semibold">No record in the CRM for this HCP</div>
-                <div className="text-[#706e6b]">{String((acc.error as ApiError).detail ?? "")}</div>
+        <div className="grid flex-1 grid-cols-[320px_1fr] gap-5 p-5">
+          <aside className="flex flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-white">
+            <div className="border-b border-black/[0.06] p-4">
+              <div className="mb-3 font-semibold">{L("My HCPs", "أطبائي")}</div>
+              <div className="flex items-center gap-2 rounded-full border border-black/10 px-3">
+                <Search className="size-4 text-muted-foreground" />
+                <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={L("Search by name", "ابحث بالاسم")} className="h-9 flex-1 bg-transparent outline-none" />
               </div>
+              <p className="mt-2.5 text-[11.5px] text-muted-foreground">{L("Only HCPs who agreed to CRM sharing appear here.", "يظهر هنا فقط الأطباء الذين وافقوا على المشاركة مع CRM.")}</p>
             </div>
-          )}
-          {acc.data && <Record a={acc.data} raw={raw} setRaw={setRaw} />}
-        </main>
+            <ul className="flex-1 overflow-y-auto p-2">
+              {list.data?.accounts.map((a) => (
+                <li key={a.hcp_id}>
+                  <button onClick={() => setSp({ account: a.hcp_id })} className={cn("w-full rounded-xl px-3 py-2.5 text-start transition hover:bg-[#f5f6fa]", selected === a.hcp_id && "bg-brand-50 hover:bg-brand-50")}>
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold">{a.full_name}</span>
+                      {a.live && <span className="rounded-full bg-ember-50 px-1.5 text-[10px] font-semibold text-ember-600">{L("NEW", "جديد")}</span>}
+                    </div>
+                    <div className="text-xs text-muted-foreground">{a.specialty_label} · {cfg?.countries[a.country]?.[lang] ?? a.country}</div>
+                    <div className="text-[11px] text-muted-foreground">{L(`${a.engagements} content items engaged`, `تفاعل مع ${a.engagements} محتوى`)}{a.last_sync ? ` · ${time(a.last_sync)}` : ""}</div>
+                  </button>
+                </li>
+              ))}
+              {list.data && list.data.accounts.length === 0 && (
+                <li className="px-3 py-8 text-center text-sm text-muted-foreground">
+                  {q ? L(`No HCP matches “${q}”. HCPs who did not agree to CRM sharing never appear here.`, `لا يوجد طبيب يطابق «${q}». لا يظهر هنا أبداً الأطباء الذين لم يوافقوا على المشاركة.`) : L("No HCPs shared with the CRM yet.", "لا يوجد أطباء مشاركون بعد.")}
+                </li>
+              )}
+            </ul>
+          </aside>
+
+          <main className="min-w-0 space-y-5">
+            {!selected && <div className="rounded-2xl border border-black/[0.06] bg-white p-10 text-center text-muted-foreground">{L("Choose an HCP.", "اختر طبيباً.")}</div>}
+            {acc.isError && (
+              <div className="flex items-start gap-3 rounded-2xl border border-black/[0.06] bg-white p-6">
+                <ShieldOff className="size-6 text-rose-600" />
+                <div>
+                  <div className="font-semibold">{L("This HCP has no CRM record", "لا يوجد سجل CRM لهذا الطبيب")}</div>
+                  <div className="text-muted-foreground">{String((acc.error as ApiError).detail ?? "")}</div>
+                </div>
+              </div>
+            )}
+            {acc.data && <Record a={acc.data} raw={raw} setRaw={setRaw} />}
+          </main>
+        </div>
       </div>
-    </div>
+    </DirectionProvider>
   )
 }
 
 function Record({ a, raw, setRaw }: { a: OceAccount; raw: boolean; setRaw: (v: boolean) => void }) {
+  const { L, lang, ar, time, dateTime } = useAdmin()
+  const cfg = useConfig()
+  const taName = (id: string, fallback: string) => cfg?.therapy_areas.find((t) => t.id === id)?.[lang] ?? fallback
   return (
     <>
-      <div className="rounded border border-[#dddbda] bg-white">
-        <div className="flex flex-wrap items-center gap-4 p-4">
-          <span className="grid size-12 place-items-center rounded bg-[#7f8de1] text-white"><UserRound className="size-7" /></span>
+      <div className="rounded-2xl border border-black/[0.06] bg-white">
+        <div className="flex flex-wrap items-center gap-4 p-5">
+          <span className="grid size-12 place-items-center rounded-full bg-brand-700 text-white"><UserRound className="size-6" /></span>
           <div className="min-w-0 flex-1">
-            <div className="text-[11px] uppercase tracking-wide text-[#706e6b]">Account · HCP</div>
-            <div className="text-xl font-bold">{a.name}</div>
+            <div className="text-xl font-semibold">{a.name}</div>
+            <div className="text-sm text-muted-foreground">{a.specialty_label} · {cfg?.countries[a.country]?.[lang] ?? a.country}</div>
           </div>
-          <button onClick={() => setRaw(!raw)} className={cn("flex items-center gap-1.5 rounded border px-3 py-1.5 font-semibold", raw ? "border-[#0176d3] bg-[#0176d3] text-white" : "border-[#c9c9c9] bg-white text-[#0176d3] hover:bg-[#f3f9ff]")}>
-            <Braces className="size-4" /> {raw ? "Hide raw payload" : "Raw payload"}
+          <button onClick={() => setRaw(!raw)} className={cn("flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition", raw ? "border-brand-700 bg-brand-700 text-white" : "border-black/10 bg-white hover:border-brand-300")}>
+            <Braces className="size-4" /> {raw ? L("Hide data payload", "إخفاء البيانات") : L("Data payload", "البيانات المرسلة")}
           </button>
         </div>
-        <div className="grid grid-cols-2 gap-px border-t bg-[#eee] md:grid-cols-5">
-          <F k="OCE ID" v={<span className="font-mono">{a.oce_id}</span>} />
-          <F k="Specialty" v={a.specialty_label} />
-          <F k="Country" v={a.country} />
-          <F k="Segment (engine cluster)" v={a.segment?.label_en ?? "—"} />
-          <F k="Last sync" v={a.sync.last ? new Date(a.sync.last).toLocaleTimeString() : "—"} />
+        <div className="grid grid-cols-2 gap-px border-t border-black/[0.06] bg-black/[0.06] md:grid-cols-4">
+          <F k={L("CRM ID", "معرّف CRM")} v={<span className="font-mono text-[12.5px]">{a.oce_id}</span>} />
+          <F k={L("Peer segment", "شريحة الزملاء")} v={(ar ? a.segment?.label_ar : a.segment?.label_en) ?? "—"} />
+          <F k={L("Main interest", "الاهتمام الرئيسي")} v={a.ta_affinity[0] ? taName(a.ta_affinity[0].ta, a.ta_affinity[0].name) : "—"} />
+          <F k={L("Last update", "آخر تحديث")} v={a.sync.last ? time(a.sync.last) : "—"} />
         </div>
       </div>
 
       {raw ? (
-        <div className="rounded border border-[#dddbda] bg-[#1b1f2a] p-4 text-[12px] text-[#d5e2ff]">
+        <div className="rounded-2xl bg-[#0d1330] p-5 text-[12px] text-[#d5e2ff]" dir="ltr">
           <div className="mb-2 flex items-center justify-between text-[11px] text-white/50">
-            <span>Inbound payload · {a.sync.adapter} · {a.sync.delivered} delivered · {a.sync.queued} queued</span>
+            <span>{a.sync.adapter} · {a.sync.delivered} delivered · {a.sync.queued} queued</span>
             <span>pseudonymous ID {a.hcp_id}</span>
           </div>
           <pre className="max-h-[70svh] overflow-auto whitespace-pre-wrap font-mono leading-relaxed">{JSON.stringify(a.raw, null, 2)}</pre>
         </div>
       ) : (
-        <div className="grid gap-3 xl:grid-cols-[1.25fr_1fr]">
-          <Card title="Recommended content for this HCP" icon={Star} right={<span className="text-[11px] text-[#706e6b]">{a.recommendations_meta.source}{a.recommendations_meta.delivered_at ? ` · ${new Date(a.recommendations_meta.delivered_at).toLocaleTimeString()}` : ""}</span>}>
-            <table className="w-full">
-              <thead><tr className="border-b text-start text-[11px] uppercase text-[#706e6b]"><th className="py-1.5 text-start font-semibold">#</th><th className="text-start font-semibold">Content</th><th className="text-start font-semibold">Why</th><th className="text-end font-semibold">Score</th></tr></thead>
-              <tbody>
-                {a.recommendations.map((r, i) => (
-                  <tr key={r.item_id} className="border-b border-[#f0f0f0] align-top">
-                    <td className="py-2 pe-2 text-[#706e6b]">{i + 1}</td>
-                    <td className="py-2 pe-3"><div className="font-semibold text-[#0b5cab]">{r.title}</div><div className="font-mono text-[10.5px] text-[#706e6b]">{r.item_id} · {r.level}</div></td>
-                    <td className="py-2 pe-3 text-[#3e3e3c]">{r.reason}</td>
-                    <td className="py-2 text-end font-mono">{r.score.toFixed(2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <p className="mt-2 text-[11px] text-[#706e6b]">Suggested talking points for the next call. Content is approved; reasons are fixed templates.</p>
+        <div className="grid gap-5 xl:grid-cols-[1.3fr_1fr]">
+          <Card title={L("Suggested content for the next visit", "محتوى مقترح للزيارة القادمة")} icon={Sparkles}>
+            <ol className="space-y-2">
+              {a.recommendations.map((r, i) => (
+                <li key={r.item_id} className="flex gap-3 rounded-xl bg-[#f7f8fb] p-3">
+                  <span className="num grid size-7 shrink-0 place-items-center rounded-full bg-white text-xs font-semibold ring-1 ring-black/10">{i + 1}</span>
+                  <div className="min-w-0">
+                    <div className="font-semibold">{r.title}</div>
+                    <div className="mt-0.5 text-xs text-muted-foreground">{r.reason}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-3 text-[11.5px] text-muted-foreground">{L("All content is approved. Reasons are fixed, pre-approved wording.", "كل المحتوى معتمد، والأسباب صياغات ثابتة معتمدة مسبقاً.")}</p>
           </Card>
-          <Card title="Therapy-area interest" icon={CircleDot} right={<span className="text-[11px] text-[#706e6b]">Lands on: <b>{a.ta_affinity[0]?.name}</b></span>}>
-            <div className="space-y-2">
+          <Card title={L("Therapy-area interest", "الاهتمام بالمجالات العلاجية")} icon={CircleDot}>
+            <div className="space-y-3">
               {a.ta_affinity.map((t) => (
-                <div key={t.ta} className="grid grid-cols-[130px_1fr_40px] items-center gap-2">
-                  <span>{t.name}</span>
-                  <div className="h-2 rounded bg-[#f0f0f0]"><div className="h-full rounded" style={{ width: `${t.share * 100}%`, background: t.color }} /></div>
-                  <span className="text-end font-mono text-[11px]">{Math.round(t.share * 100)}%</span>
+                <div key={t.ta}>
+                  <div className="flex justify-between text-sm"><span>{taName(t.ta, t.name)}</span><span className="num text-muted-foreground">{Math.round(t.share * 100)}%</span></div>
+                  <div className="mt-1.5 h-1.5 rounded-full bg-[#eef0f6]"><div className="h-full rounded-full bg-brand-600" style={{ width: `${t.share * 100}%` }} /></div>
                 </div>
               ))}
             </div>
           </Card>
-          <Card title={`Digital engagement (${a.engagement.length})`} icon={RefreshCw} className="xl:col-span-2">
+          <Card title={a.engagement_total > a.engagement.length
+            ? L(`Digital activity · latest ${a.engagement.length} of ${a.engagement_total} content items`, `النشاط الرقمي · آخر ${a.engagement.length} من ${a.engagement_total} محتوى`)
+            : L(`Digital activity · ${a.engagement.length} content items`, `النشاط الرقمي · ${a.engagement.length} محتوى`)} icon={RefreshCw} className="xl:col-span-2">
             <table className="w-full">
-              <thead><tr className="border-b text-[11px] uppercase text-[#706e6b]"><th className="py-1.5 text-start font-semibold">When</th><th className="text-start font-semibold">Activity</th><th className="text-start font-semibold">Content</th><th className="text-start font-semibold">Therapy area</th><th className="text-end font-semibold">Received</th></tr></thead>
+              <thead>
+                <tr className="border-b border-black/[0.06] text-xs text-muted-foreground">
+                  <th className="py-2 text-start font-medium">{L("When", "متى")}</th>
+                  <th className="text-start font-medium">{L("Activity", "النشاط")}</th>
+                  <th className="text-start font-medium">{L("Content", "المحتوى")}</th>
+                  <th className="text-end font-medium">{L("Received in CRM", "وصل إلى CRM")}</th>
+                </tr>
+              </thead>
               <tbody>
                 {a.engagement.map((e, i) => (
-                  <tr key={i} className="border-b border-[#f0f0f0]">
-                    <td className="py-1.5 pe-3 font-mono text-[11.5px]">{new Date(e.timestamp).toLocaleString()}</td>
-                    <td className="pe-3">{EV[e.event_type] ?? e.event_type}{e.event_type === "video_progress" && e.value ? ` · ${e.value}%` : ""}</td>
-                    <td className="pe-3"><span className="flex items-center gap-1.5">{e.type === "video" ? <PlayCircle className="size-3.5 text-[#706e6b]" /> : <FileText className="size-3.5 text-[#706e6b]" />}<span className="text-[#0b5cab]">{e.title}</span></span></td>
-                    <td className="pe-3 text-[#3e3e3c]">{e.therapy_area}</td>
-                    <td className="text-end font-mono text-[11px] text-[#706e6b]">{e.delivered_at ? new Date(e.delivered_at).toLocaleTimeString() : "queued"}</td>
+                  <tr key={i} className="border-b border-black/[0.04]">
+                    <td className="num py-2 pe-3 text-xs text-muted-foreground">{dateTime(e.timestamp)}</td>
+                    <td className="pe-3">{(EV[e.event_type] ?? [e.event_type, e.event_type])[ar ? 1 : 0]}{e.event_type === "video_progress" && e.value ? ` · ${e.value}%` : ""}</td>
+                    <td className="pe-3"><span className="flex items-center gap-1.5">{e.type === "video" ? <PlayCircle className="size-3.5 text-muted-foreground" /> : <FileText className="size-3.5 text-muted-foreground" />}<span>{e.title}</span></span></td>
+                    <td className="num text-end text-xs text-muted-foreground">{e.delivered_at ? time(e.delivered_at) : L("queued", "في الانتظار")}</td>
                   </tr>
                 ))}
               </tbody>
@@ -169,21 +194,18 @@ function Record({ a, raw, setRaw }: { a: OceAccount; raw: boolean; setRaw: (v: b
 
 function F({ k, v }: { k: string; v: React.ReactNode }) {
   return (
-    <div className="bg-white px-4 py-2.5">
-      <div className="text-[11px] text-[#706e6b]">{k}</div>
-      <div className="truncate font-semibold">{v}</div>
+    <div className="bg-white px-5 py-3">
+      <div className="text-xs text-muted-foreground">{k}</div>
+      <div className="mt-0.5 truncate font-medium">{v}</div>
     </div>
   )
 }
 
-function Card({ title, icon: Icon, right, children, className }: { title: string; icon: React.ElementType; right?: React.ReactNode; children: React.ReactNode; className?: string }) {
+function Card({ title, icon: Icon, children, className }: { title: string; icon: React.ElementType; children: React.ReactNode; className?: string }) {
   return (
-    <section className={cn("rounded border border-[#dddbda] bg-white", className)}>
-      <div className="flex items-center justify-between gap-2 border-b border-[#dddbda] bg-[#f3f3f3] px-4 py-2.5">
-        <h3 className="flex items-center gap-2 font-bold"><span className="grid size-6 place-items-center rounded bg-[#0176d3] text-white"><Icon className="size-3.5" /></span>{title}</h3>
-        {right}
-      </div>
-      <div className="p-4">{children}</div>
+    <section className={cn("rounded-2xl border border-black/[0.06] bg-white", className)}>
+      <h3 className="flex items-center gap-2 px-5 pb-1 pt-4 font-semibold"><Icon className="size-4 text-brand-600" />{title}</h3>
+      <div className="p-5 pt-3">{children}</div>
     </section>
   )
 }

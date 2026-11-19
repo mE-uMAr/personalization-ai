@@ -1,11 +1,10 @@
 import { Link } from "react-router"
-import { CheckCircle2, Clock, EyeOff, Info, PlayCircle, FileText, Megaphone } from "lucide-react"
+import { CheckCircle2, Clock, EyeOff, Info, Play, PlayCircle, FileText, Megaphone } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { TaDot } from "@/components/brand"
 import type { Card, RecItem } from "@/lib/api"
-import { fmtDuration, readMinutes, useT } from "@/lib/i18n"
+import { fmtDuration, fmtReadTime, useT } from "@/lib/i18n"
 import { useConfig } from "@/lib/hooks"
-import { track } from "@/lib/track"
 import { cn } from "@/lib/utils"
 
 function Meta({ card }: { card: Card }) {
@@ -15,7 +14,7 @@ function Meta({ card }: { card: Card }) {
       {card.type === "video" ? (
         <span className="inline-flex items-center gap-1"><PlayCircle className="size-3.5" />{t("video")} · {fmtDuration(card.duration_seconds, lang)}</span>
       ) : (
-        <span className="inline-flex items-center gap-1"><FileText className="size-3.5" />{readMinutes(card.word_count)} {t("min_read")}</span>
+        <span className="inline-flex items-center gap-1"><FileText className="size-3.5" />{fmtReadTime(card.word_count, lang)}</span>
       )}
       {card.promotional && (
         <span className="inline-flex items-center gap-1 text-ember-600"><Megaphone className="size-3" />{t("promotional")}</span>
@@ -29,15 +28,15 @@ export function Poster({ card, className, showProgress = true }: { card: Card; c
   const cfg = useConfig()
   const ta = cfg?.therapy_areas.find((x) => x.id === card.therapy_area)
   return (
-    <div className={cn("relative aspect-[16/9] overflow-hidden rounded-lg bg-brand-100", className)}>
+    <div className={cn("relative aspect-[16/9] overflow-hidden rounded-xl bg-brand-100", className)}>
       {card.media?.poster && (
         <img src={card.media.poster} alt="" loading="lazy" className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-black/0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" />
       {card.type === "video" && (
         <div className="absolute inset-0 grid place-items-center">
-          <span className="grid size-11 place-items-center rounded-full bg-white/90 text-brand-700 shadow-lg backdrop-blur transition group-hover:scale-110">
-            <PlayCircle className="size-6" />
+          <span className="grid size-12 place-items-center rounded-full bg-white/95 text-brand-700 shadow-lg backdrop-blur transition group-hover:scale-110">
+            <Play className="size-5 translate-x-px fill-current" />
           </span>
         </div>
       )}
@@ -68,7 +67,7 @@ export function ItemCard({ card, rec, compact = false, onDismiss }: { card: Card
         <Poster card={card} />
         <div className="flex flex-col gap-1 px-0.5">
           <Meta card={card} />
-          <h3 className={cn("font-heading leading-snug text-foreground group-hover:text-brand-700", compact ? "text-[15px]" : "text-[16.5px]")}>
+          <h3 className={cn("font-heading font-semibold leading-snug text-[#0d1330] group-hover:text-brand-700", compact ? "text-[15px]" : "text-[17px]")}>
             {card.title}
           </h3>
           {!compact && <p className="line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">{card.summary}</p>}
@@ -85,12 +84,12 @@ export function ReasonLine({ rec, onDismiss }: { rec: RecItem; onDismiss?: () =>
   const comps = Object.entries(rec.signals ?? {}).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1])
   const total = comps.reduce((s, [, v]) => s + v, 0) || 1
   return (
-    <div className="flex items-center gap-1.5 px-0.5">
+    <div className="flex items-start gap-1.5 px-0.5">
       <Popover>
         <PopoverTrigger asChild>
-          <button className="group/why inline-flex min-w-0 items-center gap-1.5 rounded-md text-start text-[12.5px] text-brand-700 hover:text-brand-800">
-            <Info className="size-3.5 shrink-0 opacity-60" />
-            <span className="truncate font-medium">{rec.reason.text}</span>
+          <button className="group/why inline-flex min-w-0 items-start gap-1.5 rounded-2xl bg-brand-50 px-2.5 py-1 text-start text-[12px] leading-snug text-brand-700 hover:bg-brand-100">
+            <Info className="mt-px size-3.5 shrink-0 opacity-60" />
+            <span className="line-clamp-2 font-medium">{rec.reason.text}</span>
           </button>
         </PopoverTrigger>
         <PopoverContent align="start" className="w-72 p-0">
@@ -117,11 +116,8 @@ export function ReasonLine({ rec, onDismiss }: { rec: RecItem; onDismiss?: () =>
         <button
           title={t("not_relevant")}
           aria-label={t("not_relevant")}
-          onClick={() => {
-            track("dismiss", rec.item_id)
-            onDismiss()
-          }}
-          className="ms-auto rounded-md p-1 text-muted-foreground/60 opacity-0 transition hover:bg-muted hover:text-foreground group-hover:opacity-100 focus-visible:opacity-100"
+          onClick={onDismiss}
+          className="ms-auto shrink-0 rounded-md p-1 text-muted-foreground/70 transition hover:bg-muted hover:text-foreground"
         >
           <EyeOff className="size-3.5" />
         </button>
