@@ -11,12 +11,13 @@ from contextlib import asynccontextmanager
 from datetime import date
 
 from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from app import analytics, demo, oce
 from app import engine as E
-from app.config import (CRM_SYNC_SECONDS, MODEL_VERSION, ROOT, TA_SWITCH_MARGIN, SPECIALTY_BONUS, POINTS,
+from app.config import (CORS_ORIGIN_REGEX, CORS_ORIGINS, CRM_SYNC_SECONDS, MODEL_VERSION, ROOT, TA_SWITCH_MARGIN, SPECIALTY_BONUS, POINTS,
                         COLD_WEIGHTS, PERSONAL_WEIGHTS, COLD_START_ACTIONS)
 from app.contracts import EventIn, Lang, OverrideIn, RecommendationRequest, RegisterIn, SwitchIn
 from app.db import db
@@ -57,6 +58,16 @@ def _sync_state():
 app = FastAPI(title="HCP Personalization Engine — demo", version="1.0.0", lifespan=lifespan,
               dependencies=[Depends(_sync_state)])
 app.add_middleware(GZipMiddleware, minimum_size=800)
+# The web app is served from its own origin in production (Vercel) and calls this API directly.
+# Locally both share one origin through the Vite proxy, so this does nothing there.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[o.strip() for o in CORS_ORIGINS.split(",") if o.strip()],
+    allow_origin_regex=CORS_ORIGIN_REGEX or None,
+    allow_methods=["GET", "POST", "DELETE"],
+    allow_headers=["content-type"],
+    max_age=86400,  # browsers cache the preflight for a day: one extra round trip per day, not per POST
+)
 
 
 class _NoStore:
@@ -97,6 +108,13 @@ def _hcp_or_404(hcp_id: str) -> dict:
 def _ctx(hcp_id: str | None, lang: str | None, session_id: str | None, country: str | None = None):
     hcp = _hcp_or_404(hcp_id) if hcp_id else None
     return E.build_ctx(hcp, lang, session_id, country)
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    """The bare API address: say what this is and where to look."""
+    return {"service": "AI Personalization Engine API", "status": "ok", "health": "/api/v1/health", "docs": "/docs",
+            "web_app": "https://personalization-ai.vercel.app"}
 
 
 # ── platform ──────────────────────────────────────────────────────────────────

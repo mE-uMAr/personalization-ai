@@ -58,6 +58,10 @@ LATENCY_BUDGET_MS = 150          # over budget → serve editor-curated lists
 
 CRM_SYNC_SECONDS = float(os.environ.get("CRM_SYNC_SECONDS", "5"))  # production: 15-minute batches
 
+# Origins allowed to call the API from a browser (the web app when it is hosted on its own domain).
+CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "https://personalization-ai.vercel.app")
+CORS_ORIGIN_REGEX = os.environ.get("CORS_ORIGIN_REGEX", r"https://personalization-ai-[a-z0-9-]+\.vercel\.app")
+
 LEVELS = ("L1", "L2", "L3", "editor", "exploration")
 
 

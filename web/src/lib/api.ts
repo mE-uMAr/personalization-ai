@@ -174,8 +174,12 @@ class ApiError extends Error {
   }
 }
 
+// Same origin by default (the Vite dev proxy locally). A production build can point at an API on another
+// origin (e.g. FastAPI Cloud) with VITE_API_BASE; the API allows that origin through CORS.
+const API_BASE = `${(import.meta.env.VITE_API_BASE ?? "").replace(/\/$/, "")}/api/v1`
+
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
-  const r = await fetch(`/api/v1${path}`, {
+  const r = await fetch(`${API_BASE}${path}`, {
     ...init,
     headers: { "content-type": "application/json", ...(init?.headers ?? {}) },
   })
