@@ -5,24 +5,47 @@ Completion = article read past threshold, or video watched to 100%, in that sess
 """
 from __future__ import annotations
 
+import json
 import math
 import time
+from decimal import Decimal
 
 from app import engine as E
 from app.db import db
 from app.store import store
 
 _cache: dict[str, tuple[float, dict]] = {}
-TTL = 8.0
+TTL = 60.0  # 30-day aggregates: a minute old is fine; the live-session counters are never cached
 
 
 def _cached(key: str, fn):
+    """Process memory first, then a copy shared through the database, so a fresh instance (serverless cold start,
+    another replica) reuses a recent result instead of re-running the heavy aggregate queries."""
     hit = _cache.get(key)
     if hit and time.time() - hit[0] < TTL:
         return hit[1]
+    with db() as c:
+        row = c.one("SELECT value, EXTRACT(EPOCH FROM now() - updated_at) age FROM cache WHERE key = :k", k=key)
+    if row and float(row["age"]) < TTL:
+        _cache[key] = (time.time() - float(row["age"]), row["value"])
+        return row["value"]
     v = fn()
+    with db() as c:
+        c.run("INSERT INTO cache (key, value, updated_at) VALUES (:k, CAST(:v AS jsonb), now()) "
+              "ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()", k=key, v=_dumps(v))
     _cache[key] = (time.time(), v)
     return v
+
+
+def _dumps(v) -> str:
+    # same types the API would send directly (numeric -> float), so a cached copy reads back identically
+    return json.dumps(v, ensure_ascii=False, default=lambda o: float(o) if isinstance(o, Decimal) else str(o))
+
+
+def clear_cache() -> None:
+    _cache.clear()
+    with db() as c:
+        c.run("DELETE FROM cache")
 
 
 IMP_CTE = """
@@ -41,7 +64,16 @@ WITH imp AS (
 
 
 def overview() -> dict:
-    return _cached("overview", _overview)
+    return {**_cached("overview", _overview), "live_run": _live()}
+
+
+def _live() -> dict:
+    with db() as c:
+        live = c.one("""SELECT count(*) events, count(DISTINCT hcp_id) hcps, max(ts) last_ts FROM events WHERE demo_run = :r""",
+                     r=E.switches.demo_run)
+        live_imps = c.scalar("SELECT count(*) FROM impressions WHERE demo_run = :r", r=E.switches.demo_run)
+    return {"run": E.switches.demo_run, "events": live["events"], "hcps": live["hcps"], "impressions": live_imps,
+            "last_ts": live["last_ts"].isoformat() if live["last_ts"] else None}
 
 
 def _overview() -> dict:
@@ -90,9 +122,6 @@ def _overview() -> dict:
                            count(*) FILTER (WHERE e.event_type = 'video_progress' AND e.value = '100') video_completions,
                            count(*) FILTER (WHERE e.event_type = 'article_read') article_reads
                            FROM events e JOIN items i USING (item_id) WHERE e.ts > now() - interval '30 days'""")
-        live = c.one("""SELECT count(*) events, count(DISTINCT hcp_id) hcps, max(ts) last_ts FROM events WHERE demo_run = :r""",
-                     r=E.switches.demo_run)
-        live_imps = c.scalar("SELECT count(*) FROM impressions WHERE demo_run = :r", r=E.switches.demo_run)
     published = sum(1 for i in store.items.values() if i["status"] == "published")
     for r in by_level + by_slot:
         r["ctr"] = round(r["clicks"] / r["impressions"], 4) if r["impressions"] else 0
@@ -118,8 +147,6 @@ def _overview() -> dict:
         },
         "by_level": by_level, "by_slot": by_slot, "daily": daily, "top_content": top, "by_ta": by_ta,
         "by_country": by_country, "formats": formats,
-        "live_run": {"run": E.switches.demo_run, "events": live["events"], "hcps": live["hcps"], "impressions": live_imps,
-                     "last_ts": live["last_ts"].isoformat() if live["last_ts"] else None},
     }
 
 

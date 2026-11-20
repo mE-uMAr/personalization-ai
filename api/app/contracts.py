@@ -46,8 +46,10 @@ class RegisterIn(BaseModel):
     country: str
     language: Lang = "en"
     licence_no: str | None = None
-    tracking_consent: bool = False   # consent is opt-in, never pre-ticked
-    crm_consent: bool = False
+    # Analytics demo: new accounts have personalisation and CRM sharing on. A production build asks for both
+    # as explicit, opt-in consents (prepared personas still show the no-consent paths).
+    tracking_consent: bool = True
+    crm_consent: bool = True
 
 
 class OverrideIn(BaseModel):

@@ -130,9 +130,8 @@ def reset() -> dict:
     E.switches.set("demo_run", f"run-{n}")
     E.switches.set("engine_down", False)
     E.switches.set("paused", False)
-    E.last_requests.clear()
-    E.crm_last_top.clear()
     store.reload_items()
     store.reload_impression_counts()  # same exploration picks every rehearsal
     store.reload_overrides()
-    return {"reset": run, "new_run": E.switches.demo_run, "deleted": counts, "profiles_rebuilt": len(touched) - len(live)}
+    E.switches.content_changed()  # other instances reload too
+    return {"reset": run, "new_run": E.switches.demo_run, "deleted": counts, "profiles_rebuilt": sum(1 for h in touched if h not in live)}

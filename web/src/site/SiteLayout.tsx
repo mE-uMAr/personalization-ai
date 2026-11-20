@@ -11,7 +11,7 @@ import { useT } from "@/lib/i18n"
 import { session, useSession } from "@/lib/session"
 import { cn } from "@/lib/utils"
 
-const LENS_KEY = "hcp-demo-lens"
+const LENS_KEY = "hcp-demo-lens-v2" // v2: closed by default (v1 stored "open" for every visitor)
 
 export default function SiteLayout() {
   const { t, lang, dir } = useT()
@@ -21,7 +21,8 @@ export default function SiteLayout() {
   const home = useHome()
   const nav = useNavigate()
   const loc = useLocation()
-  const [lens, setLens] = useState(() => localStorage.getItem(LENS_KEY) !== "0")
+  // closed until the presenter opens it (then remembered)
+  const [lens, setLens] = useState(() => localStorage.getItem(LENS_KEY) === "1")
   useEffect(() => {
     localStorage.setItem(LENS_KEY, lens ? "1" : "0")
   }, [lens])

@@ -151,3 +151,14 @@ CREATE TABLE IF NOT EXISTS overrides (
   created_at  timestamptz NOT NULL DEFAULT now(),
   demo_run    text
 );
+
+-- Shared cache for heavy read-only aggregates (analytics), so every API instance reuses one recent result.
+CREATE TABLE IF NOT EXISTS cache (
+  key        text PRIMARY KEY,
+  value      jsonb NOT NULL,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- Live-session counters (analytics header, demo reset) touch only rows from the current demo run.
+CREATE INDEX IF NOT EXISTS events_demo_run ON events (demo_run) WHERE demo_run IS NOT NULL;
+CREATE INDEX IF NOT EXISTS imp_demo_run ON impressions (demo_run) WHERE demo_run IS NOT NULL;

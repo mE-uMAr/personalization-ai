@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Switch } from "@/components/ui/switch"
 import { api, ApiError, type Lang } from "@/lib/api"
 import { useConfig } from "@/lib/hooks"
 import { useT } from "@/lib/i18n"
@@ -20,7 +19,9 @@ export default function Register() {
   const nav = useNavigate()
   const [f, setF] = useState({
     full_name: "Dr. Mariam Al-Sayed", email: "mariam.alsayed@example.org", specialty: "ophthalmologist", country: "SA",
-    language: lang as Lang, licence_no: "LIC-482130", tracking_consent: false, crm_consent: false,
+    language: lang as Lang, licence_no: "LIC-482130",
+    // This demo is about analytics: personalisation and CRM sharing are always on for new accounts.
+    tracking_consent: true, crm_consent: true,
   })
   const set = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) => setF((s) => ({ ...s, [k]: v }))
   const m = useMutation({
@@ -94,10 +95,6 @@ export default function Register() {
         </div>
 
         <p className="text-xs text-muted-foreground">{t("verified_help")}</p>
-        <div className="divide-y rounded-2xl border border-black/[0.08] bg-white">
-          <Toggle label={t("consent_tracking")} help={t("consent_tracking_help")} checked={f.tracking_consent} onChange={(v) => set("tracking_consent", v)} />
-          <Toggle label={t("consent_crm")} help={t("consent_crm_help")} checked={f.crm_consent} onChange={(v) => set("crm_consent", v)} />
-        </div>
 
         {m.isError && (() => {
           const d = m.error instanceof ApiError && m.error.status === 409 ? (m.error.detail as { hcp_id: string; name: string }) : null
@@ -137,17 +134,5 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <Label className="text-[13px] text-foreground/80">{label}</Label>
       {children}
     </div>
-  )
-}
-
-function Toggle({ label, help, checked, onChange }: { label: string; help: string; checked: boolean; onChange: (v: boolean) => void }) {
-  return (
-    <label className="flex cursor-pointer items-start justify-between gap-4 p-4">
-      <span>
-        <span className="block text-sm font-medium">{label}</span>
-        <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">{help}</span>
-      </span>
-      <Switch checked={checked} onCheckedChange={onChange} className="mt-0.5" />
-    </label>
   )
 }

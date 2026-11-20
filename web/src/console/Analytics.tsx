@@ -14,7 +14,7 @@ const TIP = { fontSize: 12, borderRadius: 10, border: "1px solid #e3e6f0", boxSh
 
 export default function Analytics() {
   const { L, ar, lang, n, pct } = useAdmin()
-  const q = useQuery({ queryKey: ["analytics"], queryFn: api.analytics, refetchInterval: 5000 })
+  const q = useQuery({ queryKey: ["analytics"], queryFn: api.analytics, refetchInterval: 10_000 })
   const cfg = useConfig()
   const d = q.data
   const ta = (id: string) => cfg?.therapy_areas.find((t) => t.id === id)

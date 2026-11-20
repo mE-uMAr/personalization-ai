@@ -21,6 +21,8 @@ $pids   = Join-Path $local "run.pids"
 $api    = Join-Path $root "api"
 $web    = Join-Path $root "web"
 $env:PYTHONIOENCODING = "utf-8"
+# Use the installed CPython rather than a uv-managed download (signed build; works under Windows App Control).
+$env:UV_PYTHON_PREFERENCE = "only-system"
 
 function Step($msg) { Write-Host "`n> $msg" -ForegroundColor Cyan }
 function Fail($msg) { Write-Host "x $msg" -ForegroundColor Red; exit 1 }
@@ -60,7 +62,7 @@ if ($Stop) {
 if (-not (Test-Path (Join-Path $pgBin "pg_ctl.exe"))) { Fail "Portable Postgres not found in .local\pgsql (see README: First-time setup)." }
 if (-not (Get-Command uv -ErrorAction SilentlyContinue)) { Fail "uv not found: winget install astral-sh.uv" }
 Step "Python environment (uv)"
-Push-Location $api; uv sync --locked --quiet; $ok = $LASTEXITCODE -eq 0; Pop-Location
+Push-Location $api; uv sync --locked --all-groups --quiet; $ok = $LASTEXITCODE -eq 0; Pop-Location
 if (-not $ok) { Fail "uv sync failed." }
 Write-Host "  in sync"
 if (-not (Test-Path (Join-Path $web "node_modules"))) { Step "Installing web dependencies"; Push-Location $web; npm ci; Pop-Location }

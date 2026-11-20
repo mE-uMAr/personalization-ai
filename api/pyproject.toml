@@ -30,9 +30,15 @@ dev = [
 
 [tool.uv]
 package = false
-default-groups = ["seed", "dev"]
-# Use the installed CPython rather than a uv-managed download (signed build; works under Windows App Control).
-python-preference = "only-system"
+# Hosts (Vercel, FastAPI Cloud) install only the runtime dependencies above. Locally, run.cmd installs all groups.
+default-groups = []
+
+# The ASGI app, for hosts that look it up (Vercel and FastAPI Cloud).
+[tool.vercel]
+entrypoint = "app.main:app"
+
+[tool.fastapi]
+entrypoint = "app.main:app"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

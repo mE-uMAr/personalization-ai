@@ -15,6 +15,7 @@ editor-curated lists instead — a recommendation failure never breaks the page.
 from __future__ import annotations
 
 import hashlib
+import threading
 import time
 import uuid
 from collections import defaultdict
@@ -46,17 +47,51 @@ EXPERIMENT_ID = None  # live A/B experiments are not part of the demo (example r
 
 
 # ── runtime switches (demo launcher / admin) ────────────────────────────────────
+SYNC_SECONDS = 2.0  # how stale an instance's view of switches and content may get
+
+
 class Switches:
+    """Runtime switches and the content version, shared through the database.
+
+    The API may run as several instances (serverless functions, autoscaled replicas) that start and stop at
+    will, so nothing an admin changes may live only in one process's memory. Each instance re-reads these
+    settings at most every SYNC_SECONDS and reloads the catalogue and overrides when the content version moved.
+    """
+
     def __init__(self):
         self.engine_down = False
         self.paused = False
         self.demo_run = "run-1"
+        self.content_version = 0
+        self._synced_at = 0.0
+        self._first = True  # the store was just loaded at startup: nothing to reload on the first sync
+        self._lock = threading.Lock()
+
+    def sync(self, force: bool = False) -> None:
+        if not force and time.monotonic() - self._synced_at < SYNC_SECONDS:
+            return
+        with self._lock:
+            if not force and time.monotonic() - self._synced_at < SYNC_SECONDS:
+                return
+            with db() as c:
+                rows = c.all("SELECT key, value FROM settings WHERE key IN "
+                             "('engine_down', 'paused', 'demo_run', 'content_version')")
+            vals = {r["key"]: r["value"] for r in rows}
+            self.engine_down = bool(vals.get("engine_down", False))
+            self.paused = bool(vals.get("paused", False))
+            self.demo_run = vals.get("demo_run") or "run-1"
+            version = int(vals.get("content_version") or 0)
+            if version != self.content_version:
+                if not self._first:  # another instance changed content or overrides: reload them here
+                    store.reload_items()
+                    store.reload_overrides()
+                    store.reload_impression_counts()
+                self.content_version = version
+            self._first = False
+            self._synced_at = time.monotonic()
 
     def load(self):
-        with db() as c:
-            for r in c.all("SELECT key, value FROM settings"):
-                if r["key"] in ("engine_down", "paused", "demo_run"):
-                    setattr(self, r["key"], r["value"])
+        self.sync(force=True)
 
     def set(self, key: str, value):
         setattr(self, key, value)
@@ -64,10 +99,16 @@ class Switches:
             c.run("INSERT INTO settings (key, value) VALUES (:k, CAST(:v AS jsonb)) "
                   "ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value", k=key, v=j(value))
 
+    def content_changed(self) -> None:
+        """Call after changing items or overrides (this instance has already reloaded them)."""
+        with db() as c:
+            v = c.scalar("INSERT INTO settings (key, value) VALUES ('content_version', CAST('1' AS jsonb)) "
+                         "ON CONFLICT (key) DO UPDATE SET value = to_jsonb(COALESCE((settings.value #>> '{}')::int, 0) + 1) "
+                         "RETURNING value")
+        self.content_version = int(v)
+
 
 switches = Switches()
-last_requests: dict[str, dict] = {}  # hcp_id → last ranking breakdown (engine lens)
-crm_last_top: dict[str, list[str]] = {}  # hcp_id → last top list sent to the CRM
 
 
 @dataclass
@@ -301,7 +342,7 @@ def recommend(ctx: Ctx, slot: str, n: int = ROW_SIZE, ta: str | None = None, con
         it = store.items[s.item_id]
         reason_text = render(s.reason_template, s.reason_params, ctx.lang, store)
         signals = {"components": s.components, "alpha": round(ctx.alpha, 3), "landing_ta": ctx.ta_order[0],
-                   "cluster_id": ctx.cluster_id, "fallback": fallback}
+                   "cluster_id": ctx.cluster_id, "fallback": fallback, "rank_ms": rank_ms}
         out_items.append({
             "item_id": s.item_id, "score": s.score, "level": s.level,
             "reason": {"template": s.reason_template, "params": s.reason_params, "text": reason_text},
@@ -327,14 +368,6 @@ def recommend(ctx: Ctx, slot: str, n: int = ROW_SIZE, ta: str | None = None, con
         "experiment_variant": None, "fallback": fallback, "rank_ms": rank_ms, "items": out_items,
         "eligible_count": len(ctx.eligible), "removed_count": len(ctx.removed), "tracking": tracking,
     }
-    if log and ctx.hcp["hcp_id"] != "anonymous":
-        last_requests.setdefault(ctx.hcp["hcp_id"], {})[slot] = {
-            "request_id": req_id, "slot": slot, "ts": ts, "rank_ms": rank_ms, "fallback": fallback,
-            "model_version": model_version, "alpha": ctx.alpha,
-            "items": [{"item_id": s.item_id, "title": store.items[s.item_id]["title"], "score": s.score,
-                       "level": s.level, "components": s.components, "reason": render(s.reason_template, s.reason_params, "en", store)}
-                      for s in rows],
-        }
     return resp
 
 
@@ -585,51 +618,49 @@ def push_recs_to_crm(ctx: Ctx, resp: dict) -> bool:
         return False
     items = [i for i in resp["items"] if i["level"] != "exploration"][:5]  # reps get the ranked list, not probes
     top = [i["item_id"] for i in items]
-    if crm_last_top.get(ctx.hcp["hcp_id"]) == top:
+    last = last_crm_recs(ctx.hcp["hcp_id"])
+    if last and [i["item_id"] for i in last["items"]] == top:
+        if last.get("content_version") != switches.content_version:  # same list, now confirmed for this version
+            with db() as c:
+                c.run("UPDATE crm_outbox SET payload = jsonb_set(payload, '{content_version}', to_jsonb(CAST(:v AS int))) "
+                      "WHERE id = :i", v=switches.content_version, i=last["_id"])
         return False
-    crm_last_top[ctx.hcp["hcp_id"]] = top
     crm.enqueue(ctx.hcp["hcp_id"], "recommendations", {
         "hcp_id": ctx.hcp["hcp_id"], "model_version": resp["model_version"], "request_id": resp["request_id"],
+        "content_version": switches.content_version,
         "items": [{"item_id": i["item_id"], "title": store.items[i["item_id"]]["title"]["en"], "score": i["score"],
                    "level": i["level"], "reason": render(i["reason"]["template"], i["reason"]["params"], "en", store)}
                   for i in items]}, demo_run=switches.demo_run)
     return True
 
 
-def _last_crm_top(hcp_id: str) -> list[str] | None:
-    if hcp_id in crm_last_top:
-        return crm_last_top[hcp_id]
+def last_crm_recs(hcp_id: str) -> dict | None:
+    """The newest recommendations message for this HCP (queued or delivered), with its outbox id."""
     with db() as c:
-        p = c.scalar("SELECT payload FROM crm_outbox WHERE hcp_id = :h AND kind = 'recommendations' "
-                     "ORDER BY id DESC LIMIT 1", h=hcp_id)
-    return [i["item_id"] for i in p["items"]] if p else None
+        r = c.one("SELECT id, payload FROM crm_outbox WHERE hcp_id = :h AND kind = 'recommendations' "
+                  "ORDER BY id DESC LIMIT 1", h=hcp_id)
+    return {**r["payload"], "_id": r["id"]} if r else None
+
+
+def refresh_crm_for(hcp: dict) -> bool:
+    """Content or overrides changed since this HCP's CRM list was computed: recompute it and send it if it
+    differs (§4/§10: expiry, withdrawal and overrides reach the CRM whether or not the HCP visits).
+
+    Runs on demand, so no background process is needed: the rep view calls it before reading, and a scheduler
+    can call POST /api/v1/admin/crm/refresh in production. No impression is logged (no page was shown)."""
+    ctx = build_ctx(hcp)
+    rec = next((r for r in home(ctx, log=False)["rows"] if r["slot"] == "home_recommended"), None)
+    return bool(rec and not rec["fallback"] and push_recs_to_crm(ctx, rec))
 
 
 def refresh_crm_recommendations() -> int:
-    """Content or override changed: recompute the CRM list for every HCP whose list the CRM holds and send
-    the ones that changed (§4/§10: expiry, withdrawal and overrides reach the CRM within 15 min, whether or
-    not the HCP visits). Nothing is logged as an impression: the HCP did not see a page."""
+    """Refresh every CRM list computed before the current content version."""
     with db() as c:
-        ids = [r[0] for r in c.run("SELECT DISTINCT o.hcp_id FROM crm_outbox o JOIN hcps h USING (hcp_id) "
-                                   "WHERE o.kind = 'recommendations' AND h.crm_consent")]
-    sent = 0
-    for hid in ids:
-        hcp = get_hcp(hid)
-        if hcp is None:
-            continue
-        prev = _last_crm_top(hid)
-        if prev is not None:
-            crm_last_top[hid] = prev
-        ctx = build_ctx(hcp)
-        rec = next((r for r in home(ctx, log=False)["rows"] if r["slot"] == "home_recommended"), None)
-        if rec and not rec["fallback"]:
-            sent += push_recs_to_crm(ctx, rec)
-    return sent
-
-
-def refresh_crm_async() -> None:
-    import threading
-    threading.Thread(target=refresh_crm_recommendations, daemon=True).start()
+        rows = c.all("SELECT DISTINCT ON (o.hcp_id) o.hcp_id, o.payload->>'content_version' v FROM crm_outbox o "
+                     "JOIN hcps h USING (hcp_id) WHERE o.kind = 'recommendations' AND h.crm_consent "
+                     "ORDER BY o.hcp_id, o.id DESC")
+    stale = [r["hcp_id"] for r in rows if r["v"] is None or int(r["v"]) != switches.content_version]
+    return sum(refresh_crm_for(h) for h in (get_hcp(i) for i in stale) if h)
 
 
 # ── live cluster assignment ─────────────────────────────────────────────────────
@@ -684,6 +715,36 @@ def provisional_position(cid: int | None) -> tuple[float | None, float | None]:
     return float(x), float(y)
 
 
+def last_rankings(hcp_id: str) -> dict:
+    """The newest ranking per slot for this HCP, rebuilt from the impression log (not process memory, so it is
+    the same on every instance and survives restarts)."""
+    with db() as c:
+        heads = c.all("SELECT DISTINCT ON (slot) slot, request_id, ts FROM (SELECT slot, request_id, ts FROM impressions "
+                      "WHERE hcp_id = :h ORDER BY ts DESC LIMIT 200) r ORDER BY slot, ts DESC", h=hcp_id)
+        ids = [str(x["request_id"]) for x in heads]
+        rows = c.all("SELECT request_id, item_id, score, level, reason_template, reason_params, signals, model_version "
+                     "FROM impressions WHERE hcp_id = :h AND request_id = ANY(CAST(:ids AS uuid[])) ORDER BY rank",
+                     h=hcp_id, ids=ids) if ids else []
+    by_req: dict[str, list[dict]] = defaultdict(list)
+    for r in rows:
+        by_req[str(r["request_id"])].append(r)
+    out = {}
+    for hd in heads:
+        rs = [r for r in by_req.get(str(hd["request_id"]), []) if r["item_id"] in store.items]
+        if not rs:
+            continue
+        sig = rs[0]["signals"] or {}
+        out[hd["slot"]] = {
+            "request_id": str(hd["request_id"]), "slot": hd["slot"], "ts": hd["ts"].isoformat(),
+            "rank_ms": sig.get("rank_ms") or 0.0, "fallback": sig.get("fallback"), "model_version": rs[0]["model_version"],
+            "alpha": sig.get("alpha") or 0.0,
+            "items": [{"item_id": r["item_id"], "title": store.items[r["item_id"]]["title"], "score": r["score"],
+                       "level": r["level"], "components": (r["signals"] or {}).get("components") or {},
+                       "reason": render(r["reason_template"], r["reason_params"] or {}, "en", store)} for r in rs],
+        }
+    return out
+
+
 # ── engine lens ─────────────────────────────────────────────────────────────────
 def lens(hcp_id: str, lang: str = "en") -> dict | None:
     hcp = get_hcp(hcp_id)
@@ -708,7 +769,7 @@ def lens(hcp_id: str, lang: str = "en") -> dict | None:
         "cluster": cluster_brief(ctx.cluster_id, ctx.cluster_source, lang),
         "cluster_assign_at": CLUSTER_ASSIGN_ACTIONS,
         "events": evs,
-        "last": last_requests.get(hcp_id, {}),
+        "last": last_rankings(hcp_id),
         "component_labels": COMPONENT_LABEL,
         "eligible": len(ctx.eligible), "removed": ctx.removed,
         "switches_state": {"engine_down": switches.engine_down, "paused": switches.paused},

@@ -10,7 +10,7 @@ import time
 from contextlib import asynccontextmanager
 from datetime import date
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -28,7 +28,9 @@ _stop = threading.Event()
 
 
 def _crm_worker():
-    """Batched delivery to the CRM (demo: every few seconds; production: 15-minute batches)."""
+    """Batched delivery to the CRM (demo: every few seconds; production: 15-minute batches).
+
+    Serverless hosts may freeze this thread between requests, so the rep view also delivers on read."""
     while not _stop.wait(CRM_SYNC_SECONDS):
         try:
             E.crm.deliver_batch()
@@ -46,11 +48,21 @@ async def lifespan(_: FastAPI):
     _stop.set()
 
 
-app = FastAPI(title="HCP Personalization Engine — demo", version="1.0.0", lifespan=lifespan)
+def _sync_state():
+    """Every API request sees switches and content no older than a couple of seconds, whichever instance
+    made the change (instances share nothing but the database)."""
+    E.switches.sync()
+
+
+app = FastAPI(title="HCP Personalization Engine — demo", version="1.0.0", lifespan=lifespan,
+              dependencies=[Depends(_sync_state)])
 app.add_middleware(GZipMiddleware, minimum_size=800)
 # No CORS: the site and API are served from one origin (the Vite proxy locally; a reverse proxy in production).
-(ROOT / "media").mkdir(exist_ok=True)
-app.mount("/media", StaticFiles(directory=ROOT / "media"), name="media")
+# Videos, captions and posters are static files: the web app serves them (web/public/media). Mounted here
+# only when a local copy exists, for running the API on its own.
+_media = ROOT.parent / "web" / "public" / "media"
+if _media.is_dir():
+    app.mount("/media", StaticFiles(directory=_media), name="media")
 
 
 def _hcp_or_404(hcp_id: str) -> dict:
@@ -237,11 +249,18 @@ def clusters(lang: Lang = "en"):
 
 @app.get("/api/v1/oce/accounts")
 def oce_accounts(q: str | None = None, lang: Lang = "en"):
+    E.crm.deliver_batch()  # deliver what is due before reading (no reliance on a background thread)
     return {"accounts": oce.accounts(q, lang=lang), "adapter": E.crm.name, "sync_seconds": CRM_SYNC_SECONDS}
 
 
 @app.get("/api/v1/oce/accounts/{hcp_id}")
 def oce_account(hcp_id: str, lang: Lang = "en"):
+    h = E.get_hcp(hcp_id)
+    if h is not None and h["crm_consent"]:
+        last = E.last_crm_recs(hcp_id)
+        if last is not None and last.get("content_version") != E.switches.content_version:
+            E.refresh_crm_for(h)  # content or overrides changed since this list was sent
+    E.crm.deliver_batch()
     a = oce.account(hcp_id, lang)
     if a is None:
         raise HTTPException(404, "Not shared with the CRM (no CRM-sharing consent) or unknown account")
@@ -278,7 +297,7 @@ def expire_now(item_id: str):
         c.run("UPDATE items SET expiry_date = CAST(:d AS date), updated_at = now() WHERE item_id = :i",
               d=date.today().isoformat(), i=item_id)
     store.reload_items()
-    E.refresh_crm_async()  # the CRM list drops it too, whether or not the HCP visits (QA D-03)
+    E.switches.content_changed()  # other instances reload; CRM lists computed before this are refreshed (QA D-03)
     return {"item_id": item_id, "expiry_date": date.today().isoformat(), "effective": "next request"}
 
 
@@ -292,7 +311,7 @@ def restore(item_id: str):
         c.run("UPDATE items SET expiry_date = CAST(:d AS date), status = :s, updated_at = now() WHERE item_id = :i",
               d=orig["expiry_date"], s=orig["status"], i=item_id)
     store.reload_items()
-    E.refresh_crm_async()
+    E.switches.content_changed()
     return {"item_id": item_id, "restored": True}
 
 
@@ -304,7 +323,7 @@ def add_override(o: OverrideIn):
         c.run("INSERT INTO overrides (action, country, ta, item_id, demo_run) VALUES (:a, :c, :t, :i, :r)",
               a=o.action, c=o.country, t=o.therapy_area, i=o.item_id, r=E.switches.demo_run)
     store.reload_overrides()
-    E.refresh_crm_async()
+    E.switches.content_changed()
     return {"ok": True}
 
 
@@ -316,8 +335,16 @@ def clear_overrides(item_id: str | None = None):
         else:
             c.run("DELETE FROM overrides")
     store.reload_overrides()
-    E.refresh_crm_async()
+    E.switches.content_changed()
     return {"ok": True}
+
+
+@app.post("/api/v1/admin/crm/refresh")
+def crm_refresh():
+    """Re-send every CRM list computed before the latest content change (for a scheduler, e.g. every 15 min)."""
+    sent = E.refresh_crm_recommendations()
+    E.crm.deliver_batch()
+    return {"sent": sent, "content_version": E.switches.content_version}
 
 
 @app.get("/api/v1/admin/hcps/{hcp_id}/impressions")
@@ -356,4 +383,6 @@ def demo_switches(s: SwitchIn):
 
 @app.post("/api/v1/demo/reset")
 def demo_reset():
-    return demo.reset()
+    out = demo.reset()
+    analytics.clear_cache()
+    return out

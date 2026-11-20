@@ -42,7 +42,7 @@ def main() -> None:
 
     with db() as c:
         c.raw.run("DROP TABLE IF EXISTS settings, items, identities, hcps, events, impressions, profiles, clusters, "
-                  "pop_cluster, pop_specialty, crm_outbox, overrides CASCADE")
+                  "pop_cluster, pop_specialty, crm_outbox, overrides, cache CASCADE")
         sql = "\n".join(l.split("--")[0] for l in (ROOT / "app" / "schema.sql").read_text(encoding="utf-8").splitlines())
         for stmt in sql.split(";"):
             if stmt.strip():
@@ -133,7 +133,7 @@ def main() -> None:
                 "clustering": cl["implementation"], "n_clusters": cl["n_clusters"], "noise": cl["noise"],
                 "ab": {"experiment_id": syn["ab_experiment"], "attribution": syn["ab_attribution"]},
                 "prepared": syn["prepared"]}
-        for k, v in {"engine_down": False, "paused": False, "demo_run": "run-1", "seed_meta": meta}.items():
+        for k, v in {"engine_down": False, "paused": False, "demo_run": "run-1", "content_version": 0, "seed_meta": meta}.items():
             c.run("INSERT INTO settings (key, value) VALUES (:k, CAST(:v AS jsonb))", k=k, v=j(v))
         c.raw.run("ANALYZE")
 

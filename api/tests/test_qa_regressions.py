@@ -168,13 +168,39 @@ def test_d03_crm_list_drops_expired_item_without_a_new_visit(api):
     target = before[0]
     api.post(f"/api/v1/admin/items/{target}/expire")
     try:
-        E.refresh_crm_recommendations()  # what the endpoint starts in the background
-        E.crm.deliver_batch()
+        # no page view, no background job: reading the CRM record is enough to bring it up to date
         after = [i["item_id"] for i in api.get(f"/api/v1/oce/accounts/{hid}").json()["recommendations"]]
         assert target not in after and after
     finally:
         api.post(f"/api/v1/admin/items/{target}/restore")
-        E.refresh_crm_recommendations()
+
+
+def test_state_is_shared_between_instances(api):
+    """Serverless / multi-replica: a switch or content change made by one instance reaches the others."""
+    E.switches.sync(force=True)
+    v0 = E.switches.content_version
+    with db() as c:  # another instance flips the switch and expires an item
+        c.run("UPDATE settings SET value = 'true'::jsonb WHERE key = 'paused'")
+        c.run("UPDATE items SET expiry_date = current_date WHERE item_id = 'CMD-001'")
+        c.run("UPDATE settings SET value = to_jsonb((value #>> '{}')::int + 1) WHERE key = 'content_version'")
+    try:
+        E.switches._synced_at = 0.0  # as if SYNC_SECONDS had passed
+        h = api.get("/api/v1/home", params={"hcp_id": "hcp_demo_cardio"}).json()
+        assert E.switches.content_version == v0 + 1
+        assert all(r["fallback"] == "paused" for r in h["rows"])
+        assert api.get("/api/v1/items/CMD-001", params={"hcp_id": "hcp_demo_cardio"}).status_code == 403
+    finally:
+        api.post("/api/v1/demo/switches", json={"paused": False})
+        api.post("/api/v1/admin/items/CMD-001/restore")
+
+
+def test_insight_panel_reads_last_ranking_from_the_log(api):
+    """The insight panel's 'last ranking' comes from the impression log, so any instance can serve it."""
+    api.get("/api/v1/home", params={"hcp_id": "hcp_demo_cardio"})
+    last = api.get("/api/v1/lens/hcp_demo_cardio").json()["last"]
+    rec = last["home_recommended"]
+    assert rec["items"] and rec["rank_ms"] > 0 and rec["model_version"]
+    assert all(i["reason"] and isinstance(i["title"], dict) for i in rec["items"])
 
 
 def test_d27_iso_country_codes(api):

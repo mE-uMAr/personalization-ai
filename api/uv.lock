@@ -652,7 +652,7 @@ wheels = [
 name = "personalization-api"
 version = "0.1.0"
 source = { virtual = "." }
-default-groups = ["dev", "seed"]
+default-groups = []
 dependencies = [
     { name = "fastapi" },
     { name = "numpy" },

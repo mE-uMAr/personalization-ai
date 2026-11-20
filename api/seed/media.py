@@ -31,8 +31,9 @@ from seed.catalogue_src import ITEMS
 from seed.content_src import SECTIONS, SUMMARIES
 from seed.content_unique import UNIQUE_BODIES
 
-MEDIA = ROOT / "media"
-SRC = MEDIA / "src"
+MEDIA = ROOT.parent / "web" / "public" / "media"  # served as static files by the web app
+SRC_ROOT = ROOT / "media"
+SRC = SRC_ROOT / "src"  # downloaded source clips (not committed)
 LICENSE_URL = "https://mixkit.co/license/#videoFree"
 
 # item → (mixkit clip id, clip name, licence notice as published by Mixkit)

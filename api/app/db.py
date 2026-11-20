@@ -10,7 +10,8 @@ import queue
 import threading
 from contextlib import contextmanager
 from typing import Any, Iterator
-from urllib.parse import urlparse
+import ssl
+from urllib.parse import parse_qs, unquote, urlparse
 
 import pg8000.native
 
@@ -21,10 +22,29 @@ _lock = threading.Lock()
 
 
 def _connect() -> pg8000.native.Connection:
+    """Local Postgres in plain TCP; a hosted one (Neon, Supabase, ...) over TLS.
+
+    TLS is used when the URL asks for it (sslmode=require/verify-*) or the host is not local.
+    `options=...` in the URL (e.g. Neon's endpoint id) is passed through as a startup parameter.
+    """
     u = urlparse(DATABASE_URL)
+    q = {k: v[-1] for k, v in parse_qs(u.query).items()}
+    host = u.hostname or "127.0.0.1"
+    local = host in ("127.0.0.1", "localhost", "::1")
+    sslmode = q.get("sslmode", "disable" if local else "require")
+    kw: dict[str, Any] = {}
+    if sslmode not in ("disable", "allow", "prefer"):
+        ctx = ssl.create_default_context()
+        if sslmode == "require":  # libpq semantics: encrypt, don't verify the certificate chain
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+        kw["ssl_context"] = ctx
+    if q.get("options"):
+        kw["startup_params"] = {"options": unquote(q["options"])}
     c = pg8000.native.Connection(
-        user=u.username or "postgres", password=u.password, host=u.hostname or "127.0.0.1",
+        user=unquote(u.username or "postgres"), password=unquote(u.password) if u.password else None, host=host,
         port=u.port or 5432, database=(u.path or "/postgres").lstrip("/"), application_name="hcp-engine",
+        timeout=30, **kw,
     )
     c.run("SET TIME ZONE 'UTC'")
     return c
@@ -68,7 +88,17 @@ def db() -> Iterator[Conn]:
     try:
         if raw is None:
             raw = _connect()
-        raw.run("BEGIN")
+        try:
+            raw.run("BEGIN")
+        except (pg8000.native.InterfaceError, OSError):
+            # pooled connection went stale (e.g. a hosted Postgres suspended while idle): reconnect once
+            try:
+                raw.close()
+            except Exception:
+                pass
+            raw = None
+            raw = _connect()
+            raw.run("BEGIN")
         try:
             yield Conn(raw)
             raw.run("COMMIT")
