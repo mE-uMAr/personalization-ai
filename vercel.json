@@ -1,29 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "api": {
-      "root": "api",
-      "framework": "fastapi",
-      "entrypoint": "app.main:app"
-    },
-    "web": {
-      "root": "web",
-      "framework": "vite",
-      "buildCommand": "npm run build",
-      "outputDirectory": "dist",
-      "rewrites": [
-        { "source": "/(.*)", "destination": "/index.html" }
-      ]
-    }
-  },
+  "installCommand": "npm ci --prefix web",
+  "buildCommand": "npm run build --prefix web",
+  "outputDirectory": "web/dist",
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": { "service": "api" }
-    },
-    {
-      "source": "/(.*)",
-      "destination": { "service": "web" }
-    }
+    { "source": "/api/:path*", "destination": "https://personalization-ai-ee3dea7b.fastapicloud.dev/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

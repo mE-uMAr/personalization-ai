@@ -1,0 +1,7 @@
+# Upload only what the API needs at runtime (the seed pipeline and tests run locally).
+seed/
+tests/
+media/
+data/artifacts/synthetic.json
+.venv/
+.pytest_cache/

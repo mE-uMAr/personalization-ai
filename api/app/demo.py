@@ -41,7 +41,7 @@ def register(r: RegisterIn) -> dict:
     # temporary cluster by specialty and country until there is enough behaviour (§5)
     cid = E.nearest_by_specialty_country(r.specialty, r.country) if r.tracking_consent else None
     x, y = E.provisional_position(cid)
-    with db() as c:
+    with db(tx=True) as c:
         c.run("INSERT INTO hcps (hcp_id, specialty, profession, country, language, verified, tracking_consent, "
               "crm_consent, synthetic, cluster_id, cluster_source, map_x, map_y, demo_run) VALUES (:h, :s, :p, :c, :l, "
               ":v, :t, :crm, false, :cid, :src, :x, :y, :run)",
@@ -101,7 +101,7 @@ def rebuild_profile(hcp_id: str) -> None:
 def reset() -> dict:
     run = E.switches.demo_run
     seed_assign = {a["hcp_id"]: a for a in json.loads((ARTIFACTS / "clusters.json").read_text(encoding="utf-8"))["assignments"]}
-    with db() as c:
+    with db(tx=True) as c:
         touched = [r[0] for r in c.run("SELECT DISTINCT hcp_id FROM events WHERE demo_run = :r", r=run)]
         counts = {
             "events": c.scalar("WITH d AS (DELETE FROM events WHERE demo_run = :r RETURNING 1) SELECT count(*) FROM d", r=run),

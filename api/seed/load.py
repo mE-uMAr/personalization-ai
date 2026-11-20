@@ -40,7 +40,7 @@ def main() -> None:
     now = datetime.now(timezone.utc).replace(microsecond=0)
     ta_ids = [t["id"] for t in cfg["therapy_areas"]]
 
-    with db() as c:
+    with db(tx=True) as c:
         c.raw.run("DROP TABLE IF EXISTS settings, items, identities, hcps, events, impressions, profiles, clusters, "
                   "pop_cluster, pop_specialty, crm_outbox, overrides, cache CASCADE")
         sql = "\n".join(l.split("--")[0] for l in (ROOT / "app" / "schema.sql").read_text(encoding="utf-8").splitlines())

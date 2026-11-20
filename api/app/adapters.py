@@ -27,7 +27,7 @@ class PostgresProfileStore(ProfileStore):
 
 
     def update(self, hcp_id: str, default: dict, fn) -> dict:
-        with db() as c:
+        with db(tx=True) as c:
             c.run("SELECT pg_advisory_xact_lock(hashtext(:h))", h=hcp_id)  # serialise per HCP
             v = c.scalar("SELECT profile FROM profiles WHERE hcp_id = :h", h=hcp_id)
             p = (v if isinstance(v, dict) else json.loads(v)) if v is not None else default
@@ -101,7 +101,7 @@ class MockOceAdapter(CrmAdapter):
                   h=hcp_id, k=kind, p=j({"message_id": str(uuid.uuid4()), **payload}), r=demo_run)
 
     def deliver_batch(self, limit: int = 200) -> int:
-        with db() as c:
+        with db(tx=True) as c:
             rows = c.all("SELECT o.id FROM crm_outbox o JOIN hcps h USING (hcp_id) WHERE o.status = 'queued' "
                          "AND h.crm_consent ORDER BY o.id LIMIT :n FOR UPDATE OF o SKIP LOCKED", n=limit)
             delivered = 0

@@ -57,6 +57,28 @@ def _sync_state():
 app = FastAPI(title="HCP Personalization Engine — demo", version="1.0.0", lifespan=lifespan,
               dependencies=[Depends(_sync_state)])
 app.add_middleware(GZipMiddleware, minimum_size=800)
+
+
+class _NoStore:
+    """API answers are per-HCP and live: tell any proxy or CDN in front (e.g. a Vercel rewrite) not to cache them."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http" or not scope["path"].startswith("/api/"):
+            return await self.app(scope, receive, send)
+
+        async def send_(msg):
+            if msg["type"] == "http.response.start":
+                msg.setdefault("headers", [])
+                msg["headers"] = [*msg["headers"], (b"cache-control", b"no-store")]
+            await send(msg)
+
+        await self.app(scope, receive, send_)
+
+
+app.add_middleware(_NoStore)
 # No CORS: the site and API are served from one origin (the Vite proxy locally; a reverse proxy in production).
 # Videos, captions and posters are static files: the web app serves them (web/public/media). Mounted here
 # only when a local copy exists, for running the API on its own.

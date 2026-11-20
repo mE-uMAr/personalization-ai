@@ -1,13 +1,17 @@
 """Tiny Postgres access layer on pg8000 (pure Python driver, no native extensions).
 
 `with db() as c:` yields a pooled connection. `c.run(sql, **params)` uses :name parameters.
-Each `with` block is one transaction: committed on success, rolled back on error.
+
+Statements autocommit by default: against a hosted Postgres every round trip costs network latency, and an
+explicit BEGIN/COMMIT around a single read would triple them. Blocks that must be atomic (several writes, row
+locks, advisory locks) use `with db(tx=True)`: one transaction, committed on success, rolled back on error.
 """
 from __future__ import annotations
 
 import json
 import queue
 import threading
+import time
 from contextlib import contextmanager
 from typing import Any, Iterator
 import ssl
@@ -50,6 +54,9 @@ def _connect() -> pg8000.native.Connection:
     return c
 
 
+IDLE_RECONNECT_SECONDS = 120  # hosted Postgres drops idle connections (e.g. Neon suspends after 5 min)
+
+
 def _get_pool() -> queue.LifoQueue:
     global _pool
     with _lock:
@@ -81,24 +88,30 @@ class Conn:
         return r[0][0] if r else None
 
 
-@contextmanager
-def db() -> Iterator[Conn]:
-    pool = _get_pool()
-    raw = pool.get()
+def _close(raw) -> None:
     try:
+        raw.close()
+    except Exception:  # noqa: BLE001 — already broken
+        pass
+
+
+@contextmanager
+def db(tx: bool = False) -> Iterator[Conn]:
+    pool = _get_pool()
+    entry = pool.get()  # (connection, last used) or None
+    raw = None
+    try:
+        if entry is not None:
+            raw, used = entry
+            if time.monotonic() - used > IDLE_RECONNECT_SECONDS:  # likely dropped by the server: don't risk it
+                _close(raw)
+                raw = None
         if raw is None:
             raw = _connect()
-        try:
-            raw.run("BEGIN")
-        except (pg8000.native.InterfaceError, OSError):
-            # pooled connection went stale (e.g. a hosted Postgres suspended while idle): reconnect once
-            try:
-                raw.close()
-            except Exception:
-                pass
-            raw = None
-            raw = _connect()
-            raw.run("BEGIN")
+        if not tx:
+            yield Conn(raw)
+            return
+        raw.run("BEGIN")
         try:
             yield Conn(raw)
             raw.run("COMMIT")
@@ -106,14 +119,16 @@ def db() -> Iterator[Conn]:
             try:
                 raw.run("ROLLBACK")
             except Exception:
-                raw.close()
+                _close(raw)
                 raw = None
             raise
     except (pg8000.native.InterfaceError, OSError):
+        if raw is not None:
+            _close(raw)
         raw = None
         raise
     finally:
-        pool.put(raw)
+        pool.put((raw, time.monotonic()) if raw is not None else None)
 
 
 def j(v: Any) -> str:

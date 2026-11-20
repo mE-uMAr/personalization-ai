@@ -104,23 +104,29 @@ Models (downloaded once into `.local/models`, never loaded by the API):
 `BAAI/bge-m3` ONNX (embeddings) and Piper `en_US-lessac-medium` / `ar_JO-kareem-medium` (narration).
 Fixed seeds everywhere: same clusters and lists every rehearsal.
 
-## Deploy (Vercel, one project, two services)
+## Deploy
 
-`vercel.json` deploys `api/` (FastAPI) and `web/` (Vite) as one Vercel project on one domain: `/api/*` goes to
-the API, everything else (including `/media/*`, served from `web/public/media`) to the web app. The browser calls
-the API on the same origin, so there is no CORS and no service-to-service call.
+Live setup: **API on FastAPI Cloud, web app on Vercel, database on Neon.**
 
-1. Create a Postgres database (e.g. a free [Neon](https://neon.com) project). Use the **direct** connection string,
-   not the pooled one: the API keeps its own small connection pool and sets the session time zone.
-2. Load the seed into it once, from this machine:
-   `cd api; $env:DATABASE_URL="postgresql://…?sslmode=require"; uv run --no-sync python -m seed --load-only`
-3. In the Vercel project, set environment variables `DATABASE_URL` (same string) and `DB_POOL_SIZE=3`, then deploy.
+- **API**: `api/` on FastAPI Cloud (app `personalization-ai`, https://personalization-ai-ee3dea7b.fastapicloud.dev).
+  Redeploy: `cd api; uv run --no-sync python -m fastapi_cli deploy .` (the `fastapi` launcher itself is blocked
+  by Windows Application Control on the dev machine). `.fastapicloudignore` keeps the seed pipeline, tests and
+  seed data out of the upload. Environment: `DATABASE_URL` (secret), `DB_POOL_SIZE=3`, `CRM_SYNC_SECONDS=5`.
+- **Web**: Vercel builds `web/` from the root `vercel.json` on every push to `main`, serves `/media/*` from
+  `web/public/media`, and proxies `/api/*` to the FastAPI Cloud app (same origin for the browser, no CORS).
+- **Database**: Neon Postgres. Use the **direct** connection string (no `-pooler`): the API keeps its own small
+  pool and sets the session time zone. Reload the demo data with
+  `cd api; $env:DATABASE_URL="postgresql://…?sslmode=require"; uv run --no-sync python -m seed --load-only`.
 
-The API holds nothing that matters in process memory, so it works as serverless functions or several replicas:
-switches, content changes and the insight panel's last ranking are read from the database (each instance re-syncs
-within 2 s), analytics aggregates are cached in the database for 60 s, and CRM delivery happens when the rep view
-is read instead of in a background thread. In production a scheduler calls `POST /api/v1/admin/crm/refresh`.
-The same `api/` folder also deploys to FastAPI Cloud (`[tool.fastapi]` entrypoint in `pyproject.toml`).
+Alternative: everything on Vercel as two services, with `deploy/vercel.services.json` as the root `vercel.json`
+(then set `DATABASE_URL` and `DB_POOL_SIZE` in the Vercel project).
+
+The API holds nothing that matters in process memory, so it runs on scale-to-zero replicas and serverless
+functions alike: switches, content changes and the insight panel's last ranking are read from the database (each
+instance re-syncs within 2 s), analytics aggregates are cached in the database for 60 s, CRM delivery also happens
+when the rep view is read, and statements autocommit (explicit transactions only where atomicity matters), so
+each request makes as few round trips to the database as possible. In production a scheduler calls
+`POST /api/v1/admin/crm/refresh`.
 
 ## Notes
 

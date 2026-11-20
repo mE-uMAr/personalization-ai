@@ -5,7 +5,7 @@ description = "AI Personalization Engine demo: FastAPI service and offline seed 
 requires-python = ">=3.12"
 # API runtime only. No ML libraries: all models run offline in the seed step.
 dependencies = [
-    "fastapi==0.163.2",
+    "fastapi[standard]==0.163.2",  # [standard]: the fastapi CLI that FastAPI Cloud runs the app with
     "uvicorn[standard]==0.54.0",
     "pg8000==1.31.6",
     "numpy==2.5.5",
