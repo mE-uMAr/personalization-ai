@@ -43,6 +43,7 @@ FRESHNESS_HALF_LIFE_DAYS = 45.0
 
 # ── List shaping ────────────────────────────────────────────────────────────────
 ROW_SIZE = 6
+HOME_RECOMMENDED_SIZE = 9       # "Recommended for you" on the home page shows a fuller list
 DIVERSITY_MAX_PER_TOPIC = 3      # per slot of 6 (requirements §7 rule 5)
 EXPLORATION_SHARE = 0.10
 EXPLORATION_POSITION = 4         # 0-based slot where the exploration item lands

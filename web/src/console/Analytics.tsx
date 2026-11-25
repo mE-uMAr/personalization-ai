@@ -104,7 +104,7 @@ export default function Analytics() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {d.top_content.map((r) => (
+                  {d.top_content.slice(0, 7).map((r) => (
                     <TableRow key={r.item_id}>
                       <TableCell className="ps-6">
                         <div className="flex items-center gap-2.5">
@@ -128,9 +128,9 @@ export default function Analytics() {
                 </TableBody>
               </Table>
             </Panel>
-            <div className="space-y-6">
-              <Panel title={L("Engagement by therapy area", "التفاعل حسب المجال العلاجي")}>
-                <div className="space-y-3.5">
+            <div className="flex flex-col gap-6">
+              <Panel className="flex-1" title={L("Engagement by therapy area", "التفاعل حسب المجال العلاجي")}>
+                <div className="space-y-5">
                   {d.by_ta.map((r) => {
                     const max = Math.max(...d.by_ta.map((x) => x.opens), 1)
                     return (
@@ -139,7 +139,7 @@ export default function Analytics() {
                           <span className="flex items-center gap-2"><span className="size-2 rounded-full" style={{ background: ta(r.ta)?.color }} />{ta(r.ta)?.[lang] ?? r.ta}</span>
                           <span className="num text-muted-foreground">{n(r.opens)}</span>
                         </div>
-                        <div className="mt-1.5 h-1.5 rounded-full bg-[#f0f1f6]"><div className="h-full rounded-full bg-brand-600" style={{ width: `${(r.opens / max) * 100}%` }} /></div>
+                        <div className="mt-1.5 h-1.5 rounded-full bg-[#f0f1f6]"><div className="h-full rounded-full" style={{ width: `${(r.opens / max) * 100}%`, background: ta(r.ta)?.color ?? "#1534c4" }} /></div>
                       </div>
                     )
                   })}
@@ -181,7 +181,7 @@ export default function Analytics() {
                       {cfg?.countries[r.country]?.[lang] ?? r.country}
                       <span className="rounded-full bg-[#f5f6fa] px-1.5 py-px text-[10.5px] font-medium text-muted-foreground">{r.language === "ar" ? L("Arabic", "عربي") : L("English", "إنجليزي")}</span>
                     </span>
-                    <span className="num text-xs text-muted-foreground">{n(r.hcps)} {L("HCPs", "طبيب")} · {n(r.opens)} {L("opens", "فتح")}</span>
+                    <span className="num shrink-0 whitespace-nowrap text-xs text-muted-foreground">{n(r.hcps)} {L("HCPs", "طبيب")} · {n(r.opens)} {L("opens", "فتح")}</span>
                   </div>
                 ))}
               </div>

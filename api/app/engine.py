@@ -30,7 +30,7 @@ from app.adapters import MockOceAdapter, PostgresEventSink, PostgresProfileStore
 from app.config import (CLUSTER_ASSIGN_ACTIONS, EXPLORATION_PROBABILITY, MAX_PER_TA_IN_ROW, PEER_MIN_LIFT,
                         PEER_MIN_ROW, PEER_MIN_SCORE,
                         RELATED_MIN_COSINE, DIVERSITY_MAX_PER_TOPIC, EXPLORATION_POSITION,
-                        LATENCY_BUDGET_MS, MIN_CLUSTER_SIZE, MODEL_VERSION, ROW_SIZE)
+                        LATENCY_BUDGET_MS, MIN_CLUSTER_SIZE, MODEL_VERSION, ROW_SIZE, HOME_RECOMMENDED_SIZE)
 from app.db import db, j
 from app.ports import Scored
 from app.ranker import FormulaRanker
@@ -508,15 +508,15 @@ def home(ctx: Ctx, log: bool = True) -> dict:
     land = ctx.ta_order[0]
     picks = {i["item_id"] for i in ctx.eligible if i["therapy_area"] == land and i.get("editor_pick")}
 
-    def claim(slot):
-        r = recommend(ctx, slot, exclude=taken | picks, log=log)
+    def claim(slot, **kw):
+        r = recommend(ctx, slot, exclude=taken | picks, log=log, **kw)
         taken.update(i["item_id"] for i in r["items"])
         if r["items"]:
             rows.append(r)
 
     with_peers = ctx.cluster_id is not None and not fallback
     if ctx.alpha > 0 and not fallback:
-        claim("home_recommended")
+        claim("home_recommended", n=HOME_RECOMMENDED_SIZE)
         if with_peers:
             claim("peers")
     else:
@@ -525,7 +525,7 @@ def home(ctx: Ctx, log: bool = True) -> dict:
     if ctx.alpha < 1.0 or fallback:
         add("start_here")
     if not any(r["slot"] == "home_recommended" for r in rows):
-        add("home_recommended")
+        add("home_recommended", n=HOME_RECOMMENDED_SIZE)
     order = {"continue_watching": 0, "start_here": 1, "home_recommended": 2, "peers": 3}
     rows.sort(key=lambda r: order.get(r["slot"], 9))
     return {"rows": rows, "therapy_areas": ta_list(ctx), "alpha": ctx.alpha, "landing_ta": ctx.ta_order[0],
